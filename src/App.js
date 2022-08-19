@@ -1,9 +1,10 @@
-
+import React from "react";
 import './App.css';
-import "/src/shared/Router";
+import Router from "./shared/Router";
 function App() {
   return (
-<Router></Router>
+
+<Router/>
   );
 }
 
