@@ -14,10 +14,12 @@ function Layout(){
 export default Layout;
 
 const StLayout = styled.div`
-width:70vw;
-height: 20vh;
-    /* max-width:1001px;
-    max-height:820px ; */
-    border:1px solid gray;
 
-`;
+    margin:0 ;
+    width:100%;
+    min-width:1016px ;
+    height:716px ;
+    /* border : 1px solid black; //사이즈 확인용  */
+    position:relative ;
+`
+

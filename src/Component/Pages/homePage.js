@@ -16,7 +16,12 @@ const Home = () => {
         navigate("/profile")
     }
 
-    const onSubmit = () => {
+    const onSubmit = (event) => {
+        event.preventDefault();
+        if (todo.title.trim() === "" || todo.body.trim() === "") {
+          return alert("내용을 입력하세요!");
+        }
+        dispatch
         alert("피드를 작성하였습니다.");
         // navigate("/");
     }
