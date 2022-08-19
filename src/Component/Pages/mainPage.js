@@ -1,10 +1,13 @@
 import Layout from "../Templates/layout.js"; 
+import React from "react";
+
 
 function Main (){
     return(
-       <Layout>
-            테스트
-       </Layout>
+        <Layout>
+<button>123</button>
+        </Layout>
+
     )
 }
 export default Main;
