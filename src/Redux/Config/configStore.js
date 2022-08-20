@@ -1,5 +1,6 @@
 
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import Feed from "../Modules/homePageSlice"
 // store에 등록할 Slice 들을 import  합시다
 
 
@@ -10,7 +11,9 @@ const reducer = combineReducers({
 
 
 export default configureStore({
-    reducer    
+    reducer :{
+        Feed,
+    }   
     //reducer 등록한것을 export 
     //해서 다른 컴포넌트에서 useSelector hook 을 통해서 사용할수 있습니다.
 })
