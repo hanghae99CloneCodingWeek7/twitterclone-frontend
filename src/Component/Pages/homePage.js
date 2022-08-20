@@ -1,9 +1,11 @@
+
 import React from "react"
 import { useState } from "react";
 import { Cookies, useCookies, withCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux/";
 import { ReactComponent as Reservation } from "./BTS.svg"
+import Header from "../Templates/header";
 import styled from "styled-components";
 import img1 from "./BTS.jpg";
 
@@ -54,7 +56,9 @@ const Home = () => {
     };
 
     return (
+        
         <Total>
+                  <Header />
             <Black></Black>
             <LeftWrap>
 
