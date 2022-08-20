@@ -16,8 +16,9 @@ const StLayout = styled.div`
     width:100%;
     min-width:1200px ;
     height:716px ;
+    overflow:scroll ;
     /* border : 1px solid black; //사이즈 확인용  */
-    position:relative ;
+
 `
 
 

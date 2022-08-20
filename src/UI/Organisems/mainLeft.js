@@ -6,7 +6,7 @@ function MainLeft (){
     return(
     <LeftBox>
         <IMG src="img/lohp_1302x955.png"/>
-        <Logo src ={'img/twitericons.svg'}></Logo>
+        <Logo src ={'img/twitter_logo_small.svg'}></Logo>
       </LeftBox>
     )
 }   

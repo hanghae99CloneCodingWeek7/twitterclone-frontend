@@ -6,7 +6,36 @@ import Input from "../Atoms/input"
 import {FaTwitter} from "react-icons/fa"
 
 const SignupModal = (props) => {
+  // 모달 팔업 용 state
   const {joinOpen , joinClose, header} = props;
+
+// 초기값 설정
+  const initialState ={
+    email: "",
+    password: "",
+    confirmPassword: "",
+    firstName: "",
+    lastName:"",
+  };
+
+  //초기설정한 값을 state에  저장
+  const [form, setForm] = useState(initialState);
+
+
+
+  // 유효성검사시 알림창 뜨도록하는 state
+  const [alertBox, setAlertBox] = useState("");
+
+
+  //조건을 순서대로 통과하면 버튼활성화
+  // const onChange = (e) =>{
+  //   const REGEMAIL = 
+  // }
+
+
+
+
+
 
     return (
         <div className={joinOpen ? 'openJoinModal modal' : 'modal'}>
@@ -23,15 +52,22 @@ const SignupModal = (props) => {
                 {header}
             </header>
             <main>{props.children}</main>
-           <LoginInput>
+           <EmailInput>
               <Input placeholder='이메일을 입력해주세요' maxlength="12" type="email" onChange="" value="" />
-           </LoginInput>
+           </EmailInput>
             <PwInput>
               <Input placeholder='비밀번호를 입력해주세요' />
             </PwInput>
             <PwInput2>
               <Input placeholder='비밀번호를 한번더 입력해주세요' />
             </PwInput2> 
+            <FirstName>
+              <Input placeholder='이름을 입력해주세요' />
+            </FirstName> 
+            <LastName>
+              <Input placeholder='성을 입력해주세요' />
+            </LastName> 
+
            <JoinBtn>
            <Button
             width={'274px'} 
@@ -56,18 +92,17 @@ const LoginBtn = styled.div`
 margin-left:90px;
 margin-top:200px ;
 `
-
-//트위터 로고
+ 
 
 
 const HeadIcon =styled.div`
   margin-left: 200px;
 `
 
-const LoginInput = styled.div`
+const EmailInput = styled.div`
    height:50px;
    position: relative;
-   bottom: 0px;
+   bottom: 10px;
    width: 200px;
    margin-left: 120px;
    height:20px;
@@ -94,3 +129,19 @@ margin-top:0px; `
 const JoinBtn = styled.div`
    margin-left: 90px;
 `
+
+const FirstName = styled.div`
+ height:50px;
+position: relative;
+bottom: 10px;
+width: 200px;
+margin-left: 120px;
+margin-top:0px; `
+
+const LastName = styled.div`
+ height:50px;
+position: relative;
+bottom: 10px;
+width: 200px;
+margin-left: 120px;
+margin-top:0px; `
