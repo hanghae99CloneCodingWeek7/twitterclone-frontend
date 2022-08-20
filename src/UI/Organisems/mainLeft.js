@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import MainLogo from "../Atoms/Logo"
+import React from "react";
+
 function MainLeft (){
     return(
     <LeftBox>

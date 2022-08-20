@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import Button from "../Atoms/Button";
+import React from "react";
+
 function MainTitle (){
    return(
         <Title>

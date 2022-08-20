@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import MainTitle from "../Molcules/mainTitle"
 import MainBtnArea from "../Molcules/mainBtnArea"
+import React from "react";
+
 
 
 // 메인페이지 오른쪽 메뉴 박스
