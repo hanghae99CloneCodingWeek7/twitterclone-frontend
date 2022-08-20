@@ -9,8 +9,8 @@ function Router() {
     <BrowserRouter>
       <GlobalStyles />
       <Routes>
-        <Route path="/" element={<Home></Home>}></Route>
-        <Route path="/1" element={<Main></Main>}></Route>
+        <Route path="/home" element={<Home></Home>}></Route>
+        <Route path="/" element={<Main></Main>}></Route>
       </Routes>
     </BrowserRouter>
   );
