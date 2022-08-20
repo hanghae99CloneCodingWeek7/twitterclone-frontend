@@ -1,24 +1,17 @@
-import Layout from "../Templates/layout.js"; 
+import Layout from "../Templates/layout.js";
 
 import React from "react";
 
 import styled from "styled-components";
-import MainLeft from "../../UI/Organisems/mainLeft"
+import MainLeft from "../../UI/Organisems/mainLeft";
 import MainRight from "../../UI/Organisems/mainRight.js";
 
-
-function Main (){
-    return(
-
-       <Layout>
-            <MainLeft/>
-            <MainRight/>
-       </Layout>
-
-    )
+function Main() {
+  return (
+    <Layout>
+      <MainLeft />
+      <MainRight />
+    </Layout>
+  );
 }
 export default Main;
-
-
-
-
