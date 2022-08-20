@@ -27,6 +27,7 @@ const initialState = {
   isLoading: false,
   error: null,
 };
+
 const Feed = createSlice({
   name: "writed",
   initialState,
