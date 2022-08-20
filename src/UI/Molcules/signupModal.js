@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../Molcules/modal.css'
 import Button from "../Atoms/Button"
 import styled from "styled-components";
