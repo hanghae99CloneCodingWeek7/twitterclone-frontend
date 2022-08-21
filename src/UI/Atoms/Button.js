@@ -15,6 +15,7 @@ const Button = (props) => {
         width = {props.width}
         height = {props.height}
         margin = {props.margin}
+        disabled = {props.disabled}
         >
           <Text>
             {props.text}
@@ -31,7 +32,8 @@ const Button = (props) => {
      fontColor : 'white',
      width : '8red',
      textAlign:'center',
-     _onClick: () => {}
+     _onClick: () => {},
+     disabled : 'disabled'
   }
   
   export default Button;

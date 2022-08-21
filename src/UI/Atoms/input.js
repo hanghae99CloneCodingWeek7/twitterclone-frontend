@@ -13,7 +13,8 @@ const Input = (props) => {
         value,
         is_submit,
         onSubmit,
-        maxlength,
+        maxLength,
+        autoFocus
     } = props;
 
     if(multiLine){
@@ -25,7 +26,7 @@ const Input = (props) => {
                     value={value}
                     placeholder={placeholder}
                     onChange={_onChange}
-                    maxlength={maxlength}
+                    maxlength={maxLength}
             ></ElTextarea>
             </Grid>
         );
@@ -36,11 +37,12 @@ const Input = (props) => {
                 {label && <Text margin="0px">{label}</Text>}
                 {is_submit ? (
                     <ElInput
+                        autoFocus={autoFocus}
                         type={type}
                         placeholder={placeholder}
                         onChange={_onChange}
                         value={value}
-                        maxlength={maxlength}
+                        maxlength={maxLength}
                         onKeyPress={(e)=>{
                             if(e.key === "Enter"){
                                 onSubmit(e);
