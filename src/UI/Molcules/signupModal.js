@@ -5,10 +5,15 @@ import styled from "styled-components";
 // import Input from "../Atoms/input"
 import {FaTwitter} from "react-icons/fa"
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { addJoin } from '../../Redux/Modules/JoinSlice';
 
 const SignupModal = (props) => {
   // 모달 팔업 용 state
   const {joinOpen , joinClose, header} = props;
+
+  //dispatch를 통해 리듀서에 보낼 것
+  let navigate = useNavigate()
 
   let dispatch = useDispatch()
   //이메일 input에 포커스를 맞추기위한 useRef 선언
@@ -43,7 +48,7 @@ const SignupModal = (props) => {
     //숫자문자 포함형태의 6~12 자리의 정규식
 
     const {name, value} = e.target
-    //구조분해 할당으로 input 값을 가져옴
+    //구조분해 할당으로 input 입력값을 가져옴
     setForm((form)=>({...form,[name]:value}));
     //구조분해 할당으로 받은 입력값을  기존form(초기값을 전개함)객체에 덮어씌움
     if(form.email === "" || REGEMAIL.test(email)){
@@ -78,14 +83,9 @@ const onClick = ()=>{
   ){
     alertBox("빠진 내용이 없나 확인해보세요!");
   }else{
-    dispatch()
+    dispatch(addJoin({navigate, joinData}));
   }
 }
-
-
-
-
-
     return (
         <div className={joinOpen ? 'openJoinModal modal' : 'modal'}>
 
