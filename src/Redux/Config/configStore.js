@@ -1,12 +1,14 @@
 
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import Feed from "../Modules/homePageSlice"
+import { joinSlice } from "../Modules/JoinSlice";
 // store에 등록할 Slice 들을 import  합시다
 
 
 
 const reducer = combineReducers({
         //슬라이스 등록하는곳입니다. mainSlice: mainSlice.reducer, 이런식으로 
+        joinSlice : joinSlice.reducer,
 })
 
 

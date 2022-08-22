@@ -330,11 +330,33 @@ display: flex;
     cursor: pointer;
 `;
 
+<<<<<<< HEAD
 // const Logo = styled.img`
 // `;
 
 // const Img = styled.img`
 // `;
+=======
+const Div = styled.div`
+`;
+
+const Input = styled.input`
+width: 30vw;
+
+`;
+const UploadImg = styled.div`
+`;
+
+
+const Btn = styled.button`
+`;
+
+const AllFeed = styled.div`
+display: flex;
+flex-direction: row;
+background-color: blue;
+`;
+>>>>>>> 2b6f32217694c6be4a3b814bae7597334860114e
 
 const PostedBox = styled.div`
   /* display: flex;

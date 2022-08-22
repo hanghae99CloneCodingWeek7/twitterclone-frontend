@@ -17,7 +17,6 @@ export default MainRight;
 const Wrap =styled.div`
    width:50%;
    height:92.7%;
- 
     display:inline-block ;
     position:absolute ;
     padding:0 ;
