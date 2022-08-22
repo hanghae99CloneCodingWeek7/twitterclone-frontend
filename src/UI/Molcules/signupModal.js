@@ -21,11 +21,11 @@ const SignupModal = (props) => {
 
 // 초기값 설정
   const initialState ={
-    email: "",
-    password: "",
-    confirmPassword: "",
-    firstName: "",
-    lastName:"",
+    EMAIL: "",
+    PASSWORD: "",
+    CONFIRM: "",
+    FIRST_NAME: "",
+    LAST_NAME:"",
   };
 
   //초기설정한 값을 state에  저장
@@ -37,7 +37,7 @@ const SignupModal = (props) => {
   //유효성검사를 거치면 활성화되는 버튼을 만드는 state
   const [joinToggle, setJoinToggle] = useState(true);
 
-  const { email,password,confirmPassword,firstName,lastName} = form;
+  const { EMAIL,PASSWORD,CONFIRM,FIRST_NAME,LAST_NAME} = form;
 
 
   //조건을 순서대로 통과하면 버튼활성화
@@ -51,15 +51,15 @@ const SignupModal = (props) => {
     //구조분해 할당으로 input 입력값을 가져옴
     setForm((form)=>({...form,[name]:value}));
     //구조분해 할당으로 받은 입력값을  기존form(초기값을 전개함)객체에 덮어씌움
-    if(form.email === "" || REGEMAIL.test(email)){
+    if(form.EMAIL === "" || REGEMAIL.test(EMAIL)){
       setAlertBox("이메일을 정확히 입력해주세요")
-    }else if(password === "" || REGPW.test(password)){
+    }else if(PASSWORD === "" || REGPW.test(PASSWORD)){
       setAlertBox("비밀번호는 숫자와 문자 포함 6-12자 입니다.")
-    }else if(confirmPassword === "" ||confirmPassword !== password){
+    }else if(CONFIRM === "" ||CONFIRM !== PASSWORD){
       setAlertBox("비밀번호가 일치하지 않습니다.")
-    }else if(firstName === "" ||firstName.length > 20){
+    }else if(FIRST_NAME === "" ||FIRST_NAME.length > 20){
       setAlertBox("이름은 20자 이내로 입력해주세요")
-    }else if(lastName === "" ||lastName.length > 20){
+    }else if(LAST_NAME === "" ||LAST_NAME.length > 20){
       setAlertBox("성은 20자 이내로 입력해주세요")
     }else{
       setAlertBox("");
@@ -70,18 +70,18 @@ const SignupModal = (props) => {
   };
 
 // 리듀서에 보낼 데이터 작성후 변수에 저장
-const joinData = {email, password,confirmPassword, firstName:firstName, lastName:lastName};
+const joinData = {EMAIL, PASSWORD,CONFIRM, FIRST_NAME:FIRST_NAME, LAST_NAME:LAST_NAME};
 //회원가입 버튼
 
 const onClick = ()=>{
   if(
-    email ===""||
-    password ==="" ||
-    confirmPassword ===""||
-    firstName ===""||
-    lastName === "" 
+    EMAIL ===""||
+    PASSWORD ==="" ||
+    CONFIRM ===""||
+    FIRST_NAME ===""||
+    LAST_NAME === "" 
   ){
-    alertBox("빠진 내용이 없나 확인해보세요!");
+    alert("빠진 내용이 없나 확인해보세요!");
   }else{
     dispatch(addJoin({navigate, joinData}));
   }
@@ -109,51 +109,51 @@ const onClick = ()=>{
               placeholder='이메일을 입력해주세요' 
               maxlength = ""
               type="email"
-              name="email" 
+              name="EMAIL" 
               onChange={onChange} 
-              value={email}
+              value={EMAIL}
               ref = {emailref} />
            </EmailInput>
             <PwInput>
               <Input 
               placeholder='비밀번호를 입력해주세요' 
               maxlength="12" 
-              name="password"
+              name="PASSWORD"
               type="password" 
               onChange={onChange} 
-              value={password}
+              value={PASSWORD}
               />
             </PwInput>
             <PwInput2>
               <Input 
               placeholder='비밀번호를 한번더 입력해주세요'
               maxlength="12" 
-              name="confirmPassword"
+              name="CONFIRM"
               type="password" 
               onChange={onChange} 
-              value={confirmPassword}
+              value={CONFIRM}
                />
             </PwInput2> 
             <FirstName>
               <Input 
               placeholder='이름을 입력해주세요' 
               maxlength="12"
-              name="firstName"
+              name="FIRST_NAME"
               type="text"
               maxLength="20"
               onChange={onChange} 
-              value={firstName}
+              value={FIRST_NAME}
               />
             </FirstName> 
             <LastName>
               <Input 
               placeholder='성을 입력해주세요'
               maxlength="12"
-              name="lastName"
+              name="LAST_NAME"
               type="text"
               maxLength="20"
               onChange={onChange} 
-              value={lastName} />
+              value={LAST_NAME} />
             </LastName> 
 
            <JoinBtn>
@@ -166,7 +166,7 @@ const onClick = ()=>{
             backgroundColor = {'#000'}
             fontColor ={'white'}
             borderColor={'#eee'}
-            onClick={onClick}
+            _onClick={onClick}
              ></Button>
            </JoinBtn>
           </section>
