@@ -18,7 +18,7 @@ export const addJoin = createAsyncThunk(
     async({navigate, joinData}) =>{
         try{
             const response = await axios.post(
-                `url`,joinData
+                `https://www.myspaceti.me/api/signup`,joinData
             );
             alert("가입해주셔서 감사합니다.");
             navigate("/");
