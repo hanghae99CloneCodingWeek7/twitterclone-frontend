@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import React from "react"
 // import { useState } from "react"
 // import Modal from "../Molcules/modal"
@@ -24,3 +25,6 @@
 //     )
 // }
 // export default LoginModal 
+=======
+default;
+>>>>>>> c2398ea (setting)
