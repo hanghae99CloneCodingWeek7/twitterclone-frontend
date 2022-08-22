@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import HomeLeft from "../../UI/Organisems/homeLeft";
+import MyProfileBox from "../../UI/Organisems/MyProfileBox";
 
 const Header = () => {
   return (
@@ -9,7 +10,7 @@ const Header = () => {
         <HomeLeft />
       </StLeftMenuBox>
       <StLeftUserBox>
-        <div>유저아이디</div>
+        <MyProfileBox />
       </StLeftUserBox>
     </StLeftContainer>
   );
