@@ -21,10 +21,10 @@
 
    /* 바디 */
   .modal > section { 
-    width: 80vw;
+    width: 60vw;
     height: 450px;
-    max-width: 450px;
-    min-width:300px;
+    max-width: 400px;
+    min-width:450px;
     margin: 0 auto;
     border-radius: 1rem;
     background-color: #fff;
@@ -69,10 +69,19 @@
   .or{
     text-align: center;
     position: relative;
+    top:10px;
 
   }
 
-
+  .loginInput{
+    height:50px;
+   position: relative;
+   bottom: 20px;
+   width: 200px;
+   margin-left: 120px;
+   margin-top: 40px;
+   height:20px ;
+  }
 
   .pwInput{
     height:50px;

@@ -30,7 +30,7 @@ const LoginModal = (props) => {
             <Button
             width={'274px'} 
             height={'30px'}
-            margin = {'-5px '}
+            margin = {'0px '}
             text= {`Google 계정으로 계속하기`}
             backgroundColor = {'#fff'}
             fontColor ={'black'}
@@ -91,18 +91,8 @@ margin-left:73px;
 margin-top:10px`
 
 const LoginBtn = styled.div`
-margin-left:60px ;
-`
-
-//트위터 로고
-const Logo = styled.img`
-background-size:cover;
-height:40%;
-width:500px; //창사이즈가 늘어나도 위치 고정하려면 % 가아닌 px 을 지정해야됩니다.
-position: absolute; 
-left:15px;
-top:150px
-`
+  margin-left:60px;
+  `
 
 const HeadIcon =styled.div`
   margin-left: 200px;
