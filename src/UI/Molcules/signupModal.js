@@ -42,7 +42,7 @@ const SignupModal = (props) => {
 
   //조건을 순서대로 통과하면 버튼활성화
   const onChange = (e) =>{
-    const REGEMAIL = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    // const REGEMAIL = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
     //이메일 정규식
     const REGPW = /^[A-Za-z0-9]{6,12}$/;
     //숫자문자 포함형태의 6~12 자리의 정규식
@@ -51,9 +51,8 @@ const SignupModal = (props) => {
     //구조분해 할당으로 input 입력값을 가져옴
     setForm((form)=>({...form,[name]:value}));
     //구조분해 할당으로 받은 입력값을  기존form(초기값을 전개함)객체에 덮어씌움
-    if(form.EMAIL === "" || REGEMAIL.test(EMAIL)){
-      setAlertBox("이메일을 정확히 입력해주세요")
-    }else if(PASSWORD === "" || REGPW.test(PASSWORD)){
+
+     if(PASSWORD === "" || !REGPW.test(PASSWORD)){
       setAlertBox("비밀번호는 숫자와 문자 포함 6-12자 입니다.")
     }else if(CONFIRM === "" ||CONFIRM !== PASSWORD){
       setAlertBox("비밀번호가 일치하지 않습니다.")
@@ -101,6 +100,8 @@ const onClick = ()=>{
                <FaTwitter size="24" color="#0095ED"/>
               </HeadIcon>
                 {header}
+              <AlertBox>{alertBox}</AlertBox>
+             
             </header>
             <main>{props.children}</main>
            <EmailInput>
@@ -235,3 +236,11 @@ const Input = styled.input`
   height:2rem ;
   border-radius: 10px ;
   `
+  const AlertBox = styled.div`
+  margin:5px;
+  padding:3px;
+  width:30rem;
+  height:3rem;
+  border-radius:10px;
+  margin: 5px 0px 5px 0px;
+  color:red;`

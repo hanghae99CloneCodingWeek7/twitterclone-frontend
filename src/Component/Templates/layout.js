@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import React from "react";
 
-import Main from "../Pages/mainPage";
-
 
 function Layout({ children }) {
   return <StLayout>{children}</StLayout>;
