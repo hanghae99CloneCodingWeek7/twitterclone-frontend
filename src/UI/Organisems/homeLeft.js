@@ -17,11 +17,6 @@ const HomeLeft = () => {
     <div>
       <FaTwitter color="#0095ED" size="40" />
 
-      <FiBookmark />
-      <RiFileList2Line />
-      <CgProfile />
-      <CgMoreO />
-
       <FlexHojn margin="10px 0 8px 0"></FlexHojn>
 
       <button>
@@ -40,10 +35,22 @@ const HomeLeft = () => {
         <BiEnvelope />
         Messages
       </button>
-      <button>Bookmarks</button>
-      <button>Lists</button>
-      <button>Profile</button>
-      <button>More</button>
+      <button>
+        <FiBookmark />
+        Bookmarks
+      </button>
+      <button>
+        <RiFileList2Line />
+        Lists
+      </button>
+      <button>
+        <CgProfile />
+        Profile
+      </button>
+      <button>
+        <CgMoreO />
+        More
+      </button>
       <button>Tweet</button>
     </div>
   );

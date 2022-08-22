@@ -27,8 +27,7 @@ const StLeftContainer = styled.div`
 const StLeftMenuBox = styled.div`
   /* background-color: blue; */
   position: relative;
-  overflow: visible;
-  clear: both;
+  
   width: 300px;
   height: 600px;
   display: flex;
