@@ -32,18 +32,18 @@ const Home = () => {
         if (feed.CONTENT.trim() === "") {
             return alert("내용을 입력하세요!");
         }
-        console.log(event);
-        // dispatch(postFeedThunk([
-        //     {
-        //         CONTENT: feed.CONTENT,
-        //         POST_PHOTO_URL: feed.POST_PHOTO_URL,
-        //     },
-        //     {
-        //         // id: cookies.id,
-        //     }
-        // ])
-        // );
-        // alert("피드를 작성하였습니다.");
+
+        dispatch(postFeedThunk([
+            {
+                CONTENT: feed.CONTENT,
+                POST_PHOTO_URL: feed.POST_PHOTO_URL,
+            },
+            {
+                // id: cookies.id,
+            }
+        ])
+        );
+        alert("피드를 작성하였습니다.");
         // navigate("/");
     };
     // useEffect(() => {
@@ -56,7 +56,7 @@ const Home = () => {
             [name]: value,
         });
     };
-    console.log(onchangeHandler);
+
     return (
         <Total>
             <Header />
@@ -97,6 +97,8 @@ const Home = () => {
                                 >
                                 <div>
                                     <Contentbox>
+                                        <div>{value.user_id}</div>
+                                        <div>{value.TIMESTAMPS}</div>
                                         <div>{value.CONTENT}</div>
                                     </Contentbox>
                                 </div> 
@@ -304,7 +306,6 @@ padding:16px;
 padding-top:5px;
 width: 12vw;
 height: 30vh;
-
 `;
 
 const Box2 = styled.div`
@@ -351,10 +352,8 @@ const PostedBox = styled.div`
   overflow: hidden; */
 `;
 const Contentbox = styled.div`
-  /* display: flex;
-  div {
-    margin-right: 30px;
-  } */
+  display: flex;
+  flex-direction: column;
 `;
 
 //왼쪽아래에 프로필표시 피드작성왼쪽 프로필표시는 재활용가능한 component//
