@@ -1,13 +1,43 @@
-import React from 'react';
+import React,{useState} from 'react';
 import '../Molcules/modal.css'
 import Button from "../Atoms/Button"
 import {FcGoogle} from "react-icons/fc"
 import styled from "styled-components";
 import Input from "../Atoms/input"
 import {FaTwitter} from "react-icons/fa"
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 const LoginModal = (props) => {
+
+  //모달창을 위한 props 전달받은 변수
   const {loginOpen , loginClose} =props;
+
+  //로그인 구현 코드
+
+  //이메일 저장을 위한 state
+  const [email, setEmail] = useState("");
+
+  // 비밀번호를 저장을 위한 state
+  const [password,setPassword] = useState("");
+
+  const navigate = useNavigate();
+  //로그인 성공시 의 다음 경로 를  리다이렉트 하기위해서 사용
+
+  const dispatch = useDispatch();
+  const onClick = () =>{
+    if (email === "" || password === ""){
+      alert("이메일과 비밀번호를 모두 입력해주세요");
+      return;
+    }else{
+      const login =  { email, password};
+      dispatch()
+    }
+  }
+
+
+
+
 
     return (
         <div className={loginOpen ? 'openloginModal modal' : 'modal'}>
@@ -55,11 +85,20 @@ const LoginModal = (props) => {
             <p className="or">
               또는
             </p>
-            <div className='loginInput'>
-              <Input placeholder='아이디를 입력해주세요' />
+            <div className='emailInput'>
+              <Input placeholder='이메일을 입력해주세요'
+                value = {email}
+                name="EMAIL"
+                onChange={(e)=>{setEmail(e.target.value)}}
+              />
             </div>
             <div className='pwInput'>
-               <Input placeholder='비밀번호를 입력해주세요' />
+               <Input 
+               placeholder='비밀번호를 입력해주세요' 
+               value = {password}
+               name="PASSWORD"
+               onChange={(e)=>{setPassword(e.target.value)}}
+               />
             </div>
            <LoginBtn>
            <Button
@@ -70,6 +109,7 @@ const LoginModal = (props) => {
             backgroundColor = {'#000'}
             fontColor ={'white'}
             borderColor={'#eee'}
+            _onClick={onClick}
              ></Button>
            </LoginBtn>
           </section>
