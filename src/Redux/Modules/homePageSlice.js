@@ -52,4 +52,5 @@ const PostFeed = createSlice({
   }
 });
 
-export default PostFeed.reducer;
+export const postReducer =  PostFeed.reducer;  
+export {PostFeed};

@@ -1,31 +1,42 @@
-// import React from 'react';
-// import GoogleLogin from 'react-google-login';
-// import axios from 'axios'
-// import { useHistory } from "react-router";
+import React, {useCallback, useEffect} from 'react';
+import GoogleLogin from 'react-google-login';
+import  {gapi} from "gapi-script";
+import { useNavigate } from 'react-router-dom';
 
 
-// function LoginGoogle(){
-//     const clientId = ""
-//     // const history = useHistory()
-    
-//     const onSuccess = async(response) => {
-//     	console.log(response);
-//     }
+const clientId = ""
 
-//     const onFailure = (error) => {
-//         console.log(error);
-//     }
 
-//     return(
-//         <div>
-//             <GoogleLogin
-//                 clientId={clientId}
-//                 onSuccess={onSuccess}
-//                 onFailure={onFailure}
-//                 cookiePolicy="single_host_origin"
-//             />
-//         </div>
-//     )
-// }
+function LoginGoogle({onSocial}){
+    useEffect(()=>{
+        function start() {
+            gapi.client.init({
+                clientId,
+                scope:'email',
+            });
+        }
+        gapi.load('client:auth2', start);
+    },[]);
 
-// export default LoginGoogle
+    let navigate = useNavigate()
+
+    const  onSuccess = (response) => {
+        navigate("/home")
+        console.log(response)
+    };
+    const onFailure = (response) =>{
+        navigate("/")
+        console.log(response);
+    };
+  return (
+    <div>
+        <GoogleLogin
+         clientId={clientId}
+         buttonText="구글아이디로 로그인하기"
+         onSuccess={onSuccess}
+         onFailure={onFailure}
+         />
+    </div>
+  )
+}
+export default LoginGoogle
