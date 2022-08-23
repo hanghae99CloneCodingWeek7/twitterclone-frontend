@@ -14,7 +14,7 @@ export const GetFeedThunk = createAsyncThunk(
   async ( value,thunkAPI) => {
     console.log(value);
     try {
-      const result = await axios.get(server_url + `/api/posts`,);
+      const result = await axios.get( `/api/posts`,);
       console.log(result);
       console.log(result.data);
       return thunkAPI.fulfillWithValue(result.data);

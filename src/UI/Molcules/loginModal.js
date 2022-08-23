@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React,{ useState} from 'react';
 import '../Molcules/modal.css'
 import Button from "../Atoms/Button"
 import {FcGoogle} from "react-icons/fc"
@@ -8,7 +8,7 @@ import {FaTwitter} from "react-icons/fa"
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {loginDb} from "../../Redux/Modules/loginSlice";
-import {googleLogin} from "../../Redux/Modules/loginSlice"
+
 
 const LoginModal = (props) => {
 
@@ -40,12 +40,6 @@ const LoginModal = (props) => {
        }
       //  navigate("/home")
   };
-  
-
-  const googleClick = () =>{
-      dispatch(googleLogin())
-  }
-
 
 
 
@@ -54,7 +48,6 @@ const LoginModal = (props) => {
         {loginOpen ? (
           <section>
             <header>
- 
               <button className="close btn" onClick={loginClose}>
                 &times;
               </button>
@@ -72,11 +65,12 @@ const LoginModal = (props) => {
             height={'30px'}
             margin = {'0px '}
             text= {`Google 계정으로 계속하기`}
-            _onClick={googleClick}
+            _onClick={()=>window.open('https://www.myspaceti.me/api/google')}
             backgroundColor = {'#fff'}
             fontColor ={'black'}
             borderColor={'#eee'}
              ></Button>
+          
              <Ic>
                 <FcGoogle size="24"></FcGoogle>
              </Ic>

@@ -19,7 +19,8 @@ import ProfileImg from "../../UI/Organisems/myProfileBox/ProfileImg";
 
 const Home = () => {
   const state = useSelector((store) => store.GetFeed);
-  // const state = useSelector((state) => state.Post.data.posts);
+  const token = useSelector((state) => state.loginSlice);
+  console.log(token);
 
   const navigate = useNavigate();
   const { cookies } = useCookies;
