@@ -21,11 +21,12 @@ const Home = () => {
     dispatch(GetFeedThunk());
   }, []);
 
+  const token = useSelector((state) => state.loginSlice);
+  console.log(token);
   const { data } = useSelector((store) => store.GetFeed);
   console.log(data);
   // const state = useSelector((state) => state.Post.data.posts);
   const navigate = useNavigate();
-  const { cookies } = useCookies;
   const dispatch = useDispatch();
   const [feed, setFeed] = useState({
     CONTENT: "",

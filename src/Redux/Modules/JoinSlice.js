@@ -11,7 +11,7 @@ const initialState = {
 // post 회원정보 전송
 export const addJoin = createAsyncThunk(
     "join",
-    async ({navigate, joinData}) => {
+    async ({joinData,joinClose}) => {
         console.log(joinData);
         try {
             const response = await axios.post(
@@ -19,9 +19,7 @@ export const addJoin = createAsyncThunk(
                 joinData
             );
             alert("가입해주셔서 감사합니다.");
-            navigate("/");
-            console.log(response);
-            console.log(response.data);
+            joinClose(); //회원가입성공후 모달창 닫기위함
             return response.data;
         } catch (error) {
             console.log(error.code);

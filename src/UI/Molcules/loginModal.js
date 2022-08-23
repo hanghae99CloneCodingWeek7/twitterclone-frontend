@@ -6,14 +6,17 @@ import styled from "styled-components";
 import Input from "../Atoms/input";
 import { FaTwitter } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { loginDb } from "../../Redux/Modules/loginSlice";
+import {FaGoogle} from "react-icons/fa";
+import { useDispatch, useSelector } from 'react-redux';
+import {loginDB} from "../../Redux/Modules/loginSlice";
+
 
 const LoginModal = (props) => {
+  const google = useSelector((state)=>state.loginSlice);
+  console.log(google)
   //모달창을 위한 props 전달받은 변수
   const { loginOpen, loginClose } = props;
-
-  //로그인 구현 코드
 
   //이메일 저장을 위한 state
   const [EMAIL, setEmail] = useState("");
@@ -25,8 +28,9 @@ const LoginModal = (props) => {
   //로그인 성공시 의 다음 경로 를  리다이렉트 하기위해서 사용
 
   const dispatch = useDispatch();
-  const onClick = () => {
-    if (!EMAIL || !PASSWORD) {
+  
+  const onClick = () =>{
+    if (!EMAIL  || !PASSWORD ){
       alert("이메일과 비밀번호를 모두 입력해주세요");
       return;
     } else {
@@ -36,33 +40,39 @@ const LoginModal = (props) => {
     //  navigate("/home")
   };
 
-  return (
-    <div className={loginOpen ? "openloginModal modal" : "modal"}>
-      {loginOpen ? (
-        <section>
-          <header>
-            <button className="close btn" onClick={loginClose}>
-              &times;
-            </button>
-            <HeadIcon>
-              <FaTwitter size="24" color="#0095ED" />
-            </HeadIcon>
-          </header>
-          <main>{props.children}</main>
 
-          <Btn>
+
+    return (
+        <div className={loginOpen ? 'openloginModal modal' : 'modal'}>
+        {loginOpen ? (
+          <section>
+            <header>
+              <button className="close btn" onClick={loginClose}>
+                &times;
+              </button>
+              <HeadIcon>
+               <FaTwitter size="24" color="#0095ED"/>
+              </HeadIcon>
+            
+            </header>
+            <main>{props.children}</main>
+            
+            <Btn>
+           
             <Button
-              width={"274px"}
-              height={"30px"}
-              margin={"0px "}
-              text={`Google 계정으로 계속하기`}
-              backgroundColor={"#fff"}
-              fontColor={"black"}
-              borderColor={"#eee"}
-            ></Button>
-            <Ic>
-              <FcGoogle size="24"></FcGoogle>
-            </Ic>
+            width={'274px'} 
+            height={'30px'}
+            margin = {'0px '}
+            text= {`Google 계정으로 계속하기`}
+            _onClick={()=>window.open('https://www.myspaceti.me/api/google')}
+            backgroundColor = {'#fff'}
+            fontColor ={'black'}
+            borderColor={'#eee'}
+             ></Button>
+          
+             <Ic>
+                <FcGoogle size="24"></FcGoogle>
+             </Ic>
 
             <Button
               width={"274px"}
