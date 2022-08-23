@@ -9,7 +9,7 @@ import GetFeed from "../Modules/gethomePageSlice";
 
 
 
-// store에 등록할 Slice 들을 import  합시다
+// store에 등록할 Slice 들을 import  합시다 
 
 const reducer = combineReducers({
 
