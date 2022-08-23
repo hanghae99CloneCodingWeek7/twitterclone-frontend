@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { Text, Grid } from "./index";
 
-const Input = (props) => {
+const InputComment = (props) => {
   const {
     label,
     placeholder,
@@ -15,7 +15,6 @@ const Input = (props) => {
     onSubmit,
     maxLength,
     autoFocus,
-    name,
   } = props;
 
   if (multiLine) {
@@ -28,7 +27,6 @@ const Input = (props) => {
           placeholder={placeholder}
           onChange={_onChange}
           maxlength={maxLength}
-          name={name}
         ></ElTextarea>
       </Grid>
     );
@@ -45,7 +43,6 @@ const Input = (props) => {
             onChange={_onChange}
             value={value}
             maxlength={maxLength}
-            name={name}
             onKeyPress={(e) => {
               if (e.key === "Enter") {
                 onSubmit(e);
@@ -60,7 +57,7 @@ const Input = (props) => {
   );
 };
 
-Input.defaultProps = {
+InputComment.defaultProps = {
   multiLine: false,
   label: false,
   placeholder: "텍스트를 입력해주세요.",
@@ -70,7 +67,6 @@ Input.defaultProps = {
   maxLength: "12",
   onSubmit: () => {},
   _onChange: () => {},
-  name: "",
 };
 
 const ElTextarea = styled.textarea`
@@ -87,4 +83,4 @@ const ElInput = styled.input`
   box-sizing: border-box;
 `;
 
-export default Input;
+export default InputComment;

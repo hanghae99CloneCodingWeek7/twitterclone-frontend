@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import HomeLeft from "../../UI/Organisems/homeLeft";
+import HomeLeft from "../src/UI/Organisems/homeLeft";
 
 const Header = () => {
   return (
