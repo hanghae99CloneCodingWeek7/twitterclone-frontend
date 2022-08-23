@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import CommentPost from "./commentPost";
+
 import "./modal.css";
 
 function CommentFront() {
