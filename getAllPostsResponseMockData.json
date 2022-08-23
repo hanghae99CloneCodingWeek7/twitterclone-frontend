@@ -1,0 +1,21 @@
+{
+  "postInfo": [
+    {
+      "CONTENT": "테스트1",
+      "POST_PHOTO": "https://images.unsplash.com/photo-1657299142014-34b66b73e68e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=900&q=60",
+      "TIMESTAMPS": "2022-08-10 15:37"
+    },
+    {
+      "CONTENT": "테스트2",
+      "POST_PHOTO": "https://images.unsplash.com/photo-1660866838821-0c12213703df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=900&q=60",
+      "TIMESTAMPS": "2022-08-09 01:00"
+    }
+  ],
+  "writerInfo": [
+    {
+      "_id": "6300482f67dd88e22477039a",
+      "DISPLAY_NAME": "Won Kyun Park",
+      "PROFILE_PIC": "https://lh3.googleusercontent.com/a/AItbvmmflQw-BU-kbnr1ehv03zoTMRyoYh0dE-95RwTs=s96-c"
+    }
+  ]
+}

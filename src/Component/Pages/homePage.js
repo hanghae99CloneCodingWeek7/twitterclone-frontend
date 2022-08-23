@@ -1,5 +1,5 @@
 import React from "react"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Cookies, useCookies, withCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux/";
@@ -7,12 +7,21 @@ import { useDispatch, useSelector } from "react-redux/";
 import Header from "../Templates/header";
 import styled from "styled-components";
 import img1 from "./BTS.jpg";
+import comment from "./comment.png";
+import comment1 from "./comment1.png";
+import comment2 from "./comment2.png";
+import comment3 from "./comment3.png";
+import comment4 from "./comment4.png";
+
 import { postFeedThunk } from "../../Redux/Modules/homePageSlice";
-import { getByTestId } from "@testing-library/react";
+import { GetFeedThunk } from "../../Redux/Modules/gethomePageSlice";
 
 const Home = () => {
-    const state = useSelector((store) => store);
+
+
+    const state = useSelector((store) => store.GetFeed);
     console.log(state);
+
     // const state = useSelector((state) => state.Post.data.posts);
 
     const navigate = useNavigate();
@@ -21,34 +30,8 @@ const Home = () => {
     const [feed, setFeed] = useState({
         CONTENT: "",
         POST_PHOTO_URL: "",
-    })
+    });
 
-    const onProfile = () => {
-        navigate("/profile")
-    }
-
-    const onSubmit = (event) => {
-        // event.preventDefault();
-        if (feed.CONTENT.trim() === "") {
-            return alert("내용을 입력하세요!");
-        }
-
-        dispatch(postFeedThunk([
-            {
-                CONTENT: feed.CONTENT,
-                POST_PHOTO_URL: feed.POST_PHOTO_URL,
-            },
-            {
-                // id: cookies.id,
-            }
-        ])
-        );
-        alert("피드를 작성하였습니다.");
-        // navigate("/");
-    };
-    // useEffect(() => {
-    //     dispatch(_GetPosted());
-    //   }, []);
     const onchangeHandler = (e) => {
         const { name, value } = e.target;
         setFeed({
@@ -56,6 +39,37 @@ const Home = () => {
             [name]: value,
         });
     };
+
+
+    const onProfile = () => {
+        navigate("/profile")
+    }
+
+    const onSubmit = (event) => {
+        // event.preventDefault();
+        if (feed.CONTENT.trim().length === 0) {
+            return alert("내용을 입력하세요!");
+        }else{
+         dispatch(
+            postFeedThunk([
+            {
+                CONTENT: feed.CONTENT,
+                POST_PHOTO: feed.POST_PHOTO,
+            },
+            {
+                
+            },
+        ])
+        );
+        alert("피드를 작성하였습니다.");
+        // navigate("/");
+    }
+    };
+
+    useEffect(() => {
+        dispatch(GetFeedThunk());
+      }, []);
+
 
     return (
         <Total>
@@ -88,7 +102,16 @@ const Home = () => {
                     </svg></UploadImg>
                 <Btn type="button" onClick={onSubmit}>Tweet</Btn>
                 </TotalFeed>
-                {/* <AllFeed> */}
+                <AllFeed>
+                    <CommentFeed>{feed.CONTENT}</CommentFeed>
+                    <CommentImg>
+                    <img src={comment} alt="comment" width="20" onClick={onSubmit}/>
+                    <img src={comment1} alt="comment" width="20"></img>
+                    <img src={comment2} alt="comment" width="20"></img>
+                    <img src={comment3} alt="comment" width="20"></img>
+                    <img src={comment4} alt="comment" width="20"></img>
+
+                    </CommentImg>
                     {state.map&&((value) => {
                         return (
                             <MapFeedWrap
@@ -97,7 +120,7 @@ const Home = () => {
                                 >
                                 <div>
                                     <Contentbox>
-                                        <div>{value.user_id}</div>
+                                        <div>{value.POST_PHOTO}</div>
                                         <div>{value.TIMESTAMPS}</div>
                                         <div>{value.CONTENT}</div>
                                     </Contentbox>
@@ -108,19 +131,19 @@ const Home = () => {
                             </MapFeedWrap>
                         );
                     })}
-                {/* </AllFeed> */}
+                </AllFeed>
             </CenterWrap>
 
             <RightWrap>
             <Black></Black>
                 <SearchWrap>
-                    <ProfileImg>
+                    <SearchImg>
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15.4613 14.6221L12.5638 11.7246C13.6127 10.4817 14.25 8.87775 14.25 7.125C14.25 3.19042 11.0596 0 7.125 0C3.19042 0 0 3.19042 0 7.125C0 11.0596 3.19042 14.25 7.125 14.25C8.87854 14.25 10.4817 13.6135 11.723 12.5638L14.6205 15.4613C14.7369 15.5768 14.8897 15.6354 15.0401 15.6354C15.1905 15.6354 15.3449 15.5776 15.4597 15.4613C15.6932 15.2293 15.6932 14.854 15.4613 14.6221V14.6221ZM1.1875 7.125C1.1875 3.85146 3.85146 1.1875 7.125 1.1875C10.3985 1.1875 13.0625 3.85146 13.0625 7.125C13.0625 10.3985 10.3985 13.0625 7.125 13.0625C3.85146 13.0625 1.1875 10.3985 1.1875 7.125Z" fill="#5B7083" />
                         </svg>
-                    </ProfileImg>
+                    </SearchImg>
                     <Search
-                        value={feed.CONTENT}
+                        value={feed.Search}
                         name="SEARCH"
                         placeholder="Search Twitter"
                         onChange={onchangeHandler}
@@ -148,7 +171,7 @@ const Home = () => {
                     </Box2>
                 </BoxWrap2>
             </RightWrap>
-            <Black></Black>
+            
         </Total>
     )
 }
@@ -174,6 +197,7 @@ flex-direction: column;
 width: 12.5vw;
 border-left: 2px solid gray;
 padding: 12px;
+padding-left: 35px;
 padding-bottom: 64px;
 `;
 
@@ -191,30 +215,12 @@ height:5vh;
 color: white;
 `;
 
-const SearchWrap = styled.div`
-display: flex;
-background-color: rgb(239, 243, 244);
-border-radius: 9999px;
-/* border-radius: 9999px;  */
-width: 12.5vw;
-flex-direction: row;
-align-items: center;
-padding: 12px;
-z-index: 2;
-margin-bottom: 12px;
-`;
-
-const ProfileImg = styled.div`
-cursor:default;
-padding-left: 12px;
-`;
-
 const Input = styled.input`
 width: 30vw;
 `;
 
 const TotalFeed=styled.div`
-background-color: white;
+background-color: black;
 height: 20vh;
 
 `;
@@ -256,8 +262,23 @@ border-radius: 1rem;
 
 const AllFeed = styled.div`
 display: flex;
-flex-direction: row;
-background-color: blue;
+flex-direction:column;
+background-color: white;
+width:40vw;
+/* padding: 30px; */
+padding-left: 16px;
+padding-right: 16px;
+`;
+const CommentFeed =styled.div`
+font-size: 15px;
+`
+const CommentImg = styled.button`
+    display: inline-flex;
+    justify-content: space-between;
+    background-color: white;
+    /* background-color: rgb(239,243,244); */
+    border-color:white;
+    border-style :solid ;
 `;
 
 ///우측//////
@@ -288,14 +309,31 @@ border-radius: 0.5rem;
 background-color: #dee2e6; */
 `;
 
+const SearchWrap = styled.div`
+display: flex;
+background-color: rgb(239, 243, 244);
+border-radius: 9999px;
+/* border-radius: 9999px;  */
+width: 12vw;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+margin-bottom: 12px;
+padding:12px
+`;
+
+const SearchImg = styled.div`
+cursor:default;
+padding-left: 12px;
+`;
+
 const Search = styled.input`
 width:100%;
 background-color: rgb(239, 243, 244);
-/* border-radius: 9999px; */
+border-radius: 9999px;
 border-style: solid;
 /* margin-bottom: 10px; */
 border-color: rgb(239, 243, 244);
-padding:12px;
 font-size:15px;
 `;
 
@@ -330,33 +368,6 @@ display: flex;
     cursor: pointer;
 `;
 
-<<<<<<< HEAD
-// const Logo = styled.img`
-// `;
-
-// const Img = styled.img`
-// `;
-=======
-const Div = styled.div`
-`;
-
-const Input = styled.input`
-width: 30vw;
-
-`;
-const UploadImg = styled.div`
-`;
-
-
-const Btn = styled.button`
-`;
-
-const AllFeed = styled.div`
-display: flex;
-flex-direction: row;
-background-color: blue;
-`;
->>>>>>> 2b6f32217694c6be4a3b814bae7597334860114e
 
 const PostedBox = styled.div`
   /* display: flex;
@@ -376,6 +387,7 @@ const PostedBox = styled.div`
 const Contentbox = styled.div`
   display: flex;
   flex-direction: column;
+  background-color:red;
 `;
 
 //왼쪽아래에 프로필표시 피드작성왼쪽 프로필표시는 재활용가능한 component//
