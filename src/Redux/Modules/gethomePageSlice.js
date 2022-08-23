@@ -1,6 +1,7 @@
-import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { server_url } from "../index";
+import { current } from "@reduxjs/toolkit";
 
 const initialState = {
     data: [],
@@ -14,12 +15,10 @@ export const GetFeedThunk = createAsyncThunk(
   async ( value,thunkAPI) => {
     console.log(value);
     try {
-      const result = await axios.get(server_url + `/api/posts`,);
+      const result = await axios.get(server_url + `/api/posts`);
       console.log(result);
       console.log(result.data);
       return thunkAPI.fulfillWithValue(result.data);
-
-      
     } catch (error) {
         console.log("에러발생");
       return thunkAPI.rejectWithValue(error);
@@ -34,8 +33,8 @@ const GetFeed = createSlice({
   reducers: {},
   extraReducers: {
     [GetFeedThunk.fulfilled]: (state, action) => {
-      state.data = action.payload;
-
+      console.log(state,action.payload.postDetail)
+      state.data = action.payload.postDetail;
     },
     [GetFeedThunk.rejected]: (state, action) => {
         console.log("에러발생1");

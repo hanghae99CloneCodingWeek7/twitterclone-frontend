@@ -18,9 +18,7 @@ import { GetFeedThunk } from "../../Redux/Modules/gethomePageSlice";
 import ProfileImg from "../../UI/Organisems/myProfileBox/ProfileImg";
 
 const Home = () => {
-
-
-    const state = useSelector((store) => store.GetFeed);
+    const state = useSelector((store) => store.GetFeed.data);
     console.log(state);
 
     // const state = useSelector((state) => state.Post.data.posts);
@@ -117,30 +115,13 @@ const Home = () => {
                             <img src={comment4} alt="comment" width="20"></img>
                         </CommentImg>
                     </CommentBtnWrap>
+{/* 맵부분 */}
+<div>{state.postinfo}</div>
 
-
-                    {state.map && ((value) => {
-                        return (
-                            <MapFeedWrap
-                                // key={value.postId}
-                                key={value}
-                            >
-                                <div>
-                                    <Contentbox>
-                                        {/* <div>{value.POST_PHOTO}</div> */}
-                                        <div>{value.TIMESTAMPS}</div>
-                                        <div>{value.CONTENT}</div>
-                                    </Contentbox>
-                                </div>
-                                <div>
-                                    ㅠㅠ
-                                </div>
-                            </MapFeedWrap>
-                        );
-                    })}
                 </AllFeed>
+              
             </CenterWrap>
-
+            <div>{state.postinfo}</div>
             <RightWrap>
                 {/* <Black></Black> */}
                 <SearchWrap>
