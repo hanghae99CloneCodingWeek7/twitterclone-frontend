@@ -9,7 +9,7 @@ const initialState = {
 
 //!코멘트 get
 export const getCommentList = createAsyncThunk("GET_COMMENT", async () => {
-  const response = await axios.get("http://localhost:8000/list");
+  const response = await axios.get("https://www.myspaceti.me/api/posts");
   return response.data;
 });
 
@@ -40,9 +40,9 @@ export const updateCommentList = createAsyncThunk(
   }
 );
 
-export const commentReducer = createSlice({
+const CommentReducer = createSlice({
   name: "commentList",
-  initialState: [],
+  initialState,
   reducers: {},
   extraReducers: {
     [getCommentList.fulfilled]: (state, { payload }) => [...payload],
@@ -60,3 +60,5 @@ export const commentReducer = createSlice({
     },
   },
 });
+
+export default CommentReducer.reducer;
