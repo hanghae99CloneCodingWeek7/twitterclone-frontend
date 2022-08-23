@@ -1,23 +1,10 @@
 import React from "react";
-import styled from "styled-components";
-import Grid from "../Atoms/Grid";
 import Button from "../Atoms/Button";
-
-// import twitterLogoSmall from "../Atoms/icons/twitterLogoSmall.svg";
-
-// import homebtn from "../Atoms/icons/homebtn.svg";
 
 const HomeLeft = () => {
   return (
     <div>
-      {/* <TwitterLogoSmall /> */}
-      <Grid margin="10px 0 8px 0">
-        <Button>
-          {/* <Icons1 /> */}
-          Home
-        </Button>
-      </Grid>
-
+      <Button>Home</Button>
       <button>Explore</button>
       <button>Notifications</button>
       <button>Messages</button>
@@ -31,6 +18,3 @@ const HomeLeft = () => {
 };
 
 export default HomeLeft;
-
-
-

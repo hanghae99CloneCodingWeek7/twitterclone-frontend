@@ -5,10 +5,19 @@ import Button from "../../Atoms/Button";
 
 const ProfileShort = () => {
   return (
-    <div>
-      <Button>Home</Button>
+    <div style={style}>
+      <div>
+        <p>Bohyeon Kim</p>
+        <p>@Bohyeon_kim</p>
+      </div>
+      <button>...</button>
     </div>
   );
+};
+const style = {
+  flexGrow: "2",
+  display: "flex",
+  flexFlow: "row",
 };
 
 export default ProfileShort;

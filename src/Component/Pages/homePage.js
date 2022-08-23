@@ -4,7 +4,7 @@ import { Cookies, useCookies, withCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux/";
 
-import Header from "../Templates/header";
+import LeftWrap from "../Templates/LeftWrap";
 import styled from "styled-components";
 import img1 from "./BTS.jpg";
 
@@ -57,13 +57,7 @@ const Home = () => {
 
   return (
     <Total>
-      <Header />
-      <Black></Black>
-      <LeftWrap>
-        {/* <Box>
-                    예시1
-                </Box> */}
-      </LeftWrap>
+      <LeftWrap />
       <CenterWrap>
         <FeedWrap>
           <Div onClick={onProfile}>
@@ -123,7 +117,6 @@ const Home = () => {
                     })}
                 </AllFeed> */}
       </CenterWrap>
-
       <RightWrap>
         <SearchWrap>
           <SearchImg>
@@ -169,46 +162,29 @@ const Home = () => {
           </Box2>
         </BoxWrap2>
       </RightWrap>
-      <Black></Black>
     </Total>
   );
 };
 export default withCookies(Home);
+
 const Total = styled.div`
   display: flex;
-`;
-const Black = styled.div`
-  width: 12.5vw;
-`;
-const LeftWrap = styled.div`
-  flex-direction: column;
-  width: 12.5vw;
-  height: 100vh;
-  border-right: 2px solid gray;
-  margin: auto 0;
-  padding: 15px;
-  margin-left: 12px;
+  justify-content: center;
 `;
 
 const RightWrap = styled.div`
   flex-direction: column;
-  width: 12.5vw;
   border-left: 2px solid gray;
   padding: 12px;
   padding-bottom: 64px;
+  flex-basis: 20%;
 `;
 
 const CenterWrap = styled.div`
   /* border : 2px solid gray; */
-  width: 40vw;
   background-color: rgb(239, 243, 244);
+  flex-basis: 40%;
 `;
-
-// const TotalWrap= styled.div`
-// background-color: rgb(239, 243, 244);
-// border-radius: 9999px;
-
-// `;
 
 const SearchWrap = styled.div`
   display: flex;
