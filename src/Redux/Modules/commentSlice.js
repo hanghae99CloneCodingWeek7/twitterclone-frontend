@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { server_url } from "../index";
 
 const initialState = {
   loading: false,
@@ -8,10 +9,23 @@ const initialState = {
 };
 
 //!코멘트 get
-export const getCommentList = createAsyncThunk("GET_COMMENT", async () => {
-  const response = await axios.get("http://localhost:8000/list");
-  return response.data;
-});
+// export const getCommentList = createAsyncThunk("GET_COMMENT", async () => {
+//   const response = await axios.get("https://www.myspaceti.me/api/posts");
+//   return response.data;
+// });
+
+export const getCommentList = createAsyncThunk(
+  "GET_COMMENT",
+  async (thunkApi) => {
+    try {
+      const res = await axios.get(server_url + `/api/posts`);
+      return res.data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
+console.log(getCommentList);
 
 //!코멘트 post
 export const addCommentList = createAsyncThunk(
@@ -40,23 +54,98 @@ export const updateCommentList = createAsyncThunk(
   }
 );
 
-export const commentReducer = createSlice({
-  name: "commentList",
-  initialState: [],
+const CommentSlice = createSlice({
+  name: "comments",
+  initialState,
   reducers: {},
-  extraReducers: {
-    [getCommentList.fulfilled]: (state, { payload }) => [...payload],
-    [addCommentList.fulfilled]: (state, { payload }) => [...state, payload],
-    [deleteCommentList.fulfilled]: (state, { payload }) =>
-      state.filter((x) => x.id !== payload),
-    [updateCommentList.fulfilled]: (state, { payload }) => {
-      return state.map((x) => {
-        if (x.id === payload.listId) {
-          return { ...x, content: payload.content };
+  extraReducers: (builder) => {
+    //!보여주기
+    builder.addCase(getCommentList.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getCommentList.fulfilled, (state, action) => {
+      state.loading = false;
+      state.comments = action.payload;
+      state.error = "";
+    });
+    builder.addCase(getCommentList.rejected, (state, action) => {
+      state.loading = false;
+      state.comments = [];
+      state.error = action.error.message;
+    });
+    //!가져오기
+    builder.addCase(addCommentList.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(addCommentList.fulfilled, (state, action) => {
+      state.loading = false;
+      state.comments = [...state.comments, action.payload];
+      state.error = "";
+    });
+    builder.addCase(addCommentList.rejected, (state, action) => {
+      state.loading = false;
+      state.comments = [];
+      state.error = action.error.message;
+    });
+    //!삭제하기
+    builder.addCase(deleteCommentList.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(deleteCommentList.fulfilled, (state, action) => {
+      state.loading = false;
+      state.comments = state.comments.filter(
+        (comment) => comment.id != action.payload
+      );
+      state.error = "";
+    });
+    builder.addCase(deleteCommentList.rejected, (state, action) => {
+      state.loading = false;
+      state.comments = [];
+      state.error = action.error.message;
+    });
+    //!수정하기
+    builder.addCase(updateCommentList.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(updateCommentList.fulfilled, (state, action) => {
+      state.loading = false;
+      state.comments = state.comments.map((comment) => {
+        if (comment.id === action.payload.commentId) {
+          return action.payload.commentData;
         } else {
-          return x;
+          return comment;
         }
       });
-    },
+      state.error = "";
+    });
+    builder.addCase(updateCommentList.rejected, (state, action) => {
+      state.loading = false;
+      state.comments = [];
+      state.error = action.error.message;
+    });
   },
 });
+
+export default CommentSlice.reducer;
+
+//백업 23일 18시
+// export const commentReducer = createSlice({
+//   name: "commentList",
+//   initialState: [],
+//   reducers: {},
+//   extraReducers: {
+//     [getCommentList.fulfilled]: (state, { payload }) => [...payload],
+//     [addCommentList.fulfilled]: (state, { payload }) => [...state, payload],
+//     [deleteCommentList.fulfilled]: (state, { payload }) =>
+//       state.filter((x) => x.id !== payload),
+//     [updateCommentList.fulfilled]: (state, { payload }) => {
+//       return state.map((x) => {
+//         if (x.id === payload.listId) {
+//           return { ...x, content: payload.content };
+//         } else {
+//           return x;
+//         }
+//       });
+//     },
+//   },
+// });
