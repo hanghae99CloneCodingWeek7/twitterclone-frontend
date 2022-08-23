@@ -14,24 +14,26 @@ function CommentFront() {
   };
 
   return (
-    <Wrap>
-      <button onClick={openModal}>코멘트 작성</button>
-      {/* <CommentPost /> */}
-      <CommentPost
-        open={modalOpen}
-        close={closeModal}
-        header="Modal heading"
-      ></CommentPost>
+    <CommentPost />
+    // <Wrap>
+    //   <button onClick={openModal}>코멘트 작성</button>
+    //   {/* <CommentPost /> */}
+    //   <CommentPost
+    //     open={modalOpen}
+    //     close={closeModal}
+    //     // header="Modal heading"
+    //   ></CommentPost>
 
-      {/* // Modal.js <main> {props.children} </main>에 내용이 입력된다. 리액트
-        함수형 모달 팝업창입니다. 쉽게 만들 수 있어요. 같이 만들어봐요! */}
-    </Wrap>
+    //   {/* // Modal.js <main> {props.children} </main>에 내용이 입력된다. 리액트
+    //     함수형 모달 팝업창입니다. 쉽게 만들 수 있어요. 같이 만들어봐요! */}
+    // </Wrap>
   );
 }
 
 export default CommentFront;
 
 const Wrap = styled.div`
+  background-color: skyblue;
   display: block;
   background-color: green;
   flex-wrap: wrap;

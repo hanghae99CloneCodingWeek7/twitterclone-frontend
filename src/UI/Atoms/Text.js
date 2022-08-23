@@ -79,10 +79,10 @@ const FootTxt = styled.span`
   font-size: 12px;
   margin: 0 ;
   position:relative ;
-
-  padding-left:10px ;
-
-
+  top:670px;
+  right: 600px;
+  width:100 ;
+  padding:5px ;
 `;
 
 const SpanTxt = styled.span`

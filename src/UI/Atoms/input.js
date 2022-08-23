@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-import {Text, Grid} from "./index";
+import { Text, Grid } from "./index";
 
 const Input = (props) => {
+
     const {
         label,
         placeholder,
@@ -14,7 +15,8 @@ const Input = (props) => {
         is_submit,
         onSubmit,
         maxLength,
-        autoFocus
+        autoFocus,
+        name,
     } = props;
 
     if(multiLine){
@@ -27,6 +29,7 @@ const Input = (props) => {
                     placeholder={placeholder}
                     onChange={_onChange}
                     maxlength={maxLength}
+                    name={name}
             ></ElTextarea>
             </Grid>
         );
@@ -43,6 +46,7 @@ const Input = (props) => {
                         onChange={_onChange}
                         value={value}
                         maxlength={maxLength}
+                        name={name}
                         onKeyPress={(e)=>{
                             if(e.key === "Enter"){
                                 onSubmit(e);
@@ -68,6 +72,7 @@ Input.defaultProps = {
     maxLength: "12",
     onSubmit: () => {},
     _onChange: () => {},
+    name:""
   };
   
   const ElTextarea = styled.textarea`
@@ -87,4 +92,18 @@ Input.defaultProps = {
   export default Input;
 
 
+const ElTextarea = styled.textarea`
+  border: 1px solid #212121;
+  width: 100%;
+  padding: 12px 4px;
+  box-sizing: border-box;
+`;
 
+const ElInput = styled.input`
+  border: 1px solid #212121;
+  width: 100%;
+  padding: 12px 4px;
+  box-sizing: border-box;
+`;
+
+export default Input;

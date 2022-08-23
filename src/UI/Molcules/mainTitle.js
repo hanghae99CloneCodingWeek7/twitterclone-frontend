@@ -14,7 +14,7 @@ function MainTitle (){
 
    const openloginModal = () =>{
       setloginModalOpen(true);
-         // modal state가 false 가 되면서 모달창이 열립니다.
+         // modal state가 true 가 되면서 모달창이 열립니다.
    }
 
    const closeloginModal = () =>{
@@ -28,7 +28,7 @@ function MainTitle (){
 
    const openJoinModal = () =>{
       setjoinModalOpen(true);
-         // modal state가 false 가 되면서 모달창이 열립니다.
+         // modal state가 true 가 되면서 모달창이 열립니다.
    }
 
    const closeJoinModal = () =>{
@@ -124,11 +124,6 @@ export default MainTitle;
 const Title = styled.div`
   text-align: left;
   margin: 150px 20px;
-`;
-const Logo = styled.img`
-  background-size: cover;
-  height: 100%;
-  width: 20px; //창사이즈가 늘어나도 위치 고정하려면 % 가아닌 px 을 지정해야됩니다.
 `;
 
 const Top = styled.div`

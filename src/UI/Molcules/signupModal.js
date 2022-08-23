@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom';
 import { addJoin } from '../../Redux/Modules/JoinSlice';
 
 const SignupModal = (props) => {
-  // 모달 팔업 용 state
   const {joinOpen , joinClose, header} = props;
 
   //dispatch를 통해 리듀서에 보낼 것
@@ -71,6 +70,8 @@ const SignupModal = (props) => {
 // 리듀서에 보낼 데이터 작성후 변수에 저장
 const joinData = {EMAIL, PASSWORD,CONFIRM, FIRST_NAME:FIRST_NAME, LAST_NAME:LAST_NAME};
 //회원가입 버튼
+
+
 
 const onClick = ()=>{
   if(
