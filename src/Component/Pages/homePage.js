@@ -54,7 +54,7 @@ const Home = () => {
                 postFeedThunk([
                     {
                         CONTENT: feed.CONTENT,
-                        POST_PHOTO: feed.POST_PHOTO,
+                        // POST_PHOTO: feed.POST_PHOTO,
                     },
                     {
 
@@ -107,6 +107,7 @@ const Home = () => {
                     <ProfileImg IMG="https://i.kinja-img.com/gawker-media/image/upload/gd8ljenaeahpn0wslmlz.jpg"></ProfileImg>
 
                     <CommentBtnWrap>
+                        
                         <CommentFeed>{feed.CONTENT}</CommentFeed>
                         <CommentImg>
                             <img src={comment} alt="comment" width="20" onClick={onSubmit} />
@@ -126,7 +127,7 @@ const Home = () => {
                             >
                                 <div>
                                     <Contentbox>
-                                        <div>{value.POST_PHOTO}</div>
+                                        {/* <div>{value.POST_PHOTO}</div> */}
                                         <div>{value.TIMESTAMPS}</div>
                                         <div>{value.CONTENT}</div>
                                     </Contentbox>
