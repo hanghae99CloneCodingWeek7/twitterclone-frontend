@@ -7,7 +7,10 @@ import { deleteCommentList } from "../../Redux/Modules/commentSlice";
 import { updateCommentList } from "../../Redux/Modules/commentSlice";
 import CommentList from "./commentList";
 
-const CommentPost = () => {
+const CommentPost = (props) => {
+  const { open, close, header } = props;
+
+  //
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
   const commentList = useSelector((state) => state.commentReducer);
@@ -31,17 +34,28 @@ const CommentPost = () => {
   //////////////////////////////
   return (
     <StOutline>
-      <form onSubmit={onCreate}>
-        <div>
-          <input
-            type="text"
-            onChange={(e) => setInputValue(e.target.value)}
-            value={inputValue}
-            // required
-            width="20rem"
-            marginRight="20px"
-          />
-          {/* <input
+      <div className={open ? "openModal modal" : "modal"}>
+        {open ? (
+          <section>
+            <header>
+              {header}
+              <button className="close" onClick={close}>
+                &times;
+              </button>
+            </header>
+            <main>{props.children}</main>
+
+            <form onSubmit={onCreate}>
+              <div>
+                <input
+                  type="text"
+                  onChange={(e) => setInputValue(e.target.value)}
+                  value={inputValue}
+                  // required
+                  width="20rem"
+                  marginRight="20px"
+                />
+                {/* <input
             type="text"
             name="comment"
             //   value={comment}
@@ -50,22 +64,30 @@ const CommentPost = () => {
             required
             width="30rem"
           /> */}
-        </div>
-        <button backgroundColor="black" color="white">
-          추가하기
-        </button>
-        <div>
-          {/* //!map 오류시 && 추가할것. */}
-          {commentList &&
-            commentList.map((x) => (
-              <CommentList
-                key={x.id}
-                xId={x.id}
-                content={x.content}
-              ></CommentList>
-            ))}
-        </div>
-      </form>
+              </div>
+              <button backgroundColor="black" color="white">
+                추가하기
+              </button>
+              <div>
+                {/* //!map 오류시 && 추가할것. */}
+                {commentList &&
+                  commentList.map((x) => (
+                    <CommentList
+                      key={x.id}
+                      xId={x.id}
+                      content={x.content}
+                    ></CommentList>
+                  ))}
+              </div>
+            </form>
+            <footer>
+              <button className="close" onClick={close}>
+                close
+              </button>
+            </footer>
+          </section>
+        ) : null}
+      </div>
     </StOutline>
   );
 };
@@ -73,13 +95,13 @@ const CommentPost = () => {
 export default CommentPost;
 
 const StOutline = styled.div`
-  position: relative;
-  /* background-color: blue; */
+  background-color: blue;
+  position: absolute;
   margin-top: 100px;
   margin-left: 400px;
   padding-top: 100px;
   width: 400px;
   height: 600px;
   overflow: scroll;
-  /* border: 1px solid black; */
+  border: 1px solid black;
 `;

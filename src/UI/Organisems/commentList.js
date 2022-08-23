@@ -24,7 +24,7 @@ const CommentList = ({ xId, content }) => {
       console.log("다시적으세요");
     }
     setInputValue("");
-    window.location.reload();
+    // window.location.reload();
   };
 
   //   useEffect(() => {
@@ -51,4 +51,4 @@ const CommentList = ({ xId, content }) => {
   );
 };
 
-export default CommentList;
+export default React.memo(CommentList);
