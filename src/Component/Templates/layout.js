@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import React from "react";
+import Main from "../Pages/mainPage";
 
 function Layout({ children }) {
   return <StLayout>{children}</StLayout>;
@@ -8,6 +9,8 @@ function Layout({ children }) {
 export default Layout;
 
 const StLayout = styled.div`
+  /* background-color: gray; */
+
   margin: 0;
   width: 100%;
   min-width: 1200px;

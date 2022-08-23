@@ -276,6 +276,7 @@ const CommentImg = styled.button`
 
 ///우측//////
 const BoxWrap = styled.div`
+
 background-color: #dee2e6;
 border-radius: 1rem;
 padding:16px;
@@ -303,16 +304,16 @@ background-color: #dee2e6; */
 `;
 
 const SearchWrap = styled.div`
-display: flex;
-background-color: rgb(239, 243, 244);
-border-radius: 9999px;
-/* border-radius: 9999px;  */
-width: 12vw;
-flex-direction: row;
-align-items: center;
-padding: 0px;
-margin-bottom: 12px;
-padding:12px
+
+  display: flex;
+  background-color: rgb(239, 243, 244);
+  border-radius: 9999px;
+  /* border-radius: 9999px;  */
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  margin-bottom: 12px;
+  padding: 12px;
 `;
 
 const SearchImg = styled.div`
@@ -331,12 +332,12 @@ font-size:15px;
 `;
 
 const BoxWrap2 = styled.div`
-background-color: #dee2e6;
-border-radius: 1rem;
-padding:16px;
-padding-top:5px;
-width: 12vw;
-height: 30vh;
+
+  background-color: #dee2e6;
+  border-radius: 1rem;
+  padding: 16px;
+  padding-top: 5px;
+  height: 30vh;
 `;
 
 const Box2 = styled.div`

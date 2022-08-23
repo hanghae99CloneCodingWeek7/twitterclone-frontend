@@ -21,7 +21,7 @@ const GlobalStyles = createGlobalStyle`
         background-color: #ffffff;
         color: #000000;
         letter-spacing : 0.02rem;
-        overflow: hidden;
+        ${"" /* overflow: hidden; */}
     }
     textarea {
         border: none;
