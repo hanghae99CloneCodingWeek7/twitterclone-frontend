@@ -13,6 +13,7 @@ import { CgProfile } from "react-icons/cg";
 import { CgMoreO } from "react-icons/cg";
 import { useParams } from "react-router-dom";
 import ButtonHeaders from "../Atoms/ButtonHeaders";
+import Button from "../Atoms/Button";
 
 const HomeLeft = () => {
   const param = useParams();

@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import Button from "../../UI/Atoms/Button";
+import { server_url } from "../index";
 
 const initialState = {
   joinData: [],
@@ -15,13 +16,16 @@ const initialState = {
 export const addJoin = createAsyncThunk(
   "join",
   async ({ navigate, joinData }) => {
+    console.log(joinData);
     try {
       const response = await axios.post(
-        `https://www.myspaceti.me/api/signup`,
+        // "https://www.myspaceti.me/api/signup",joinData
+        server_url + `/api/signup`,
         joinData
       );
       alert("가입해주셔서 감사합니다.");
       navigate("/");
+      console.log(response);
       console.log(response.data);
       return response.data;
     } catch (error) {
