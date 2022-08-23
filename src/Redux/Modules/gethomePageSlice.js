@@ -42,4 +42,5 @@ const GetFeed = createSlice({
   },
 });
 
-export default GetFeed.reducer;
+export {GetFeed};
+export const getFeed = GetFeed.reducer;

@@ -18,6 +18,7 @@ import { GetFeedThunk } from "../../Redux/Modules/gethomePageSlice";
 
 const Home = () => {
 
+
     //비동기 처리이니까 로딩
     useEffect(() => {
         dispatch(GetFeedThunk());
@@ -32,6 +33,7 @@ const Home = () => {
     const [feed, setFeed] = useState({
         CONTENT: "",
         POST_PHOTO_URL: "",
+
     });
 
     const onchangeHandler = (e) => {
