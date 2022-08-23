@@ -34,6 +34,7 @@ const LoginModal = (props) => {
       const login =  { EMAIL, PASSWORD};
       dispatch(loginDb({navigate,login}));
        }
+      //  navigate("/home")
   };
 
 
