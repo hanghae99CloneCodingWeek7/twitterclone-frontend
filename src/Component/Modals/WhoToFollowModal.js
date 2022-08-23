@@ -3,12 +3,13 @@ import "../../UI/Molcules/modal.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import WhoToFollow from "../../UI/Organisems/followBox/WhoToFollow";
+import sampleToFollow from "../../mockData/sampleToFollow.json";
 
 const WhoToFollowModal = ({ willOpen }) => {
   //모달창을 위한 props 전달받은 변수
   let [isOpened, setIsOpened] = useState(willOpen);
-  const [whomToFollow, setWhomToFollow] = useState(followerRecommendation);
-  const [howManyShow, setHowManyShow] = useState(8);
+  const [whomToFollow, setWhomToFollow] = useState(sampleToFollow);
+  const [howManyShow, setHowManyShow] = useState(10);
 
   const navigate = useNavigate(); //로그인 성공시 의 다음 경로 를  리다이렉트 하기위해서 사용
   const dispatch = useDispatch();
@@ -53,78 +54,3 @@ const WhoToFollowModal = ({ willOpen }) => {
 };
 
 export default WhoToFollowModal;
-
-const followerRecommendation = [
-  {
-    _id: "630056affde5db42c7dd4800",
-    PROFILE_PIC:
-      "https://t4.ftcdn.net/jpg/03/40/12/49/360_F_340124934_bz3pQTLrdFpH92ekknuaTHy8JuXgG7fi.jpg",
-    DISPLAY_NAME: "Jack Dorsey",
-  },
-  {
-    _id: "630056affde5db42c7dd4800",
-    PROFILE_PIC:
-      "https://t4.ftcdn.net/jpg/03/40/12/49/360_F_340124934_bz3pQTLrdFpH92ekknuaTHy8JuXgG7fi.jpg",
-    DISPLAY_NAME: "Jack Dorsey",
-  },
-  {
-    _id: "630056affde5db42c7dd4800",
-    PROFILE_PIC:
-      "https://t4.ftcdn.net/jpg/03/40/12/49/360_F_340124934_bz3pQTLrdFpH92ekknuaTHy8JuXgG7fi.jpg",
-    DISPLAY_NAME: "Jack Dorsey",
-  },
-  {
-    _id: "630056affde5db42c7dd4800",
-    PROFILE_PIC:
-      "https://t4.ftcdn.net/jpg/03/40/12/49/360_F_340124934_bz3pQTLrdFpH92ekknuaTHy8JuXgG7fi.jpg",
-    DISPLAY_NAME: "Jack Doggy",
-  },
-  {
-    _id: "630056affde5db42c7dd4800",
-    PROFILE_PIC:
-      "https://t4.ftcdn.net/jpg/03/40/12/49/360_F_340124934_bz3pQTLrdFpH92ekknuaTHy8JuXgG7fi.jpg",
-    DISPLAY_NAME: "Jack Dorsey",
-  },
-  {
-    _id: "630056affde5db42c7dd4800",
-    PROFILE_PIC:
-      "https://t4.ftcdn.net/jpg/03/40/12/49/360_F_340124934_bz3pQTLrdFpH92ekknuaTHy8JuXgG7fi.jpg",
-    DISPLAY_NAME: "Jack Dorsey",
-  },
-  {
-    _id: "630056affde5db42c7dd4800",
-    PROFILE_PIC:
-      "https://t4.ftcdn.net/jpg/03/40/12/49/360_F_340124934_bz3pQTLrdFpH92ekknuaTHy8JuXgG7fi.jpg",
-    DISPLAY_NAME: "Jack Dorsey",
-  },
-  {
-    _id: "630056affde5db42c7dd4800",
-    PROFILE_PIC:
-      "https://t4.ftcdn.net/jpg/03/40/12/49/360_F_340124934_bz3pQTLrdFpH92ekknuaTHy8JuXgG7fi.jpg",
-    DISPLAY_NAME: "Jack Doggy",
-  },
-  {
-    _id: "630056affde5db42c7dd4800",
-    PROFILE_PIC:
-      "https://t4.ftcdn.net/jpg/03/40/12/49/360_F_340124934_bz3pQTLrdFpH92ekknuaTHy8JuXgG7fi.jpg",
-    DISPLAY_NAME: "Jack Dorsey",
-  },
-  {
-    _id: "630056affde5db42c7dd4800",
-    PROFILE_PIC:
-      "https://t4.ftcdn.net/jpg/03/40/12/49/360_F_340124934_bz3pQTLrdFpH92ekknuaTHy8JuXgG7fi.jpg",
-    DISPLAY_NAME: "Jack Dorsey",
-  },
-  {
-    _id: "630056affde5db42c7dd4800",
-    PROFILE_PIC:
-      "https://t4.ftcdn.net/jpg/03/40/12/49/360_F_340124934_bz3pQTLrdFpH92ekknuaTHy8JuXgG7fi.jpg",
-    DISPLAY_NAME: "Jack Dorsey",
-  },
-  {
-    _id: "630056affde5db42c7dd4800",
-    PROFILE_PIC:
-      "https://t4.ftcdn.net/jpg/03/40/12/49/360_F_340124934_bz3pQTLrdFpH92ekknuaTHy8JuXgG7fi.jpg",
-    DISPLAY_NAME: "Jack Doggy",
-  },
-];

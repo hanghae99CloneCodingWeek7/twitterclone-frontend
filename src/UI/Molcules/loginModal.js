@@ -59,7 +59,9 @@ const LoginModal = (props) => {
               backgroundColor={"#fff"}
               fontColor={"black"}
               borderColor={"#eee"}
+              _onClick={"https://www.myspaceti.me/api/google"}
             ></Button>
+            <a href="https://www.myspaceti.me/api/google">구글로그인</a>
             <Ic>
               <FcGoogle size="24"></FcGoogle>
             </Ic>

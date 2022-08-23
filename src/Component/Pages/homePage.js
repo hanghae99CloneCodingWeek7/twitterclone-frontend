@@ -19,6 +19,7 @@ import ProfileImg from "../../UI/Organisems/myProfileBox/ProfileImg";
 import ProfileModal from "../Modals/ProfileModal";
 import WhoToFollow from "../../UI/Organisems/followBox/WhoToFollow";
 import WhoToFollowModal from "../Modals/WhoToFollowModal";
+import sampleToFollow from "../../mockData/sampleToFollow.json";
 
 const Home = () => {
   const state = useSelector((store) => store.GetFeed);
@@ -175,12 +176,11 @@ const Home = () => {
           <Box className="grayHover">예시1</Box>
           <Box className="grayHover">예시1</Box>
           <Box className="grayHover">예시1</Box>
-          <Box className="grayHover">예시1</Box>
         </BoxWrap>
-        <FollowBox count={2} />
+        <FollowBox count={4} data={sampleToFollow} />
       </RightWrap>
-      <ProfileModal willOpen={true} />
-      <WhoToFollowModal willOpen={false} />
+      <ProfileModal willOpen={false} />
+      <WhoToFollowModal willOpen={true} />
     </Total>
   );
 };
@@ -193,9 +193,7 @@ const Total = styled.div`
 const RightWrap = styled.div`
   flex-direction: column;
   border-left: 2px solid gray;
-  padding: 12px;
-  padding-left: 35px;
-  padding-bottom: 64px;
+  padding: 16px;
   flex-basis: 18%;
 `;
 
@@ -299,7 +297,7 @@ const BoxWrap = styled.div`
   font-size: 20px;
   background-color: rgb(247, 249, 249);
   border-radius: 1rem;
-  padding: 16px;
+  padding: 16px 0px;
   padding-top: 5px;
   height: 60vh;
   margin-bottom: 12px;
@@ -309,17 +307,8 @@ const Box = styled.div`
   cursor: pointer;
   transition-property: background-color, box-shadow;
   pointer-events: auto;
-  padding: 12px;
-  padding-left: 16px;
-  padding-right: 16px;
-  /* display: flex;
-width: 12.5vw;
-padding: 16px;
-padding-top :12px;
-padding-bottom: 12px;
-border:2px solid gray;
-border-radius: 0.5rem;
-background-color: #dee2e6; */
+  padding: 12px 20px;
+  margin: 0px;
 `;
 
 const SearchWrap = styled.div`
