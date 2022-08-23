@@ -18,7 +18,7 @@ const LoginModal = (props) => {
 
   //이메일 저장을 위한 state
   const [EMAIL, setEmail] = useState("");
-
+        console.log(EMAIL)
   // 비밀번호를 저장을 위한 state
   const [PASSWORD,setPassword] = useState("");
 
@@ -27,13 +27,13 @@ const LoginModal = (props) => {
 
   const dispatch = useDispatch();
   const onClick = () =>{
-    // if (EMAIL === "" || PASSWORD === ""){
-    //   alert("이메일과 비밀번호를 모두 입력해주세요");
-    //   return;
-    // }else{
+    if (!EMAIL  || !PASSWORD ){
+      alert("이메일과 비밀번호를 모두 입력해주세요");
+      return;
+    }else{
       const login =  { EMAIL, PASSWORD};
       dispatch(loginDb({navigate,login}));
-      // }
+       }
   };
 
 
@@ -87,19 +87,19 @@ const LoginModal = (props) => {
               또는
             </p>
             <div className='emailInput'>
-              <Input placeholder='이메일을 입력해주세요'
+              <input placeholder='이메일을 입력해주세요'
                 value = {EMAIL}
                 name="EMAIL"
                 type="email"
-                onChange={(e)=>{setEmail(e.target.value)}}
+               onChange={(e)=>{setEmail(e.target.value)}}
               />
             </div>
             <div className='pwInput'>
-               <Input 
+               <input
                placeholder='비밀번호를 입력해주세요' 
                value = {PASSWORD}
                name="PASSWORD"
-               type="password"
+                type="password"
                onChange={(e)=>{setPassword(e.target.value)}}
                />
             </div>

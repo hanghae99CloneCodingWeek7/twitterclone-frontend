@@ -14,7 +14,8 @@ const Input = (props) => {
         is_submit,
         onSubmit,
         maxLength,
-        autoFocus
+        autoFocus,
+        name,
     } = props;
 
     if(multiLine){
@@ -27,6 +28,7 @@ const Input = (props) => {
                     placeholder={placeholder}
                     onChange={_onChange}
                     maxlength={maxLength}
+                    name={name}
             ></ElTextarea>
             </Grid>
         );
@@ -43,6 +45,7 @@ const Input = (props) => {
                         onChange={_onChange}
                         value={value}
                         maxlength={maxLength}
+                        name={name}
                         onKeyPress={(e)=>{
                             if(e.key === "Enter"){
                                 onSubmit(e);
@@ -68,6 +71,7 @@ Input.defaultProps = {
     maxLength: "12",
     onSubmit: () => {},
     _onChange: () => {},
+    name:""
   };
   
   const ElTextarea = styled.textarea`
