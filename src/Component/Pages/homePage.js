@@ -16,6 +16,9 @@ import comment4 from "./comment4.png";
 import { postFeedThunk } from "../../Redux/Modules/homePageSlice";
 import { GetFeedThunk } from "../../Redux/Modules/gethomePageSlice";
 import ProfileImg from "../../UI/Organisems/myProfileBox/ProfileImg";
+import ProfileModal from "../Modals/ProfileModal";
+import WhoToFollow from "../../UI/Organisems/followBox/WhoToFollow";
+import WhoToFollowModal from "../Modals/WhoToFollowModal";
 
 const Home = () => {
   const state = useSelector((store) => store.GetFeed);
@@ -176,6 +179,8 @@ const Home = () => {
         </BoxWrap>
         <FollowBox count={2} />
       </RightWrap>
+      <ProfileModal willOpen={true} />
+      <WhoToFollowModal willOpen={false} />
     </Total>
   );
 };
@@ -185,16 +190,13 @@ const Total = styled.div`
   display: flex;
   justify-content: center;
 `;
-// const Black = styled.div`
-// width: 12.5vw;
-// `;
-
 const RightWrap = styled.div`
   flex-direction: column;
   border-left: 2px solid gray;
   padding: 12px;
   padding-left: 35px;
   padding-bottom: 64px;
+  flex-basis: 18%;
 `;
 
 const CenterWrap = styled.div`
@@ -202,6 +204,7 @@ const CenterWrap = styled.div`
   display: flex;
   flex-direction: column;
   background-color: rgb(239, 243, 244);
+  flex-basis: 40%;
 `;
 
 const CenterHome = styled.div`

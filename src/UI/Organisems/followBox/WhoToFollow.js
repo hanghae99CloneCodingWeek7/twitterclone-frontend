@@ -51,7 +51,10 @@ const WhoToFollow = ({ element }) => {
           </g>
         </svg>
       </div>{" "}
-      <FollowButton onClick={() => followBtnClick(element._id)}>
+      <FollowButton
+        className="follow"
+        onClick={() => followBtnClick(element._id)}
+      >
         follow
       </FollowButton>
     </div>
