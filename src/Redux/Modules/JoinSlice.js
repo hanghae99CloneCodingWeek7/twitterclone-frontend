@@ -15,13 +15,13 @@ const initialState ={
 // post 회원정보 전송
 export const addJoin = createAsyncThunk(
     "join",
-    async({navigate, joinData}) =>{
+    async({ joinData}) =>{
         try{
             const response = await axios.post(
                 `https://www.myspaceti.me/api/signup`,joinData
             );
             alert("가입해주셔서 감사합니다.");
-            navigate("/");
+   
             console.log(response.data);
             return response.data;
         }catch(error){

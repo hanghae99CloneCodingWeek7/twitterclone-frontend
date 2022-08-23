@@ -7,6 +7,7 @@ import Input from "../Atoms/input"
 import {FaTwitter} from "react-icons/fa"
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import {loginDb} from "../../Redux/Modules/loginSlice";
 
 const LoginModal = (props) => {
 
@@ -16,24 +17,24 @@ const LoginModal = (props) => {
   //로그인 구현 코드
 
   //이메일 저장을 위한 state
-  const [email, setEmail] = useState("");
+  const [EMAIL, setEmail] = useState("");
 
   // 비밀번호를 저장을 위한 state
-  const [password,setPassword] = useState("");
+  const [PASSWORD,setPassword] = useState("");
 
   const navigate = useNavigate();
   //로그인 성공시 의 다음 경로 를  리다이렉트 하기위해서 사용
 
   const dispatch = useDispatch();
   const onClick = () =>{
-    if (email === "" || password === ""){
+    if (EMAIL === "" || PASSWORD === ""){
       alert("이메일과 비밀번호를 모두 입력해주세요");
       return;
     }else{
-      const login =  { email, password};
-      dispatch()
-    }
-  }
+      const login =  { EMAIL, PASSWORD};
+      dispatch(loginDb({navigate,login}))
+     }
+  };
 
 
 
@@ -87,16 +88,18 @@ const LoginModal = (props) => {
             </p>
             <div className='emailInput'>
               <Input placeholder='이메일을 입력해주세요'
-                value = {email}
+                value = {EMAIL}
                 name="EMAIL"
+                type="email"
                 onChange={(e)=>{setEmail(e.target.value)}}
               />
             </div>
             <div className='pwInput'>
                <Input 
                placeholder='비밀번호를 입력해주세요' 
-               value = {password}
+               value = {PASSWORD}
                name="PASSWORD"
+               type="password"
                onChange={(e)=>{setPassword(e.target.value)}}
                />
             </div>

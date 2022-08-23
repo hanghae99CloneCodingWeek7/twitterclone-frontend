@@ -83,6 +83,7 @@ const onClick = ()=>{
     alert("빠진 내용이 없나 확인해보세요!");
   }else{
     dispatch(addJoin({navigate, joinData}));
+    navigate(-1);
   }
 }
     return (
