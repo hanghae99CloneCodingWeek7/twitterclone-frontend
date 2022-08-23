@@ -16,9 +16,9 @@ export  const loginDb = createAsyncThunk (
             const response = await axios.post('https://www.myspaceti.me/api/login',login,  { withCredentials: true });
             // {EMAIL:"GMAIL@GMAIL.COM",PASSWORD:"123123123"});
             alert("로그인전달 완료")
-            navigate("/home")
-            console.log(response.data);
-            return response.data;
+             navigate("/home")
+            console.log(response.config.data);
+            return response.config.data;
     
         }catch(error){
             alert("로그인실패")
