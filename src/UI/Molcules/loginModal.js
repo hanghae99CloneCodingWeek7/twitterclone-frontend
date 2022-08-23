@@ -8,6 +8,7 @@ import {FaTwitter} from "react-icons/fa"
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import {loginDb} from "../../Redux/Modules/loginSlice";
+import LoginGoogle from "../../Api/google"
 
 const LoginModal = (props) => {
 
@@ -58,7 +59,7 @@ const LoginModal = (props) => {
             
             <Btn>
            
-            <Button
+            {/* <Button
             width={'274px'} 
             height={'30px'}
             margin = {'0px '}
@@ -66,10 +67,12 @@ const LoginModal = (props) => {
             backgroundColor = {'#fff'}
             fontColor ={'black'}
             borderColor={'#eee'}
-             ></Button>
+             ></Button> */}
+{/*              
              <Ic>
                 <FcGoogle size="24"></FcGoogle>
-             </Ic>
+             </Ic> */}
+             <LoginGoogle/>
 
              <Button
             width={'274px'} 

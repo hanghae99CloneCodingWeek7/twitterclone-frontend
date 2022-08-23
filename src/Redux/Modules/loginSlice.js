@@ -13,11 +13,11 @@ export  const loginDb = createAsyncThunk (
     "post/loginDb",
     async ({navigate,login}) =>{
         try {
-            const response = await axios.post('https://www.myspaceti.me/api/login',login)
+            const response = await axios.post('https://www.myspaceti.me/api/login',login,  { withCredentials: true });
             // {EMAIL:"GMAIL@GMAIL.COM",PASSWORD:"123123123"});
             alert("로그인전달 완료")
-            // navigate("/home")
-            console.log(response);
+            navigate("/home")
+            console.log(response.data);
             return response.data;
     
         }catch(error){
