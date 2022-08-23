@@ -14,7 +14,6 @@ const initialState = {
 
 // post 회원정보 전송
 export const addJoin = createAsyncThunk(
-
   "join",
   async ({ navigate, joinData }) => {
     console.log(joinData);
