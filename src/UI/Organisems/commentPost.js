@@ -7,16 +7,16 @@ import { deleteCommentList } from "../../Redux/Modules/commentSlice";
 import { updateCommentList } from "../../Redux/Modules/commentSlice";
 import CommentList from "./commentList";
 import InputComment from "../Atoms/inputComment";
+import "./modal.css";
 
-const CommentPost = () => {
-  // const { open, close, header } = props;
+const CommentPost = (props) => {
+  const { open, close, header } = props;
 
   //
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
-  const commentList = useSelector((state) => state.commentReducer);
-  const agagag = useSelector((store) => store.GetFeed);
-  console.log(commentList);
+  const cList = useSelector((state) => state);
+  console.log(cList);
 
   const onCreate = (e) => {
     e.preventDefault();
@@ -36,28 +36,31 @@ const CommentPost = () => {
 
   //////////////////////////////
   return (
-    <StOutline>
-      <form onSubmit={onCreate}>
-        <div>
-          {/* //!map 오류시 && 추가할것. */}
-          {commentList &&
-            commentList.map((x) => (
-              <CommentList
-                key={x.id}
-                xId={x.id}
-                content={x.content}
-              ></CommentList>
-            ))}
-        </div>
-      </form>
-    </StOutline>
+    <div className={open ? "openModal" : "modal"}>
+      {open ? (
+        <section>
+          <header>
+            {header}
+            <button className="close" onClick={close}>
+              &times;
+            </button>
+          </header>
+          <main></main>
+          <footer>
+            <button className="close" onClick={close}>
+              close
+            </button>
+          </footer>
+        </section>
+      ) : null}
+    </div>
   );
 };
 
 export default CommentPost;
 
 const StOutline = styled.div`
-  background-color: cadetblue;
+  /* background-color: cadetblue; */
   position: absolute;
   margin-top: 100px;
   /* margin-left: 400px; */
@@ -71,3 +74,5 @@ const StOutline = styled.div`
 const StSection = styled.section`
   max-width: 600px;
 `;
+
+//백업

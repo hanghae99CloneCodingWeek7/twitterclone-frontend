@@ -19,6 +19,7 @@ import ProfileImg from "../../UI/Organisems/myProfileBox/ProfileImg";
 
 const Home = () => {
   const state = useSelector((store) => store.GetFeed);
+  console.log(state);
   // const state = useSelector((state) => state.Post.data.posts);
 
   const navigate = useNavigate();
