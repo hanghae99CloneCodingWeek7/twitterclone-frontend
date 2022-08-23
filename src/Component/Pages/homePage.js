@@ -1,10 +1,11 @@
+
 import React from "react"
 import { useState, useEffect } from "react";
 import { Cookies, useCookies, withCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux/";
 
-import Header from "../Templates/header";
+import LeftWrap from "../Templates/LeftWrap";
 import styled from "styled-components";
 import img1 from "./BTS.jpg";
 import comment from "./comment.png";
@@ -17,7 +18,6 @@ import { postFeedThunk } from "../../Redux/Modules/homePageSlice";
 import { GetFeedThunk } from "../../Redux/Modules/gethomePageSlice";
 
 const Home = () => {
-
 
     const state = useSelector((store) => store.GetFeed);
     console.log(state);
@@ -74,12 +74,7 @@ const Home = () => {
     return (
         <Total>
             <Header />
-            <LeftWrap>
-                {/* <Box>
-                    예시1
-                </Box> */}
-            </LeftWrap>
-
+            <LeftWrap />
             <CenterWrap>
                 <CenterHome>
                     Home
@@ -112,6 +107,7 @@ const Home = () => {
                     <img src={comment4} alt="comment" width="20"></img>
 
                     </CommentImg>
+
                     {state.map&&((value) => {
                         return (
                             <MapFeedWrap
@@ -133,78 +129,74 @@ const Home = () => {
                     })}
                 </AllFeed>
             </CenterWrap>
-
             <RightWrap>
-            <Black></Black>
-                <SearchWrap>
-                    <SearchImg>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15.4613 14.6221L12.5638 11.7246C13.6127 10.4817 14.25 8.87775 14.25 7.125C14.25 3.19042 11.0596 0 7.125 0C3.19042 0 0 3.19042 0 7.125C0 11.0596 3.19042 14.25 7.125 14.25C8.87854 14.25 10.4817 13.6135 11.723 12.5638L14.6205 15.4613C14.7369 15.5768 14.8897 15.6354 15.0401 15.6354C15.1905 15.6354 15.3449 15.5776 15.4597 15.4613C15.6932 15.2293 15.6932 14.854 15.4613 14.6221V14.6221ZM1.1875 7.125C1.1875 3.85146 3.85146 1.1875 7.125 1.1875C10.3985 1.1875 13.0625 3.85146 13.0625 7.125C13.0625 10.3985 10.3985 13.0625 7.125 13.0625C3.85146 13.0625 1.1875 10.3985 1.1875 7.125Z" fill="#5B7083" />
-                        </svg>
-                    </SearchImg>
-                    <Search
-                        value={feed.Search}
-                        name="SEARCH"
-                        placeholder="Search Twitter"
-                        onChange={onchangeHandler}
-                    ></Search>
-                </SearchWrap>
-                <BoxWrap>
-                    <h2>Trends for you</h2>
-                    <Box>
-                        예시1
-                    </Box>
-                    <Box>
-                        예시1
-                    </Box>
-                </BoxWrap>
-                <BoxWrap2>
-                    <h2>Who to follow</h2>
-                    <Box2>
-                        <img src={img1} alt="img1" width="50" /><div>방탄소년단</div> <FollowButton onClick={() => alert("follow기능은 아직 구현중입니다.")}>follow</FollowButton>
-                    </Box2>
-                    <Box2>
-                        <img src={img1} alt="img1" width="50" /><div>방탄소년단</div> <FollowButton onClick={() => alert("follow기능은 아직 구현중입니다.")}>follow</FollowButton>
-                    </Box2>
-                    <Box2>
-                        <img src={img1} alt="img1" width="50" /><div>방탄소년단</div> <FollowButton onClick={() => alert("follow기능은 아직 구현중입니다.")}>follow</FollowButton>
-                    </Box2>
-                </BoxWrap2>
+       <SearchWrap>
+                <SearchImg>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M15.4613 14.6221L12.5638 11.7246C13.6127 10.4817 14.25 8.87775 14.25 7.125C14.25 3.19042 11.0596 0 7.125 0C3.19042 0 0 3.19042 0 7.125C0 11.0596 3.19042 14.25 7.125 14.25C8.87854 14.25 10.4817 13.6135 11.723 12.5638L14.6205 15.4613C14.7369 15.5768 14.8897 15.6354 15.0401 15.6354C15.1905 15.6354 15.3449 15.5776 15.4597 15.4613C15.6932 15.2293 15.6932 14.854 15.4613 14.6221V14.6221ZM1.1875 7.125C1.1875 3.85146 3.85146 1.1875 7.125 1.1875C10.3985 1.1875 13.0625 3.85146 13.0625 7.125C13.0625 10.3985 10.3985 13.0625 7.125 13.0625C3.85146 13.0625 1.1875 10.3985 1.1875 7.125Z"
+                      fill="#5B7083"
+                    />
+                  </svg>
+                </SearchImg>
+                <Search
+                  value={feed.CONTENT}
+                  name="SEARCH"
+                  placeholder="Search Twitter"
+                  onChange={onchangeHandler}
+                ></Search>
+              </SearchWrap>
+              <BoxWrap>
+                <h2>Trends for you</h2>
+                <Box>예시1</Box>
+                <Box>예시1</Box>
+              </BoxWrap>
+              <BoxWrap2>
+                <h2>Who to follow</h2>
+                <Box2>
+                  <img src={img1} alt="img1" width="50" />
+                  <div>방탄소년단</div>{" "}
+                  <FollowButton onclick={alert("click")}>follow</FollowButton>
+                </Box2>
+                <Box2>
+                  <img src={img1} alt="img1" width="50" />
+                  <div>방탄소년단</div> <FollowButton>follow</FollowButton>
+                </Box2>
+                <Box2>
+                  <img src={img1} alt="img1" width="50" />
+                  <div>방탄소년단</div> <FollowButton>follow</FollowButton>
+                </Box2>
+              </BoxWrap2>
             </RightWrap>
-            
-        </Total>
-    )
-}
+          </Total>
+        );
+      };
+
 export default withCookies(Home);
+
 const Total = styled.div`
-display: flex;
-`;
-const Black = styled.div`
-width: 12.5vw;
-`;
-const LeftWrap = styled.div`
-flex-direction: column;
-width: 12.5vw;
-height:100vh;
-border-right: 2px solid gray;
-margin : auto 0;
-padding:15px;
-margin-left: 12px;
+  display: flex;
+  justify-content: center;
 `;
 
 const RightWrap = styled.div`
-flex-direction: column;
-width: 12.5vw;
-border-left: 2px solid gray;
-padding: 12px;
-padding-left: 35px;
-padding-bottom: 64px;
+  flex-direction: column;
+  border-left: 2px solid gray;
+  padding: 12px;
+  padding-bottom: 64px;
+  flex-basis: 20%;
 `;
 
 const CenterWrap = styled.div`
-/* border : 2px solid gray; */
-width:40vw;
-background-color: rgb(239, 243, 244);
+  /* border : 2px solid gray; */
+  background-color: rgb(239, 243, 244);
+  flex-basis: 40%;
 `;
 
 const CenterHome = styled.div`
@@ -234,6 +226,7 @@ margin:auto;
 width:35vw;
 height: 10vh;
 padding: 30px;
+
 `;
 
 const MapFeedWrap = styled.div`
@@ -283,23 +276,23 @@ const CommentImg = styled.button`
 
 ///우측//////
 const BoxWrap = styled.div`
-background-color: #dee2e6;
-border-radius: 1rem;
-padding:16px;
-padding-top:5px;
-width: 12vw;
-height:60vh;
-margin-bottom: 12px;
+  background-color: #dee2e6;
+  border-radius: 1rem;
+  padding: 16px;
+  padding-top: 5px;
+  width: 12vw;
+  height: 60vh;
+  margin-bottom: 12px;
 `;
 
 const Box = styled.div`
-cursor: pointer;
-transition-property: background-color, box-shadow;
-pointer-events: auto;
-padding:12px;
-padding-left: 16px;
-padding-right: 16px;
-/* display: flex;
+  cursor: pointer;
+  transition-property: background-color, box-shadow;
+  pointer-events: auto;
+  padding: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  /* display: flex;
 width: 12.5vw;
 padding: 16px;
 padding-top :12px;
@@ -344,18 +337,19 @@ padding:16px;
 padding-top:5px;
 width: 12vw;
 height: 30vh;
+
 `;
 
 const Box2 = styled.div`
-transition-property: background-color, box-shadow;
-display: flex;
-justify-content: space-around;
-align-items: center;
-align-content: center;
-pointer-events: auto;
-padding:12px;
-padding-left:0px;
-padding-right: 16px;
+  transition-property: background-color, box-shadow;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  pointer-events: auto;
+  padding: 12px;
+  padding-left: 0px;
+  padding-right: 16px;
 `;
 
 const FollowButton = styled.button`

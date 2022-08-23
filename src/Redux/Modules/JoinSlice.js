@@ -19,8 +19,10 @@ export const addJoin = createAsyncThunk(
         console.log(joinData)
         try{
             const response = await axios.post(
+
                 // "https://www.myspaceti.me/api/signup",joinData
                 server_url + `/api/signup`,joinData
+
             );
             alert("가입해주셔서 감사합니다.");
             navigate("/");
