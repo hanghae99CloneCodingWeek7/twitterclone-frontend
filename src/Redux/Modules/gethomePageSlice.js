@@ -13,9 +13,9 @@ const initialState = {
 export const GetFeedThunk = createAsyncThunk(
   "hompage->tweet->homepage",
   async (value,thunkAPI) => {
-
     try {
       const result = await axios.get(server_url + `/api/posts`);
+      console.log(result);
       console.log(result.data);
       return thunkAPI.fulfillWithValue(result.data);
     } catch (error) {
@@ -42,4 +42,5 @@ const GetFeed = createSlice({
   },
 });
 
-export default GetFeed.reducer;
+export {GetFeed};
+export const getFeed = GetFeed.reducer;

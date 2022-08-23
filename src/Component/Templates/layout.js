@@ -14,5 +14,5 @@ const StLayout = styled.div`
   min-width: 1200px;
   height: 716px;
   overflow: scroll;
-  /* border : 1px solid black; //사이즈 확인용  */
+  border: 1px solid black; //사이즈 확인용
 `;

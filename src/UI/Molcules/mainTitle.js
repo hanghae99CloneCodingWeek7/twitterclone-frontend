@@ -86,7 +86,7 @@ function MainTitle (){
               _onClick={openJoinModal}
                width={'274px'} 
                height={'38px'}
-               text= {'휴대폰 번호나 이메일 주소로 가입하기'}
+               text= {'이메일 주소로 가입하기'}
                margin = {'  10px '}
                backgroundColor = {'#0095ED'}
                fontColor ={'white'}
