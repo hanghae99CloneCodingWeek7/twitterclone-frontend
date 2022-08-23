@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { Cookies, useCookies, withCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux/";
-
 import LeftWrap from "../Template/LeftWrap";
 import FollowBox from "../Template/FollowBox";
 import styled from "styled-components";
@@ -12,18 +11,22 @@ import comment1 from "./comment1.png";
 import comment2 from "./comment2.png";
 import comment3 from "./comment3.png";
 import comment4 from "./comment4.png";
-
+// import ProfileImg from "UI/Organisems/myProfileBox/ProfileImg";
 import { postFeedThunk } from "../../Redux/Modules/homePageSlice";
 import { GetFeedThunk } from "../../Redux/Modules/gethomePageSlice";
-import ProfileImg from "../../UI/Organisems/myProfileBox/ProfileImg";
 
 const Home = () => {
-  const state = useSelector((store) => store.GetFeed);
+  //비동기 처리이니까 로딩
+  useEffect(() => {
+    dispatch(GetFeedThunk());
+  }, []);
+
   const token = useSelector((state) => state.loginSlice);
   console.log(token);
-
+  const { data } = useSelector((store) => store.GetFeed);
+  console.log(data);
+  // const state = useSelector((state) => state.Post.data.posts);
   const navigate = useNavigate();
-  const { cookies } = useCookies;
   const dispatch = useDispatch();
   const [feed, setFeed] = useState({
     CONTENT: "",
@@ -39,7 +42,7 @@ const Home = () => {
   };
 
   const onSubmit = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     if (feed.CONTENT.trim().length === 0) {
       return alert("내용을 입력하세요!");
     } else {
@@ -56,14 +59,11 @@ const Home = () => {
       // navigate("/");
     }
   };
+  // console.log(state);
 
   const onProfile = () => {
     navigate("/profile");
   };
-
-  useEffect(() => {
-    dispatch(GetFeedThunk());
-  }, []);
 
   return (
     <Total>
@@ -108,38 +108,49 @@ const Home = () => {
               />
             </svg>
           </UploadImg>
-          <Btn type="button" onClick={onSubmit}>
-            Tweet
-          </Btn>
+
+          <form onSubmit={onSubmit}>
+            <Btn type="submit" onSubmit={onSubmit}>
+              Tweet
+            </Btn>
+          </form>
+
+          {/* <Btn form onSubmit={onSubmit}> 
+                       Tweet
+                    </Btn> */}
         </TotalFeed>
         <AllFeed>
           <CommentFeed>{feed.CONTENT}</CommentFeed>
-          <CommentImg>
-            <img src={comment} alt="comment" width="20" onClick={onSubmit} />
-            <img src={comment1} alt="comment" width="20"></img>
-            <img src={comment2} alt="comment" width="20"></img>
-            <img src={comment3} alt="comment" width="20"></img>
-            <img src={comment4} alt="comment" width="20"></img>
-          </CommentImg>
 
-          {state.map &&
-            ((value) => {
-              return (
-                <MapFeedWrap
-                  // key={value.postId}
-                  key={value}
-                >
-                  <div>
-                    <Contentbox>
-                      <div>{value.POST_PHOTO}</div>
-                      <div>{value.TIMESTAMPS}</div>
-                      <div>{value.CONTENT}</div>
-                    </Contentbox>
-                  </div>
-                  <div>ㅠㅠ</div>
+          <TotalFeed>
+            {data.postDetail &&
+              data.postDetail.map((value) => (
+                <MapFeedWrap key={value.postInfo._id}>
+                  <>
+                    <ImgContentWrap>
+                      <TweetProfileImg src="https://lh3.googleusercontent.com/a/AItbvmkSJ_xTohZASxEYTNzTumaAkOEK36BQqs38Q60V=s96-c" />
+
+                      <InnerImgContentWrap>
+                        <Contentbox>
+                          <div>{value.postInfo.CONTENT}</div>
+                          <div>{value.postInfo.TIMESTAMPS}</div>
+                          <div>{value.postInfo.POST_PHOTO}</div>
+                        </Contentbox>
+
+                        <CommentImg>
+                          <img src={comment} alt="comment" width="20"></img>
+                          <img src={comment1} alt="comment" width="20"></img>
+                          <img src={comment2} alt="comment" width="20"></img>
+                          <img src={comment3} alt="comment" width="20"></img>
+                          <img src={comment4} alt="comment" width="20"></img>
+                        </CommentImg>
+                      </InnerImgContentWrap>
+                    </ImgContentWrap>
+                  </>
                 </MapFeedWrap>
-              );
-            })}
+              ))}
+          </TotalFeed>
+          {/* <div className="bye" backgroundcolor="red">111{state.array}</div> */}
         </AllFeed>
       </CenterWrap>
       <RightWrap>
@@ -175,7 +186,7 @@ const Home = () => {
           <Box className="grayHover">예시1</Box>
           <Box className="grayHover">예시1</Box>
         </BoxWrap>
-        <FollowBox count={2} />
+        {/* <FollowBox count={2} /> */}
       </RightWrap>
     </Total>
   );
@@ -192,7 +203,7 @@ const Total = styled.div`
 
 const RightWrap = styled.div`
   flex-direction: column;
-  border-left: 2px solid gray;
+  /* border-left: 2px solid gray; */
   padding: 12px;
   padding-left: 35px;
   padding-bottom: 64px;
@@ -222,7 +233,7 @@ const Input = styled.input`
 
 const TotalFeed = styled.div`
   background-color: white;
-  height: 50vh;
+  flex-direction: row;
 `;
 const FeedWrap = styled.div`
   /* border: 2px solid gray; */
@@ -236,7 +247,11 @@ const FeedWrap = styled.div`
   padding: 30px;
 `;
 
-const MapFeedWrap = styled.div``;
+const MapFeedWrap = styled.div`
+  display: flex;
+  /* flex-direction: column; */
+  background-color: white;
+`;
 
 const UploadImg = styled.button`
   float: left;
@@ -261,11 +276,11 @@ const Btn = styled.button`
 
 const AllFeed = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   /* background-color: black; */
   /* padding: 30px; */
-  padding-left: 16px;
-  padding-right: 16px;
+  /* padding-left: 16px;
+  padding-right: 16px; */
 `;
 
 const CommentBtnWrap = styled.div`
@@ -282,13 +297,48 @@ const CommentFeed = styled.div`
   font-size: 15px;
   border: solid 5px gray;
 `;
-const CommentImg = styled.button`
-  display: inline-flex;
+
+const ImgContentWrap = styled.div`
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  /* background-color: gray; */
+`;
+
+const TweetProfileImg = styled.img`
+  display: flex;
+  border-radius: 9999px;
+  width: 3wv;
+  height: 3vh;
+  margin: 5px;
+`;
+
+const InnerImgContentWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const Contentbox = styled.div`
+  display: flex;
+  width: 40vw;
+  flex-direction: column;
+  background-color: white;
+  /* border:1px solid gray; */
+`;
+
+const CommentImg = styled.button`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
   background-color: white;
   /* background-color: rgb(239,243,244); */
   border-color: white;
   border-style: solid;
+`;
+
+const Test = styled.div`
+  color: white;
+  display: flex;
+  background-color: black;
 `;
 
 ///우측//////
@@ -360,11 +410,6 @@ const PostedBox = styled.div`
   border-radius: 5px;
   padding: 8px;
   overflow: hidden; */
-`;
-const Contentbox = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: red;
 `;
 
 //왼쪽아래에 프로필표시 피드작성왼쪽 프로필표시는 재활용가능한 component//
