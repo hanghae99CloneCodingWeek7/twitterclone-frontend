@@ -5,7 +5,6 @@
 // import { useDispatch, useSelector } from "react-redux/";
 // // import mock from "../../getAllPostsResponseMockData copy.json"
 
-
 // import Header from "../Templates/header";
 // import styled from "styled-components";
 // import img1 from "./BTS.jpg";
@@ -25,7 +24,7 @@
 //         CONTENT: "",
 //         POST_PHOTO: "https://images.unsplash.com/photo-1657299142014-34b66b73e68e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=900&q=60",
 //         TIMESTAMPS:"",
-    
+
 //     };
 
 //     const [feed, setFeed] = useState(initialState);
@@ -34,7 +33,6 @@
 //         const { name, value } = e.target;
 //         setFeed((feed)=>({...feed,[name]: value}));
 //     };
-
 
 //     const onProfile = () => {
 //         navigate("/profile")
@@ -53,7 +51,6 @@
 //     useEffect(() => {
 //         dispatch(GetFeedThunk());
 //       }, []);
-
 
 //     return (
 //         <Total>
@@ -99,7 +96,7 @@
 //                                         <div>{value.TIMESTAMPS}</div>
 //                                         <div>{value.CONTENT}</div>
 //                                     </Contentbox>
-//                                 </div> 
+//                                 </div>
 //                                 <div>
 //                                     ㅠㅠ
 //                                 </div>
@@ -327,7 +324,6 @@
 //     align-items: center;
 //     cursor: pointer;
 // `;
-
 
 // const PostedBox = styled.div`
 //   /* display: flex;

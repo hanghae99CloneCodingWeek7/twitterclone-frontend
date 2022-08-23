@@ -26,7 +26,7 @@ const HomeLeft = () => {
 
       <StNav>
         <StDiv>
-          <RiHome7Fill color="black" size="30" margin="0 10px 0 " />
+          <RiHome7Fill color="black" size="30" margin="0 10px 0" />
           Home
         </StDiv>
 
