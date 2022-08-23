@@ -19,6 +19,6 @@ const Wrap =styled.div`
    height:92.7%;
     display:inline-block ;
     position:absolute ;
-    padding:0 ;
+    
     
 `
