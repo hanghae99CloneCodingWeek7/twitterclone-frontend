@@ -9,6 +9,8 @@ function Layout({ children }) {
 export default Layout;
 
 const StLayout = styled.div`
+  /* background-color: gray; */
+
   margin: 0;
   width: 100%;
   min-width: 1200px;
