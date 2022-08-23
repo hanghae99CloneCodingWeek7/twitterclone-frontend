@@ -5,14 +5,12 @@ import styled from "styled-components";
 // import Input from "../Atoms/input"
 import {FaTwitter} from "react-icons/fa"
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { addJoin } from '../../Redux/Modules/JoinSlice';
 
 const SignupModal = (props) => {
   const {joinOpen , joinClose, header} = props;
 
   //dispatch를 통해 리듀서에 보낼 것
-  let navigate = useNavigate()
 
   let dispatch = useDispatch()
   //이메일 input에 포커스를 맞추기위한 useRef 선언
@@ -83,7 +81,8 @@ const onClick = ()=>{
   ){
     alert("빠진 내용이 없나 확인해보세요!");
   }else{
-    dispatch(addJoin({navigate, joinData}));
+    dispatch(addJoin({joinData,joinClose}));
+    //회원가입 성공시 모달 창을 닫기위해서 joinClose를 reducer에 넘겨줍니다.
   }
 }
     return (
