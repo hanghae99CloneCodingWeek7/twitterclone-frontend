@@ -278,7 +278,12 @@ const CommentImg = styled.button`
 const BoxWrap = styled.div`
   background-color: rgb(247, 249, 249);
   border-radius: 1rem;
+<<<<<<< HEAD
   padding-top: 15px;
+=======
+  padding: 16px;
+  padding-top: 5px;
+>>>>>>> d46b410a1df70b7e0ebab46fd3bd1b0f3204c14a
   height: 60vh;
   margin-bottom: 12px;
 `;
@@ -305,7 +310,6 @@ const SearchWrap = styled.div`
   background-color: rgb(247, 249, 249);
   border-radius: 9999px;
   /* border-radius: 9999px;  */
-  width: 12vw;
   flex-direction: row;
   align-items: center;
   padding: 0px;
@@ -327,6 +331,39 @@ const Search = styled.input`
   font-size: 15px;
 `;
 
+<<<<<<< HEAD
+=======
+const BoxWrap2 = styled.div`
+  background-color: #dee2e6;
+  border-radius: 1rem;
+  padding: 16px;
+  padding-top: 5px;
+  height: 30vh;
+`;
+
+const Box2 = styled.div`
+  transition-property: background-color, box-shadow;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  pointer-events: auto;
+  padding: 12px;
+  padding-left: 0px;
+  padding-right: 16px;
+`;
+
+const FollowButton = styled.button`
+  display: flex;
+  height: 3vh;
+  background-color: black;
+  color: white;
+  border-radius: 1rem;
+  align-items: center;
+  cursor: pointer;
+`;
+
+>>>>>>> d46b410a1df70b7e0ebab46fd3bd1b0f3204c14a
 const PostedBox = styled.div`
   /* display: flex;
   justify-content: space-between;
