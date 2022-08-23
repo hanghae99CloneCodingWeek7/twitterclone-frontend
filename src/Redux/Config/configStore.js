@@ -20,13 +20,6 @@ const reducer = combineReducers({
 });
 
 export default configureStore({
-
-  reducer: {
-    PostFeed,
-    GetFeed,
-    
-  },
-
   reducer,
   commentReducer, //!호진추가
   middleware: [...getDefaultMiddleware(), logger], //!호진추가 (middleware: [...getDefaultMiddleware(), logger],)
