@@ -1,15 +1,18 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { joinSlice } from "../Modules/JoinSlice";
+
 import { getDefaultMiddleware } from "@reduxjs/toolkit"; //!호진추가 getDefaultMiddleware
 import { commentReducer } from "../Modules/commentSlice"; //!호진추가 commentReducer
 import logger from "redux-logger"; //!호진추가 logger
 import PostFeed from "../Modules/homePageSlice";
 import GetFeed from "../Modules/gethomePageSlice";
 
+
+
 // store에 등록할 Slice 들을 import  합시다
 
 const reducer = combineReducers({
-  //슬라이스 등록하는곳입니다. mainSlice: mainSlice.reducer, 이런식으로
+
 
   joinSlice: joinSlice.reducer,
   commentReducer: commentReducer.reducer, //!호진 추가 (commentReducer)
