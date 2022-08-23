@@ -4,7 +4,7 @@ import  {gapi} from "gapi-script";
 import { useNavigate } from 'react-router-dom';
 
 
-const clientId = "887841571801-8kgbi9f6the0jeji8kvd0d6ripinhe7m.apps.googleusercontent.com"
+const clientId = ""
 
 
 function LoginGoogle({onSocial}){

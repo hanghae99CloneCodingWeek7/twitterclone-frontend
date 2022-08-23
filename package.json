@@ -8,11 +8,8 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
-<<<<<<< HEAD
     "gapi-script": "^1.2.0",
-=======
     "json-server": "^0.17.0",
->>>>>>> cb90b0d647d77e49d1a5803ccd40a8bac27c7397
     "react": "^18.2.0",
     "react-cookie": "^4.1.1",
     "react-dom": "^18.2.0",
