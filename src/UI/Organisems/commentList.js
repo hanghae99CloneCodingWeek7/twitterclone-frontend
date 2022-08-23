@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import styled from "styled-components";
 import { deleteCommentList } from "../../Redux/Modules/commentSlice";
 import { updateCommentList } from "../../Redux/Modules/commentSlice";
 import { getCommentList } from "../../Redux/Modules/commentSlice";
@@ -33,10 +34,10 @@ const CommentList = ({ xId, content }) => {
 
   return (
     <div>
-      <li>
+      <h4>
         {xId}
         {content}
-      </li>
+      </h4>
       <input
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
@@ -51,4 +52,8 @@ const CommentList = ({ xId, content }) => {
   );
 };
 
-export default React.memo(CommentList);
+export default CommentList;
+
+const StCommentUpdate = styled.div`
+  border: 1px solid black;
+`;

@@ -1,11 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const initialState = {
+  loading: false,
+  comments: [],
+  error: "",
+};
+
+//!코멘트 get
 export const getCommentList = createAsyncThunk("GET_COMMENT", async () => {
   const response = await axios.get("http://localhost:8000/list");
   return response.data;
 });
 
+//!코멘트 post
 export const addCommentList = createAsyncThunk(
   "ADD_COMMENT",
   async (newComment) => {
@@ -13,7 +21,7 @@ export const addCommentList = createAsyncThunk(
     return response.data;
   }
 );
-
+//!코멘트 delete
 export const deleteCommentList = createAsyncThunk(
   "DELETE_COMMENT",
   async (xId) => {
@@ -21,7 +29,7 @@ export const deleteCommentList = createAsyncThunk(
     return xId;
   }
 );
-
+//!코멘트 update
 export const updateCommentList = createAsyncThunk(
   "UPDATE_LIST",
   async ({ xId, content }) => {
