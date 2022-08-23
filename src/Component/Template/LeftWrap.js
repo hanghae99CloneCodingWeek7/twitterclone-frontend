@@ -6,18 +6,17 @@ const LeftWrap = () => {
   return (
     <div style={leftStyle}>
       <HomeLeft />
-      <MyProfileBox />
+      <MyProfileBox user={{}} />
     </div>
   );
 };
 
 const leftStyle = {
-  flexBasis: "20%",
+  flexBasis: "15%",
   display: "flex",
   height: "100vh",
   flexFlow: "column nowrap",
   justifyContent: "space-between",
-  background: "beige",
 };
 
 export default LeftWrap;

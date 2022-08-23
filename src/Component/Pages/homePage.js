@@ -4,9 +4,9 @@ import { Cookies, useCookies, withCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux/";
 
-import LeftWrap from "../Templates/LeftWrap";
+import LeftWrap from "../Template/LeftWrap";
+import FollowBox from "../Template/FollowBox";
 import styled from "styled-components";
-import img1 from "./BTS.jpg";
 import comment from "./comment.png";
 import comment1 from "./comment1.png";
 import comment2 from "./comment2.png";
@@ -167,25 +167,15 @@ const Home = () => {
         </SearchWrap>
         <BoxWrap>
           <h2>Trends for you</h2>
-          <Box>예시1</Box>
-          <Box>예시1</Box>
+          <Box className="grayHover">예시1</Box>
+          <Box className="grayHover">예시1</Box>
+          <Box className="grayHover">예시1</Box>
+          <Box className="grayHover">예시1</Box>
+          <Box className="grayHover">예시1</Box>
+          <Box className="grayHover">예시1</Box>
+          <Box className="grayHover">예시1</Box>
         </BoxWrap>
-        <BoxWrap2>
-          <h2>Who to follow</h2>
-          <Box2>
-            <img src={img1} alt="img1" width="50" />
-            <div>방탄소년단</div>{" "}
-            <FollowButton onclick={alert("click")}>follow</FollowButton>
-          </Box2>
-          <Box2>
-            <img src={img1} alt="img1" width="50" />
-            <div>방탄소년단</div> <FollowButton>follow</FollowButton>
-          </Box2>
-          <Box2>
-            <img src={img1} alt="img1" width="50" />
-            <div>방탄소년단</div> <FollowButton>follow</FollowButton>
-          </Box2>
-        </BoxWrap2>
+        <FollowBox count={2} />
       </RightWrap>
     </Total>
   );
@@ -286,11 +276,9 @@ const CommentImg = styled.button`
 
 ///우측//////
 const BoxWrap = styled.div`
-  background-color: #dee2e6;
+  background-color: rgb(247, 249, 249);
   border-radius: 1rem;
-  padding: 16px;
-  padding-top: 5px;
-  width: 12vw;
+  padding-top: 15px;
   height: 60vh;
   margin-bottom: 12px;
 `;
@@ -314,7 +302,7 @@ background-color: #dee2e6; */
 
 const SearchWrap = styled.div`
   display: flex;
-  background-color: rgb(239, 243, 244);
+  background-color: rgb(247, 249, 249);
   border-radius: 9999px;
   /* border-radius: 9999px;  */
   width: 12vw;
@@ -332,43 +320,11 @@ const SearchImg = styled.div`
 
 const Search = styled.input`
   width: 100%;
-  background-color: rgb(239, 243, 244);
+  background-color: transparent;
   border-radius: 9999px;
-  border-style: solid;
   /* margin-bottom: 10px; */
-  border-color: rgb(239, 243, 244);
+  border-color: transparent;
   font-size: 15px;
-`;
-
-const BoxWrap2 = styled.div`
-  background-color: #dee2e6;
-  border-radius: 1rem;
-  padding: 16px;
-  padding-top: 5px;
-  width: 12vw;
-  height: 30vh;
-`;
-
-const Box2 = styled.div`
-  transition-property: background-color, box-shadow;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  align-content: center;
-  pointer-events: auto;
-  padding: 12px;
-  padding-left: 0px;
-  padding-right: 16px;
-`;
-
-const FollowButton = styled.button`
-  display: flex;
-  height: 3vh;
-  background-color: black;
-  color: white;
-  border-radius: 1rem;
-  align-items: center;
-  cursor: pointer;
 `;
 
 const PostedBox = styled.div`

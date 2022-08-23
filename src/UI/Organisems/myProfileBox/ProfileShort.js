@@ -7,17 +7,19 @@ const ProfileShort = () => {
   return (
     <div style={style}>
       <div>
-        <p>Bohyeon Kim</p>
-        <p>@Bohyeon_kim</p>
+        <p className="profileName">Bohyeon Kim</p>
+        <p className="profileId">@Bohyeon_kim</p>
       </div>
-      <button>...</button>
     </div>
   );
 };
+
 const style = {
-  flexGrow: "2",
+  flexGrow: "3",
   display: "flex",
   flexFlow: "row",
+  color: "#555",
+  marginLeft: "5px",
 };
 
 export default ProfileShort;
