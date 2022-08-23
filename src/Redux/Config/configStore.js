@@ -1,6 +1,7 @@
 
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { joinSlice } from "../Modules/JoinSlice";
+import { loginSlice } from "../Modules/loginSlice";
 // store에 등록할 Slice 들을 import  합시다
 
 
@@ -8,6 +9,7 @@ import { joinSlice } from "../Modules/JoinSlice";
 const reducer = combineReducers({
         //슬라이스 등록하는곳입니다. mainSlice: mainSlice.reducer, 이런식으로 
         joinSlice : joinSlice.reducer,
+        loginSlice: loginSlice.reducer,
 })
 
 

@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom';
 import { addJoin } from '../../Redux/Modules/JoinSlice';
 
 const SignupModal = (props) => {
-  // 모달 팔업 용 state
   const {joinOpen , joinClose, header} = props;
 
   //dispatch를 통해 리듀서에 보낼 것
@@ -72,6 +71,8 @@ const SignupModal = (props) => {
 const joinData = {EMAIL, PASSWORD,CONFIRM, FIRST_NAME:FIRST_NAME, LAST_NAME:LAST_NAME};
 //회원가입 버튼
 
+
+
 const onClick = ()=>{
   if(
     EMAIL ===""||
@@ -83,7 +84,6 @@ const onClick = ()=>{
     alert("빠진 내용이 없나 확인해보세요!");
   }else{
     dispatch(addJoin({navigate, joinData}));
-    navigate(-1);
   }
 }
     return (

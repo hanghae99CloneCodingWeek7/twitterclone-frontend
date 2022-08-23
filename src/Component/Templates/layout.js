@@ -12,9 +12,9 @@ export default Layout;
 const StLayout = styled.div`
     margin:0 ;
     width:100%;
-    min-width:1200px ;
+    min-width:1100px ;
     height:716px ;
-    overflow:scroll ;
+  
     /* border : 1px solid black; //사이즈 확인용  */
 
 `

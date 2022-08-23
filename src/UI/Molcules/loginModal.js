@@ -27,13 +27,13 @@ const LoginModal = (props) => {
 
   const dispatch = useDispatch();
   const onClick = () =>{
-    if (EMAIL === "" || PASSWORD === ""){
-      alert("이메일과 비밀번호를 모두 입력해주세요");
-      return;
-    }else{
+    // if (EMAIL === "" || PASSWORD === ""){
+    //   alert("이메일과 비밀번호를 모두 입력해주세요");
+    //   return;
+    // }else{
       const login =  { EMAIL, PASSWORD};
-      dispatch(loginDb({navigate,login}))
-     }
+      dispatch(loginDb({navigate,login}));
+      // }
   };
 
 
@@ -134,7 +134,7 @@ margin-left:73px;
 margin-top:10px`
 
 const LoginBtn = styled.div`
-  margin-left:60px;
+  margin-left:60px; 
   `
 
 const HeadIcon =styled.div`

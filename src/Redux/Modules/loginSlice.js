@@ -15,11 +15,10 @@ export  const loginDb = createAsyncThunk (
         try {
             const response = await axios.post('https://www.myspaceti.me/api/login',
             login);
-            const accessToken = response.data;
-            console.log(accessToken);
             alert("로그인전달 완료")
-            navigate("/");
-            return response.data.token;
+            navigate("/home")
+            console.log(response.headers);
+            return response.data;
     
         }catch(error){
             alert("로그인실패")
@@ -29,12 +28,13 @@ export  const loginDb = createAsyncThunk (
 
 const loginSlice = createSlice({
     name: "loginData",
-    initialState,
+    initialState:initialState,
     reducers:{},
     extraReducers: (builder)=>{
+        
         builder.addCase(loginDb.fulfilled,(state, action)=>{
             state.loading =false;
-            state.loginDb = action.payload;
+            state.loginDB = action.payload;
             state.error ="";
         });
     }
