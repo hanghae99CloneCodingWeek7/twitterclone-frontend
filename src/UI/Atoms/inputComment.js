@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { Text, Grid } from "./index";
 
-const Input = (props) => {
+const InputComment = (props) => {
   const {
     label,
     placeholder,
@@ -57,7 +57,7 @@ const Input = (props) => {
   );
 };
 
-Input.defaultProps = {
+InputComment.defaultProps = {
   multiLine: false,
   label: false,
   placeholder: "텍스트를 입력해주세요.",
@@ -83,4 +83,4 @@ const ElInput = styled.input`
   box-sizing: border-box;
 `;
 
-export default Input;
+export default InputComment;
