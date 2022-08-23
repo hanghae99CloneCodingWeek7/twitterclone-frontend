@@ -133,6 +133,11 @@ const Home = () => {
 
                                     <InnerImgContentWrap>
                                     <Contentbox>
+                                        <EditDeleteWrap>
+                                        <button>수정</button>
+                                        <button>삭제</button>
+                                        </EditDeleteWrap>
+
                                         <div>{value.postInfo.CONTENT}</div>
                                         <div>{value.postInfo.TIMESTAMPS}</div>
                                         <div>{value.postInfo.POST_PHOTO}</div>
@@ -325,14 +330,18 @@ flex-direction: column;
 
 `;
 const Contentbox = styled.div`
+flex-shrink: 1;
 display: flex;
 width: 40vw;
   flex-direction: column;
   background-color: white;
-  /* border:1px solid gray; */
- 
+  border:1px solid gray;
 `;
 
+const EditDeleteWrap = styled.div`
+display: flex;
+flex-direction: row-reverse;
+`;
 const CommentImg = styled.button`
   display: flex;
   flex-direction: row;
