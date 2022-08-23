@@ -290,7 +290,6 @@ const BoxWrap = styled.div`
   border-radius: 1rem;
   padding: 16px;
   padding-top: 5px;
-  width: 12vw;
   height: 60vh;
   margin-bottom: 12px;
 `;
@@ -317,7 +316,6 @@ const SearchWrap = styled.div`
   background-color: rgb(239, 243, 244);
   border-radius: 9999px;
   /* border-radius: 9999px;  */
-  width: 12vw;
   flex-direction: row;
   align-items: center;
   padding: 0px;
@@ -345,7 +343,6 @@ const BoxWrap2 = styled.div`
   border-radius: 1rem;
   padding: 16px;
   padding-top: 5px;
-  width: 12vw;
   height: 30vh;
 `;
 
