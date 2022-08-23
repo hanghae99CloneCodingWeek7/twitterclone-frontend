@@ -22,6 +22,7 @@ const reducer = combineReducers({
 export default configureStore({
   reducer,
   middleware: [...getDefaultMiddleware()], //!호진추가 (middleware: [...getDefaultMiddleware(), logger],)
+
   //reducer 등록한것을 export
   //해서 다른 컴포넌트에서 useSelector hook 을 통해서 사용할수 있습니다.
 });

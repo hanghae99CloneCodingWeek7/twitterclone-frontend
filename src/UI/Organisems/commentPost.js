@@ -15,6 +15,7 @@ const CommentPost = () => {
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
   const commentList = useSelector((state) => state.commentReducer);
+  const agagag = useSelector((store) => store.GetFeed);
   console.log(commentList);
 
   const onCreate = (e) => {
