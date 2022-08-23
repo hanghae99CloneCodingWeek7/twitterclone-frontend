@@ -1,23 +1,24 @@
 import React from "react";
 
-const ProfileImg = ({ USER_ID }) => {
+const ProfileImg = ({ IMG }) => {
   return (
-    <div>
-      <img
-        style={style}
-        src="https://i.kinja-img.com/gawker-media/image/upload/gd8ljenaeahpn0wslmlz.jpg"
-        alt="profileImage"
-      />
+    <div onClick={goProfileModal}>
+      <img style={style} src={IMG} alt="profileImage" />
     </div>
   );
 };
 
+const goProfileModal = () => {
+  alert("프로필 모달로 이동");
+};
+
 const style = {
-  width: "150px",
-  height: "150px",
+  width: "40px",
+  height: "40px",
   borderRadius: "50%",
   objectFit: "cover",
   objectPosition: "center left",
+  margin: "5px",
 };
 
 export default ProfileImg;
