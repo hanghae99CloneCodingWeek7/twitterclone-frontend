@@ -12,7 +12,7 @@ const initialState = {
 export const GetFeedThunk = createAsyncThunk(
   "hompage->tweet->homepage",
   async ( value,thunkAPI) => {
-    // console.log(value);
+    console.log(value);
     try {
       const result = await axios.get(server_url + `/api/posts/`,);
       console.log(result);

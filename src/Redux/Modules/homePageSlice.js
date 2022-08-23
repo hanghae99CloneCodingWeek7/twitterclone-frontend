@@ -27,7 +27,7 @@ export const postFeedThunk = createAsyncThunk(
       //   },
       // }
       );
-      console.log(response.data.meta.arg);
+      console.log(response.data.data);
       return response.data;
     } 
     catch (error) {
