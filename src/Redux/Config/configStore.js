@@ -22,6 +22,7 @@ export default configureStore({
   reducer: {
     PostFeed,
     GetFeed,
+    
   },
   middleware: [...getDefaultMiddleware(), logger], //!호진추가 (middleware: [...getDefaultMiddleware(), logger],)
   //reducer 등록한것을 export

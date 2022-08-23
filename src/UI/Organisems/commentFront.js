@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import CommentPost from "./commentPost";
-import "../Molcules/modalComment.css";
+
 
 function CommentFront() {
   //modal
