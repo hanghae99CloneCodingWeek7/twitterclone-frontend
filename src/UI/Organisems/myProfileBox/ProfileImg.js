@@ -19,6 +19,7 @@ const style = {
   objectFit: "cover",
   objectPosition: "center left",
   margin: "5px",
+  cursor:"pointer",
 };
 
 export default ProfileImg;
