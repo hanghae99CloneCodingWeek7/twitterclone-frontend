@@ -27,6 +27,7 @@ export  const loginDb = createAsyncThunk (
              navigate("/home")
             console.log(response.data.token);
             const token = response.data.token;
+            sessionStorage.setItem(token,login);
             const decode = jwt_decode(token);
             console.log(decode);
             return response.config.data.token;
