@@ -29,6 +29,7 @@ import sampleToFollow from "../../mockData/sampleToFollow.json";
 import hashtags from "../../mockData/hashtags.json";
 import IterationFeeds from "Component/Template/IterationFeeds";
 import axios from "axios";
+import CommentPage from "./commentPage";
 
 const Home = () => {
   const userstate = useSelector((store) => store.loginSlice);
@@ -88,7 +89,9 @@ const Home = () => {
       // navigate("/");
     }
   };
-
+const goComment =() =>{
+  navigate("/comments");
+}
 const Ondelete = () => {
   dispatch(deletePost({}))
   alert("삭제")
@@ -124,7 +127,7 @@ const Ondelete = () => {
 
           <UploadTweetWrap>
             <UploadImg>
-              <img src={upload} alt="upload" width="20"></img>
+              <img src={upload} alt="upload" width="20" ></img>
               <img src={gif} alt="gif" width="20"></img>
               <img src={smile} alt="smile" width="20"></img>
               <img src={new1} alt="new" width="20"></img>
