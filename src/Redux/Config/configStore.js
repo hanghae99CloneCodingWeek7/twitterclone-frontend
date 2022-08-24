@@ -8,9 +8,7 @@ import { PostFeed } from "../Modules/homePageSlice";
 import { GetFeed } from "../Modules/gethomePageSlice";
 import { commentSlice } from "../Modules/commentSlice"; //!호진추가
 
-
-// store에 등록할 Slice 들을 import  합시다 
-
+// store에 등록할 Slice 들을 import  합시다
 const reducer = combineReducers({
   joinSlice: joinSlice.reducer,
   // commentSlice: commentSlice.reducer,

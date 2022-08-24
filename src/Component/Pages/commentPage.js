@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../Template/layout";
 import CommentFront from "../../UI/Organisems/commentFront";
-import Header from "../Templates/header";
+import Header from "../Template/header";
 
 const CommentPage = () => {
   return (

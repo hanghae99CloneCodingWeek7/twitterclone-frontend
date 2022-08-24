@@ -16,7 +16,7 @@ code {
 }
 
 h2 {
-  margin: 5px 20px !important;
+  margin: 10px 20px !important;
   text-align: center;
   font-weight: bold !important;
   color: #555;
@@ -36,4 +36,18 @@ h2 {
 }
 .grayHover:hover {
   background-color: #eee;
+}
+
+.navMenu {
+  margin: 10px;
+}
+
+.navMenu.active {
+  margin: 10px;
+  font-weight: bold;
+}
+
+.fixed {
+  position: fixed;
+  width: 15%;
 }

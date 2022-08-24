@@ -2,57 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import WhoToFollow from "../../UI/Organisems/followBox/WhoToFollow";
 
-const FollowBox = ({ count }) => {
-  const [whomToFollow, setWhomToFollow] = useState([
-    {
-      _id: "630056affde5db42c7dd4800",
-      PROFILE_PIC:
-        "https://t4.ftcdn.net/jpg/03/40/12/49/360_F_340124934_bz3pQTLrdFpH92ekknuaTHy8JuXgG7fi.jpg",
-      DISPLAY_NAME: "Jack Dorsey",
-    },
-    {
-      _id: "630056affde5db42c7dd4800",
-      PROFILE_PIC:
-        "https://t4.ftcdn.net/jpg/03/40/12/49/360_F_340124934_bz3pQTLrdFpH92ekknuaTHy8JuXgG7fi.jpg",
-      DISPLAY_NAME: "Jack Dorsey",
-    },
-    {
-      _id: "630056affde5db42c7dd4800",
-      PROFILE_PIC:
-        "https://t4.ftcdn.net/jpg/03/40/12/49/360_F_340124934_bz3pQTLrdFpH92ekknuaTHy8JuXgG7fi.jpg",
-      DISPLAY_NAME: "Jack Dorsey",
-    },
-    {
-      _id: "630056affde5db42c7dd4800",
-      PROFILE_PIC:
-        "https://t4.ftcdn.net/jpg/03/40/12/49/360_F_340124934_bz3pQTLrdFpH92ekknuaTHy8JuXgG7fi.jpg",
-      DISPLAY_NAME: "Jack Doggy",
-    },
-    {
-      _id: "630056affde5db42c7dd4800",
-      PROFILE_PIC:
-        "https://t4.ftcdn.net/jpg/03/40/12/49/360_F_340124934_bz3pQTLrdFpH92ekknuaTHy8JuXgG7fi.jpg",
-      DISPLAY_NAME: "Jack Dorsey",
-    },
-    {
-      _id: "630056affde5db42c7dd4800",
-      PROFILE_PIC:
-        "https://t4.ftcdn.net/jpg/03/40/12/49/360_F_340124934_bz3pQTLrdFpH92ekknuaTHy8JuXgG7fi.jpg",
-      DISPLAY_NAME: "Jack Dorsey",
-    },
-    {
-      _id: "630056affde5db42c7dd4800",
-      PROFILE_PIC:
-        "https://t4.ftcdn.net/jpg/03/40/12/49/360_F_340124934_bz3pQTLrdFpH92ekknuaTHy8JuXgG7fi.jpg",
-      DISPLAY_NAME: "Jack Dorsey",
-    },
-    {
-      _id: "630056affde5db42c7dd4800",
-      PROFILE_PIC:
-        "https://t4.ftcdn.net/jpg/03/40/12/49/360_F_340124934_bz3pQTLrdFpH92ekknuaTHy8JuXgG7fi.jpg",
-      DISPLAY_NAME: "Jack Doggy",
-    },
-  ]);
+const FollowBox = ({ count, data }) => {
+  const [whomToFollow, setWhomToFollow] = useState(data);
 
   return (
     <div style={followBoxStyle}>
