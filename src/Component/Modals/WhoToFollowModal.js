@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import "../../UI/Molcules/modal.css";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import WhoToFollow from "../../UI/Organisems/followBox/WhoToFollow";
 import sampleToFollow from "../../mockData/sampleToFollow.json";
+import { closeFollowModal } from "Redux/Modules/modalSlice";
 
-const WhoToFollowModal = ({ willOpen }) => {
+// const WhoToFollowModal = ({ willOpen }) => {
+  const WhoToFollowModal = () => {
   //모달창을 위한 props 전달받은 변수
-  let [isOpened, setIsOpened] = useState(willOpen);
+
+  const isOpen =useSelector((store) => store.modal.isOpenFollowModal)
+  // let [isOpened, setIsOpened] = useState(willOpen);
   const [whomToFollow, setWhomToFollow] = useState(sampleToFollow);
   const [howManyShow, setHowManyShow] = useState(10);
 
@@ -25,13 +29,14 @@ const WhoToFollowModal = ({ willOpen }) => {
 
   return (
     <div
-      className={isOpened ? "openloginModal modal" : "modal"}
-      onClick={() => setIsOpened(false)}
+      className={isOpen ? "openloginModal modal" : "modal"}
+      // onClick={() => setIsOpened(false)}
     >
       <section onClick={(e) => e.stopPropagation()}>
         {/* 클릭 이벤트 중첩을 방지 */}
         <header>
-          <button className="close btn" onClick={() => setIsOpened(false)}>
+          {/* <button className="close btn" onClick={() => setIsOpened(false)}> */}
+          <button className="close btn" onClick={() => {dispatch(closeFollowModal())}}>
             &times;
           </button>
         </header>

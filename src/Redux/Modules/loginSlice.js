@@ -65,6 +65,29 @@ export const getToken = createAsyncThunk("get/getToken", async () => {
 
 
 
+export const exsearch = createAsyncThunk("get/getToken", async () => {
+    try {
+        const response = await
+            axios({
+                method: "get",
+                url: `https://www.myspaceti.me/api/posts/search`,
+                headers: {
+                    Authorization: `Bearer ${getCookie("is_login")}`,
+                    // Bearea 는 토큰 포멧의 일종 
+                },
+            });
+
+        const loginToken = getCookie("is_login");
+        const userData = { token: loginToken, post: response.data.postDetail }
+        return userData;
+
+    } catch (error) {
+        console.log(error.code, error.status);
+        return error.status;
+    }
+});
+
+
 export const loginSlice = createSlice({
     name: "loginData",
     initialState: initialState,

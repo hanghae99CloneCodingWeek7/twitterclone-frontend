@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-
+import { useDispatch } from "react-redux";
+import { openProfileModal } from "Redux/Modules/modalSlice";
 import ProfileImg from "../Organisems/myProfileBox/ProfileImg";
 import ProfileShort from "../Organisems/myProfileBox/ProfileShort";
 
-const goModal = () => {
-  alert("모달로 이동");
-};
+
 
 const MyProfileBox = ({ username, profileImg }) => {
+  const dispatch = useDispatch();
+  const goModal = () => {
+    dispatch(openProfileModal())
+    };
   const [isHover, setIsHover] = useState(false);
 
   const handleMouseEnter = () => {

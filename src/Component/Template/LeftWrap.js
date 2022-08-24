@@ -44,7 +44,7 @@ height: 45px;
 margin-bottom: 25vh;
 border-radius: 9999px;
 width: 226px;
-margin-left: 30px;
+margin-left: 27.5px;
 font-weight: 600;
 padding: 12px;
 font-size: 19px;

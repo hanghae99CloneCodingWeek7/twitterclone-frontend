@@ -28,8 +28,11 @@ import WhoToFollowModal from "../Modals/WhoToFollowModal";
 import sampleToFollow from "../../mockData/sampleToFollow.json";
 
 const Home = () => {
-  const userstate = useSelector((state) => state.loginSlice);
+  const userstate = useSelector((store) => store.loginSlice);
+  const leftstate = useSelector((store) => store.loginSlice.post);
+
   console.log(userstate);
+  console.log(leftstate)
   const dispatch = useDispatch();
   // 유저정보를 저장하기위함
   //  const [islogin, setIsLogin] = useState(userEmail);
@@ -54,6 +57,8 @@ const Home = () => {
     });
   };
 
+
+  
   const onSubmit = (event) => {
     event.preventDefault();
     if (feed.CONTENT.trim().length === 0) {
@@ -80,7 +85,9 @@ const Home = () => {
 
   return (
     <Total>
-      <LeftWrap data={userstate}/>
+      <LeftWrap data={leftstate} />
+      <ProfileModal willOpen={true} />
+      <WhoToFollowModal willOpen={true} />
       <CenterWrap>
         <CenterHome>Home</CenterHome>
         <TotalFeed>
@@ -91,7 +98,7 @@ const Home = () => {
             <Input
               value={feed.CONTENT}
               name="CONTENT" // HTML
-              placeholder="내용을 입력해주세요!"
+              placeholder="What's happening"
               maxLength={500}
               onChange={onchangeHandler}
             ></Input>
@@ -123,13 +130,14 @@ const Home = () => {
 
           <TotalFeed>
             {userstate.post?.map((value) => (
-              <MapFeedWrap key={value.postInfo._id}>
+              <MapFeedWrap key={value?.postInfo._id}>
                 <>
                   <ImgContentWrap>
                     <TweetProfileImg
                       src={
-                        value.writerInfo.PROFILE_PIC ||
-                        "https://lh3.googleusercontent.com/a/AItbvmkSJ_xTohZASxEYTNzTumaAkOEK36BQqs38Q60V=s96-c"
+                        value.writerInfo.PROFILE_PIC
+                        // ||
+                        // "https://lh3.googleusercontent.com/a/AItbvmkSJ_xTohZASxEYTNzTumaAkOEK36BQqs38Q60V=s96-c"
                       }
                     />
 
@@ -140,9 +148,9 @@ const Home = () => {
                           <button>삭제</button>
                         </EditDeleteWrap>
 
-                        <div>{value.postInfo.CONTENT}</div>
-                        <div>{value.postInfo.TIMESTAMPS}</div>
-                        <div>{value.postInfo.POST_PHOTO}</div>
+                        <div>{value?.postInfo.CONTENT}</div>
+                        <div>{value?.postInfo.TIMESTAMPS}</div>
+                        <div>{value?.postInfo.POST_PHOTO}</div>
                       </Contentbox>
 
                       <CommentImg>
@@ -179,7 +187,7 @@ const Home = () => {
               </svg>
             </SearchImg>
             <Search
-              value={feed.CONTENT}
+              value={feed.search}
               name="SEARCH"
               placeholder="Search Twitter"
               onChange={onchangeHandler}
@@ -197,8 +205,7 @@ const Home = () => {
           <FollowBox count={4} data={sampleToFollow} />
         </div>
       </RightWrap>
-      <ProfileModal willOpen={false} />
-      <WhoToFollowModal willOpen={true} />
+
     </Total>
   );
 };
@@ -288,11 +295,12 @@ const TweetBtn = styled.div`
 display: flex;
 /* flex-direction: row-reverse; */
 /* background-color: red; */
-margin-left: 120px;
+margin-left: 20vw;
 `;
 
 const Btn = styled.button`
 display: flex;
+float: right;
   font-size: 15px;
   /* margin-right: 3.5vw; */
   padding-top: 10px;

@@ -9,7 +9,7 @@ const ProfileImg = ({ IMG }) => {
 };
 
 const goProfileModal = () => {
-  alert("프로필 모달로 이동");
+  // alert("프로필 모달로 이동");
 };
 
 const style = {
@@ -19,6 +19,7 @@ const style = {
   objectFit: "cover",
   objectPosition: "center left",
   margin: "5px",
+  cursor:"pointer",
 };
 
 export default ProfileImg;
