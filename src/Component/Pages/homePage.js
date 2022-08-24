@@ -31,18 +31,19 @@ import IterationFeeds from "Component/Template/IterationFeeds";
 import axios from "axios";
 
 const Home = () => {
+  const userstate = useSelector((store) => store.loginSlice);
+  const leftstate = useSelector((store) => store.loginSlice.post);
   const [usersToFollow, setUsersToFollow] = useState(undefined);
   const userstate = useSelector((state) => state.loginSlice);
-  console.log("userstate", userstate.token);
   const dispatch = useDispatch();
   // 유저정보를 저장하기위함
+  
   //  const [islogin, setIsLogin] = useState(userEmail);
   useEffect(() => {
     if (getCookie("is_login")) {
       dispatch(getToken());
     }
-
-    axios({
+     axios({
       method: "get",
       url: `https://www.myspaceti.me/api/profiles/whotofollow`,
       headers: {
@@ -51,7 +52,8 @@ const Home = () => {
     }).then((e) => {
       setUsersToFollow(e);
     });
-  }, []);
+
+  }, [deletePost]);
 
   const navigate = useNavigate();
 
@@ -87,13 +89,23 @@ const Home = () => {
     }
   };
 
+const Ondelete = () => {
+  dispatch(deletePost({}))
+  alert("삭제")
+};
+
   const onProfile = () => {
     navigate("/profile");
   };
 
   return (
     <Total>
-      <LeftWrap />
+
+      <LeftWrap data={leftstate} />
+      <ProfileModal willOpen={true} />
+      {usersToFollow ? (
+        <WhoToFollowModal willOpen={true} data={usersToFollow} />
+      ) : ( <></> )}
       <CenterWrap>
         <CenterHome>Home</CenterHome>
         <TotalFeed>
@@ -104,7 +116,7 @@ const Home = () => {
             <Input
               value={feed.CONTENT}
               name="CONTENT" // HTML
-              placeholder="내용을 입력해주세요!"
+              placeholder="What's happening"
               maxLength={500}
               onChange={onchangeHandler}
             ></Input>
@@ -150,7 +162,7 @@ const Home = () => {
               </svg>
             </SearchImg>
             <Search
-              value={feed.CONTENT}
+              value={feed.search}
               name="SEARCH"
               placeholder="Search Twitter"
               onChange={onchangeHandler}
@@ -166,12 +178,9 @@ const Home = () => {
           {usersToFollow ? <FollowBox count={4} data={usersToFollow} /> : <></>}
         </div>
       </RightWrap>
-      <ProfileModal willOpen={false} />
-      {usersToFollow ? (
-        <WhoToFollowModal willOpen={true} data={usersToFollow} />
-      ) : (
-        <></>
-      )}
+
+
+
     </Total>
   );
 };
@@ -251,14 +260,16 @@ const UploadImg = styled.button`
 `;
 
 const TweetBtn = styled.div`
-  display: flex;
-  /* flex-direction: row-reverse; */
-  /* background-color: red; */
-  margin-left: 120px;
+
+display: flex;
+/* flex-direction: row-reverse; */
+/* background-color: red; */
+margin-left: 20vw;
 `;
 
 const Btn = styled.button`
-  display: flex;
+display: flex;
+float: right;
   font-size: 15px;
   /* margin-right: 3.5vw; */
   padding-top: 10px;

@@ -1,14 +1,27 @@
 import React, { useState } from "react";
 import ProfileImg from "../myProfileBox/ProfileImg";
 import styled from "styled-components";
+import { openFollowModal } from "Redux/Modules/modalSlice";
+import { useDispatch } from "react-redux";
 
 const WhoToFollow = ({ element }) => {
-  const followBtnClick = () => {
+
+  const [isHover, setIsHover] = useState(false);
+
+  const dispatch = useDispatch();
+
+//봐야함
+  const followBtnClick = (event,element._id) => {
+   event.stopPropagation()
     alert("follow " + element._id);
+
   };
 
-  const goModal = () => {
-    alert("모달로 이동");
+  const goModal = (event) => {
+    // event.preventDefault();
+    // event.stopPropagation()
+
+    dispatch(openFollowModal())
   };
 
   const style = {
@@ -45,10 +58,11 @@ const WhoToFollow = ({ element }) => {
         </svg>
       </div>{" "}
       <FollowButton
+      
         className="follow"
-        onClick={() => followBtnClick(element._id)}
+        onClick={(event) => followBtnClick(event,element._id)}
       >
-        follow
+        follow11
       </FollowButton>
     </div>
   );

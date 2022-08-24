@@ -1,11 +1,18 @@
 import React, { useState } from "react";
+import { openFollowModal } from "Redux/Modules/modalSlice";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import WhoToFollow from "../../UI/Organisems/followBox/WhoToFollow";
 
 const FollowBox = ({ count, data }) => {
+  const dispatch = useDispatch();
+
   const [whomToFollow, setWhomToFollow] = useState(data);
 
-  console.log("whomToFollow", whomToFollow);
+  const goModal = () => {
+    dispatch(openFollowModal())
+  }
+
   return (
     <div style={followBoxStyle}>
       <h2> Who to follow </h2>
@@ -16,7 +23,7 @@ const FollowBox = ({ count, data }) => {
           </>
         );
       })}
-      <h2> Show more </h2>
+      <h2 onClick={goModal}> Show more </h2>
     </div>
   );
 };

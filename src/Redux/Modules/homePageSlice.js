@@ -14,6 +14,35 @@ const initialState = {
 };
 
 
+//게시글 삭제
+export const deletePost = createAsyncThunk(
+  "user/FeedDelete",
+  async (value,thunkAPI) => {
+    console.log(value);
+    try {
+      const res = await axios.delete(`https://www.myspaceti.me/api/posts/`, {
+        headers: {
+          Authorization: `Bearer ${getCookie("is_login")}`,
+        },
+      
+      });
+  // try{
+  //   const res = await axios({
+  //     method: "delete",
+  //     url: `https://www.myspaceti.me/api/posts/`,
+  //     headers: {
+  //       Authorization: `Bearer ${getCookie("is_login")}`,
+  //       // Bearea 는 토큰 포멧의 일종 
+  //     },
+  //   })
+    return thunkAPI.fulfillWithValue(res.data);
+  }catch(error){
+    if(thunkAPI.rejectWithValue(error))
+    alert("게시글을 삭제할 수 없습니다!");
+  }}
+);
+
+// 게시글 작성
 export const postFeedThunk = createAsyncThunk(
   "user/FeedWrite",
   async (data1, I) => {
@@ -29,22 +58,6 @@ export const postFeedThunk = createAsyncThunk(
           },
           data: data1[0],
         });
-
-      // console.log(data1);
-      // console.log(data1[0]);
-      // try {
-      //     const response = await axios.post( `https://www.myspaceti.me/api/posts/create`, data1[0],
-      //   //   headers:{
-      //   //     Authorization : `Bearer ${getCookie("is_login")}`,
-      //   //     // Bearea 는 토큰 포멧의 일종 
-      //   // },
-      //     // ,
-      //   //   {
-      //   //   headers: {
-      //   //     Authorization: `Bearer ${data[1].id}`,
-      //   //   },
-      //   // }
-      //   );
       console.log(response.data);
       return response.data;
     }
@@ -54,7 +67,6 @@ export const postFeedThunk = createAsyncThunk(
     }
   }
 );
-
 
 const PostFeed = createSlice({
   name: "writed",
@@ -67,6 +79,13 @@ const PostFeed = createSlice({
     [postFeedThunk.rejected]: (state, action) => {
       state.error = action.payload;
     },
+    [deletePost.fulfilled]:(state,action)=> {
+      state.write=action.payload;
+      console.log(current(state),action);
+    },
+    [deletePost.rejected]:(state,action)=>{
+      state.error = action.payload;
+    }
   }
 });
 
