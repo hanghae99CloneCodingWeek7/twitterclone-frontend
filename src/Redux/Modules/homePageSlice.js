@@ -68,6 +68,7 @@ export const postFeedThunk = createAsyncThunk(
   }
 );
 
+
 const PostFeed = createSlice({
   name: "writed",
   initialState,

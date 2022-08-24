@@ -4,6 +4,7 @@ import MyProfileBox from "../../UI/Organisems/MyProfileBox";
 import { removeCookie, getCookie } from "../../Api/cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import styled from "styled-components";
 
 const LeftWrap = () => {
   const [feeds, setFeeds] = useState({});

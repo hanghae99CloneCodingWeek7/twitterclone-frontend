@@ -11,9 +11,9 @@ const WhoToFollow = ({ element }) => {
   const dispatch = useDispatch();
 
 //봐야함
-  const followBtnClick = (event,element._id) => {
+  const followBtnClick = (event,_id) => {
    event.stopPropagation()
-    alert("follow " + element._id);
+    alert("follow " + _id);
 
   };
 

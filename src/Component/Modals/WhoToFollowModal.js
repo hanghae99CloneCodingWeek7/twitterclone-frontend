@@ -10,7 +10,7 @@ import { closeFollowModal } from "Redux/Modules/modalSlice";
   const WhoToFollowModal = () => {
   //모달창을 위한 props 전달받은 변수
 
-  const isOpen =useSelector((store) => store.modal.isOpenFollowModal)
+  const isOpen = useSelector((store) => store.modal.isOpenFollowModal)
   // let [isOpened, setIsOpened] = useState(willOpen);
   const [whomToFollow, setWhomToFollow] = useState(sampleToFollow);
 
@@ -44,7 +44,14 @@ import { closeFollowModal } from "Redux/Modules/modalSlice";
         <main>WhoToFollow</main>
         <body>
           <div style={modalBodyStyle}>
-            {whomToFollow.data.resultData
+          {whomToFollow.slice(0, howManyShow).map(function (e) {
+              return (
+                <>
+                  <WhoToFollow element={e} />
+                </>
+              );
+            })}
+            {/* {whomToFollow.data.resultData
               .slice(0, howManyShow)
               .map(function (e) {
                 return (
@@ -52,7 +59,7 @@ import { closeFollowModal } from "Redux/Modules/modalSlice";
                     <WhoToFollow element={e} />
                   </>
                 );
-              })}
+              })} */}
             <h2>Show more</h2>
           </div>
         </body>

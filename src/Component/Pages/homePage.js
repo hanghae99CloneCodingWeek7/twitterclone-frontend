@@ -19,7 +19,7 @@ import { postFeedThunk } from "../../Redux/Modules/homePageSlice";
 import { getToken } from "../../Redux/Modules/loginSlice";
 import { removeCookie, getCookie } from "../../Api/cookie";
 import ProfileImg from "../../UI/Organisems/myProfileBox/ProfileImg";
-
+import { deletePost } from "../../Redux/Modules/homePageSlice";
 import ProfileModal from "../Modals/ProfileModal";
 import WhoToFollowModal from "../Modals/WhoToFollowModal";
 import Hashtags from "../Template/Hashtags";
@@ -34,7 +34,7 @@ const Home = () => {
   const userstate = useSelector((store) => store.loginSlice);
   const leftstate = useSelector((store) => store.loginSlice.post);
   const [usersToFollow, setUsersToFollow] = useState(undefined);
-  const userstate = useSelector((state) => state.loginSlice);
+
   const dispatch = useDispatch();
   // 유저정보를 저장하기위함
   
@@ -71,7 +71,7 @@ const Home = () => {
   };
 
   const onSubmit = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     if (feed.CONTENT.trim().length === 0) {
       return alert("내용을 입력하세요!");
     } else {
