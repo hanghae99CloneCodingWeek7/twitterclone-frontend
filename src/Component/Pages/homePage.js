@@ -6,40 +6,53 @@ import { useDispatch, useSelector } from "react-redux/";
 import LeftWrap from "../Template/LeftWrap";
 import FollowBox from "../Template/FollowBox";
 import styled from "styled-components";
-import comment from "./comment.png";
-import comment1 from "./comment1.png";
-import comment2 from "./comment2.png";
-import comment3 from "./comment3.png";
-import comment4 from "./comment4.png";
-import { deletePost, postFeedThunk } from "../../Redux/Modules/homePageSlice";
-// import { GetFeedThunk } from "../../Redux/Modules/gethomePageSlice";
-// import ProfileImg from "../../UI/Organisems/myProfileBox/ProfileImg";
+
 import gif from "./gif.png";
 import smile from "./smile.png";
 import upload from "./upload.png";
 import new1 from "./new1.png";
+import { postFeedThunk } from "../../Redux/Modules/homePageSlice";
+// import { GetFeedThunk } from "../../Redux/Modules/gethomePageSlice";
+// import ProfileImg from "../../UI/Organisems/myProfileBox/ProfileImg";
+
 //로그인한 유저정보를 가져오기위한 import
-import { getToken } from "../../Redux/Modules/loginSlice"
+import { getToken } from "../../Redux/Modules/loginSlice";
 import { removeCookie, getCookie } from "../../Api/cookie";
 import ProfileImg from "../../UI/Organisems/myProfileBox/ProfileImg";
+
 import ProfileModal from "../Modals/ProfileModal";
-import WhoToFollow from "../../UI/Organisems/followBox/WhoToFollow";
 import WhoToFollowModal from "../Modals/WhoToFollowModal";
+import Hashtags from "../Template/Hashtags";
+
+// 목업 데이터
 import sampleToFollow from "../../mockData/sampleToFollow.json";
+import hashtags from "../../mockData/hashtags.json";
+import IterationFeeds from "Component/Template/IterationFeeds";
+import axios from "axios";
 
 const Home = () => {
   const userstate = useSelector((store) => store.loginSlice);
   const leftstate = useSelector((store) => store.loginSlice.post);
-
-  console.log(userstate);
-  console.log(leftstate)
+  const [usersToFollow, setUsersToFollow] = useState(undefined);
+  const userstate = useSelector((state) => state.loginSlice);
   const dispatch = useDispatch();
   // 유저정보를 저장하기위함
+  
   //  const [islogin, setIsLogin] = useState(userEmail);
   useEffect(() => {
     if (getCookie("is_login")) {
       dispatch(getToken());
     }
+     axios({
+      method: "get",
+      url: `https://www.myspaceti.me/api/profiles/whotofollow`,
+      headers: {
+        Authorization: `Bearer ${getCookie("is_login")}`,
+      },
+    }).then((e) => {
+      setUsersToFollow(e);
+    });
+
   }, [deletePost]);
 
   const navigate = useNavigate();
@@ -67,7 +80,6 @@ const Home = () => {
           {
             CONTENT: feed.CONTENT,
             POST_PHOTO: feed.POST_PHOTO,
-
           },
           {},
         ])
@@ -88,9 +100,12 @@ const Ondelete = () => {
 
   return (
     <Total>
+
       <LeftWrap data={leftstate} />
       <ProfileModal willOpen={true} />
-      <WhoToFollowModal willOpen={true} />
+      {usersToFollow ? (
+        <WhoToFollowModal willOpen={true} data={usersToFollow} />
+      ) : ( <></> )}
       <CenterWrap>
         <CenterHome>Home</CenterHome>
         <TotalFeed>
@@ -106,7 +121,6 @@ const Ondelete = () => {
               onChange={onchangeHandler}
             ></Input>
           </FeedWrap>
-
 
           <UploadTweetWrap>
             <UploadImg>
@@ -124,57 +138,15 @@ const Ondelete = () => {
               </form>
             </TweetBtn>
           </UploadTweetWrap>
-
         </TotalFeed>
-
-
         <AllFeed>
           <CommentFeed>{feed.CONTENT}</CommentFeed>
-
-          <TotalFeed>
-            {userstate.post?.map((value) => (
-              <MapFeedWrap key={value?.postInfo._id}>
-                <>
-                  <ImgContentWrap>
-                    <TweetProfileImg
-                      src={
-                        value.writerInfo.PROFILE_PIC
-                        // ||
-                        // "https://lh3.googleusercontent.com/a/AItbvmkSJ_xTohZASxEYTNzTumaAkOEK36BQqs38Q60V=s96-c"
-                      }
-                    />
-
-                    <InnerImgContentWrap>
-                      <Contentbox>
-                        <EditDeleteWrap>
-                          <button>수정</button>
-                          <button onClick={Ondelete}>삭제</button>
-                        </EditDeleteWrap>
-
-                        <div>{value?.postInfo.CONTENT}</div>
-                        <div>{value?.postInfo.TIMESTAMPS}</div>
-                        <div>{value?.postInfo.POST_PHOTO}</div>
-                      </Contentbox>
-
-                      <CommentImg>
-                        <img src={comment} alt="comment" width="20"></img>
-                        <img src={comment1} alt="comment" width="20"></img>
-                        <img src={comment2} alt="comment" width="20"></img>
-                        <img src={comment3} alt="comment" width="20"></img>
-                        <img src={comment4} alt="comment" width="20"></img>
-                      </CommentImg>
-                    </InnerImgContentWrap>
-                  </ImgContentWrap>
-                </>
-              </MapFeedWrap>
-            ))}
-          </TotalFeed>
-          {/* <div className="bye" backgroundcolor="red">111{state.array}</div> */}
+          <IterationFeeds className="grayHover" />
         </AllFeed>
       </CenterWrap>
       <RightWrap>
-        <div className="fixed">
-          <SearchWrap>
+        <div class="sticky_wrap">
+          <SearchWrap className="sticky">
             <SearchImg>
               <svg
                 width="16"
@@ -198,48 +170,49 @@ const Ondelete = () => {
           </SearchWrap>
           <BoxWrap>
             <h2>Trends for you</h2>
-            <Box className="grayHover">예시1</Box>
-            <Box className="grayHover">예시1</Box>
-            <Box className="grayHover">예시1</Box>
-            <Box className="grayHover">예시1</Box>
-            <Box className="grayHover">예시1</Box>
-            <Box className="grayHover">예시1</Box>
+            {hashtags.slice(0, 6).map((e) => {
+              return <Hashtags data={e} />;
+            })}
+            <h2>show more</h2>
           </BoxWrap>
-          <FollowBox count={4} data={sampleToFollow} />
+          {usersToFollow ? <FollowBox count={4} data={usersToFollow} /> : <></>}
         </div>
       </RightWrap>
+
+
 
     </Total>
   );
 };
 
 export default Home;
+
+// styled-components
 const Total = styled.div`
   display: flex;
   justify-content: center;
 `;
-// const Black = styled.div`
-// width: 12.5vw;
-// `;
+
 const RightWrap = styled.div`
   flex-direction: column;
   /* border-left: 2px solid gray; */
   padding: 12px;
-  padding-left: 35px;
+  flex-basis: 18%;
   padding-bottom: 64px;
 `;
 const CenterWrap = styled.div`
   /* border : 2px solid gray; */
   display: flex;
   flex-direction: column;
-  background-color: rgb(239, 243, 244);
+  flex-basis: 40%;
 `;
 const CenterHome = styled.div`
   display: flex;
   align-items: center;
   background-color: gray;
   /* background-color: gray; */
-  height: 5vh;
+  height: 90px;
+  margin-left: 50px;
   color: white;
   color: black;
   font-weight: 700;
@@ -268,24 +241,16 @@ const FeedWrap = styled.div`
   height: 10vh;
   padding: 30px;
   /* float:left; */
-  
-`;
-
-const MapFeedWrap = styled.div`
-  display: flex;
-  /* flex-direction: column; */
-  background-color: white;
 `;
 
 const UploadTweetWrap = styled.div`
-display: flex;
-flex-direction: row;
-
+  display: flex;
+  flex-direction: row;
 `;
 
 const UploadImg = styled.button`
-background-color: white;
-gap:10px;
+  background-color: white;
+  gap: 10px;
   display: flex;
   flex-direction: row;
   margin-left: 5vw;
@@ -295,6 +260,7 @@ gap:10px;
 `;
 
 const TweetBtn = styled.div`
+
 display: flex;
 /* flex-direction: row-reverse; */
 /* background-color: red; */
@@ -322,32 +288,15 @@ float: right;
 const AllFeed = styled.div`
   display: flex;
   flex-direction: column;
-  /* background-color: black; */
-  /* padding: 30px; */
-  /* padding-left: 16px;
-  padding-right: 16px; */
 `;
-const CommentBtnWrap = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-`;
+
 const CommentFeed = styled.div`
   display: flex;
-  /* width: 40vw; */
   font-size: 20px;
   font-weight: 400;
   font-size: 15px;
-  border: solid 5px gray;
-  /* border: solid 5px gray; */
 `;
 
-const ImgContentWrap = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  /* background-color: gray; */
-`;
 const TweetProfileImg = styled.img`
   display: flex;
   border-radius: 9999px;
@@ -357,67 +306,18 @@ const TweetProfileImg = styled.img`
   cursor: pointer;
 `;
 
-const InnerImgContentWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const Contentbox = styled.div`
-flex-shrink: 1;
-display: flex;
-width: 40vw;
-  flex-direction: column;
-  background-color: white;
-  border:1px solid gray;
-  /* border:1px solid gray; */
-`;
-
-const EditDeleteWrap = styled.div`
-display: flex;
-flex-direction: row-reverse;
-`;
-const CommentImg = styled.button`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  background-color: white;
-  /* background-color: rgb(239,243,244); */
-  border-color: white;
-  border-style: solid;
-  cursor: pointer;
-`;
-
-const Test = styled.div`
-  color: white;
-  display: flex;
-  background-color: black;
-`;
 ///우측//////
 const BoxWrap = styled.div`
   font-weight: 800;
   font-size: 20px;
   background-color: rgb(247, 249, 249);
   border-radius: 1rem;
-  padding: 16px;
+  padding: 16px 0px;
   padding-top: 5px;
-  height: 60vh;
+  height: auto;
   margin-bottom: 12px;
 `;
-const Box = styled.div`
-  cursor: pointer;
-  transition-property: background-color, box-shadow;
-  pointer-events: auto;
-  padding: 12px;
-  padding-left: 16px;
-  padding-right: 16px;
-  /* display: flex;
-width: 12.5vw;
-padding: 16px;
-padding-top :12px;
-padding-bottom: 12px;
-border:2px solid gray;
-border-radius: 0.5rem;
-background-color: #dee2e6; */
-`;
+
 const SearchWrap = styled.div`
   display: flex;
   background-color: rgb(247, 249, 249);
@@ -441,18 +341,3 @@ const Search = styled.input`
   border-color: transparent;
   font-size: 15px;
 `;
-const PostedBox = styled.div`
-  /* display: flex;
-  justify-content: space-between;
-  border: 1px solid white;
-  width: 50%;
-  min-width: 360px;
-  max-height: 55px;
-  margin: auto;
-  background-color: white;
-  margin-top: 10px;
-  border-radius: 5px;
-  padding: 8px;
-  overflow: hidden; */
-`;
-//왼쪽아래에 프로필표시 피드작성왼쪽 프로필표시는 재활용가능한 component//

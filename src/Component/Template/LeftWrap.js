@@ -1,26 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HomeLeft from "../../UI/Organisems/homeLeft";
 import MyProfileBox from "../../UI/Organisems/MyProfileBox";
 import { removeCookie, getCookie } from "../../Api/cookie";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-const LeftWrap = ({ data }) => {
+import axios from "axios";
 
-  const navigate = useNavigate();
+const LeftWrap = () => {
+  const [feeds, setFeeds] = useState({});
 
-    //로그아웃 테스트용
-    const onLogout = () => {
-      removeCookie("is_login");
-      navigate("/")
-    }
-    
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: `https://www.myspaceti.me/api/posts`,
+      headers: {
+        Authorization: `Bearer ${getCookie("is_login")}`,
+      },
+    }).then((e) => {
+      console.log("e", e);
+      setFeeds(e);
+    });
+  }, []);
+
+  console.log("feeds22", feeds);
+
   return (
     <div style={leftStyle}>
       <HomeLeft />
-      <LogoutButton onClick={onLogout}>
-      로그아웃
-      </LogoutButton>
-      <MyProfileBox username={data.display_name} profileImg={data.image} />
+      <MyProfileBox
+        username={feeds.data?.display_name}
+        profileImg={feeds.data?.image}
+      />
     </div>
   );
 };
@@ -50,3 +59,4 @@ padding: 12px;
 font-size: 19px;
 justify-content: center;
 `;
+

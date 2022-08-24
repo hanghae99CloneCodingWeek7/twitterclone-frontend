@@ -5,14 +5,16 @@ import { openFollowModal } from "Redux/Modules/modalSlice";
 import { useDispatch } from "react-redux";
 
 const WhoToFollow = ({ element }) => {
+
   const [isHover, setIsHover] = useState(false);
 
   const dispatch = useDispatch();
 
 //봐야함
-  const followBtnClick = (event,_id) => {
+  const followBtnClick = (event,element._id) => {
    event.stopPropagation()
-    alert("follow " + _id);
+    alert("follow " + element._id);
+
   };
 
   const goModal = (event) => {
@@ -41,7 +43,7 @@ const WhoToFollow = ({ element }) => {
 
   return (
     <div style={style} className="grayHover" onClick={goModal}>
-      <ProfileImg IMG={element.PROFILE_PIC} />
+      <ProfileImg IMG={element.PROFILE_PIC} size={30} />
       <div>
         <span className="profileId">{element.DISPLAY_NAME} </span>
         <svg
@@ -72,7 +74,6 @@ const FollowButton = styled.button`
   display: flex;
   height: 2rem;
   background-color: black;
-  color: white;
   border-radius: 1rem;
   align-items: center;
   cursor: pointer;
