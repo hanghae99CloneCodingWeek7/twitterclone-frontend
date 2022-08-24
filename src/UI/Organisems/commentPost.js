@@ -7,7 +7,6 @@ import { deleteCommentList } from "../../Redux/Modules/commentSlice";
 import { updateCommentList } from "../../Redux/Modules/commentSlice";
 import CommentList from "./commentList";
 import InputComment from "../Atoms/inputComment";
-import "./modal.css";
 
 const CommentPost = (props) => {
   const { open, close, header } = props;
@@ -36,7 +35,9 @@ const CommentPost = (props) => {
 
   //////////////////////////////
   return (
-    <div className={open ? "openModal" : "modal"}>
+    <div className={open ? "openModal modal" : "modal"}>
+      {" "}
+      //!확인할것
       {open ? (
         <section>
           <header>
@@ -45,7 +46,7 @@ const CommentPost = (props) => {
               &times;
             </button>
           </header>
-          <main></main>
+          <main>{props.children}</main>
           <footer>
             <button className="close" onClick={close}>
               close

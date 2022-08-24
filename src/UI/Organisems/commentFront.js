@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import CommentPost from "./commentPost";
 
-import "./modal.css";
-
 function CommentFront() {
   //modal
   const [modalOpen, setModalOpen] = useState(false);
@@ -21,7 +19,7 @@ function CommentFront() {
       <CommentPost
         open={modalOpen}
         close={closeModal}
-        header="Modal heading"
+        // header="Modal heading"
       ></CommentPost>
 
       {/* // Modal.js <main> {props.children} </main>에 내용이 입력된다. 리액트
