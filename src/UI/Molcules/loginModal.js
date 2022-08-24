@@ -6,10 +6,11 @@ import styled from "styled-components";
 import Input from "../Atoms/input";
 import { FaTwitter } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginDb } from "../../Redux/Modules/loginSlice";
 
 const LoginModal = (props) => {
+
   //모달창을 위한 props 전달받은 변수
   const { loginOpen, loginClose } = props;
 
@@ -17,7 +18,9 @@ const LoginModal = (props) => {
 
   //이메일 저장을 위한 state
   const [EMAIL, setEmail] = useState("");
+
   console.log(EMAIL);
+
   // 비밀번호를 저장을 위한 state
   const [PASSWORD, setPassword] = useState("");
 
@@ -30,10 +33,9 @@ const LoginModal = (props) => {
       alert("이메일과 비밀번호를 모두 입력해주세요");
       return;
     } else {
-      const login = { EMAIL, PASSWORD };
-      dispatch(loginDb({ navigate, login }));
-    }
-    //  navigate("/home")
+      const login =  { EMAIL, PASSWORD};
+      dispatch(loginDb({navigate,login}));
+       }
   };
 
   return (
@@ -49,7 +51,6 @@ const LoginModal = (props) => {
             </HeadIcon>
           </header>
           <main>{props.children}</main>
-
           <Btn>
             <Button
               width={"274px"}

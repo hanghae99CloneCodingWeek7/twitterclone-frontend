@@ -103,7 +103,7 @@ const onClick = ()=>{
               <AlertBox>{alertBox}</AlertBox>
              
             </header>
-            <main>{props.children}</main>
+            {/* <main>{props.children}</main> */}
            <EmailInput>
               <Input 
               autoFocus

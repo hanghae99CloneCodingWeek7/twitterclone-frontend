@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
@@ -11,7 +11,7 @@ const initialState = {
 // post 회원정보 전송
 export const addJoin = createAsyncThunk(
     "join",
-    async ({joinData,joinClose}) => {
+    async ({ joinData, joinClose }) => {
         console.log(joinData);
         try {
             const response = await axios.post(
@@ -54,6 +54,6 @@ const joinSlice = createSlice({
     }
 });
 
-export {joinSlice};
+export { joinSlice };
 
 export const joinReducer = joinSlice.reducer;
