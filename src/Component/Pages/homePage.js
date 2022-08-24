@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Cookies, useCookies, withCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux/";
 import LeftWrap from "../Template/LeftWrap";
@@ -14,6 +13,7 @@ import comment4 from "./comment4.png";
 // import ProfileImg from "UI/Organisems/myProfileBox/ProfileImg";
 import { postFeedThunk } from "../../Redux/Modules/homePageSlice";
 import { GetFeedThunk } from "../../Redux/Modules/gethomePageSlice";
+<<<<<<< HEAD
 
 const Home = () => {
   //비동기 처리이니까 로딩
@@ -28,6 +28,32 @@ const Home = () => {
   // const state = useSelector((state) => state.Post.data.posts);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+=======
+// import ProfileImg from "../../UI/Organisems/myProfileBox/ProfileImg";
+
+//로그인한 유저정보를 가져오기위한 import
+import {getToken} from "../../Redux/Modules/loginSlice"
+import {removeCookie, getCookie} from "../../Api/cookie";
+
+
+const Home = () => {
+  const state = useSelector((store) => store.GetFeed);
+  const userEmail = useSelector((state) => state.loginSlice.token);
+  console.log(userEmail.email);
+  const dispatch = useDispatch();
+  // 유저정보를 저장하기위함
+  //  const [islogin, setIsLogin] = useState(userEmail);
+  
+
+   useEffect(() => {
+    if(getCookie("is_login")){
+      dispatch(getToken());
+    }
+},[]);
+
+  const navigate = useNavigate();
+
+>>>>>>> logintest
   const [feed, setFeed] = useState({
     CONTENT: "",
     POST_PHOTO_URL: "",
@@ -65,8 +91,26 @@ const Home = () => {
     navigate("/profile");
   };
 
+<<<<<<< HEAD
+=======
+  useEffect(() => {
+    dispatch(GetFeedThunk());
+  }, []);
+
+
+
+
+  //로그아웃 테스트용
+    const onLogout = () =>{
+      removeCookie("is_login");
+      navigate("/")
+    }
+
+>>>>>>> logintest
   return (
     <Total>
+      {userEmail.email}
+      <button onClick={onLogout}>로그아웃버튼</button>
       <LeftWrap />
       <CenterWrap>
         <CenterHome>Home</CenterHome>
@@ -192,7 +236,7 @@ const Home = () => {
   );
 };
 
-export default withCookies(Home);
+export default Home;
 const Total = styled.div`
   display: flex;
   justify-content: center;

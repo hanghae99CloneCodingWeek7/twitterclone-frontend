@@ -14,7 +14,7 @@ export const GetFeedThunk = createAsyncThunk(
   "hompage->tweet->homepage",
   async (value,thunkAPI) => {
     try {
-      const result = await axios.get(server_url + `/api/posts`);
+      const result = await axios.get( `https://www.myspaceti.me/api/posts`,);
       console.log(result);
       console.log(result.data);
       return thunkAPI.fulfillWithValue(result.data);

@@ -19,7 +19,7 @@ export const postFeedThunk = createAsyncThunk(
     console.log(data1);
     console.log(data1[0]);
     try {
-        const response = await axios.post( server_url + `/api/posts/create`, data1[0],
+        const response = await axios.post( `https://www.myspaceti.me/api/posts/create`, data1[0],
         // ,
       //   {
       //   headers: {

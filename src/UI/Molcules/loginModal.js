@@ -15,12 +15,15 @@ import {loginDB} from "../../Redux/Modules/loginSlice";
 const LoginModal = (props) => {
   const google = useSelector((state)=>state.loginSlice);
   console.log(google)
+
   //모달창을 위한 props 전달받은 변수
   const { loginOpen, loginClose } = props;
 
   //이메일 저장을 위한 state
   const [EMAIL, setEmail] = useState("");
+
   console.log(EMAIL);
+
   // 비밀번호를 저장을 위한 state
   const [PASSWORD, setPassword] = useState("");
 
@@ -34,11 +37,19 @@ const LoginModal = (props) => {
       alert("이메일과 비밀번호를 모두 입력해주세요");
       return;
     } else {
-      const login = { EMAIL, PASSWORD };
-      dispatch(loginDb({ navigate, login }));
-    }
-    //  navigate("/home")
+      const login =  { EMAIL, PASSWORD};
+      dispatch(loginDb({navigate,login}));
+       }
   };
+
+
+  const googleClick = () =>{
+    fetch('https://www.myspaceti.me/api/google').then(
+
+    )
+    navigate('/home')
+    //
+  }
 
 
 
@@ -64,7 +75,7 @@ const LoginModal = (props) => {
             height={'30px'}
             margin = {'0px '}
             text= {`Google 계정으로 계속하기`}
-            _onClick={()=>window.open('https://www.myspaceti.me/api/google')}
+            _onClick={googleClick}
             backgroundColor = {'#fff'}
             fontColor ={'black'}
             borderColor={'#eee'}
