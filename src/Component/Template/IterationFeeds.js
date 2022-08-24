@@ -15,7 +15,10 @@ import { useNavigate } from "react-router-dom";
 
 const IterationFeeds = ({ data }) => {
 
+
   const navigate = useNavigate(); //댓글페이지이동
+
+
   const [feeds, setFeeds] = useState({});
 
   useEffect(() => {
@@ -75,7 +78,10 @@ const IterationFeeds = ({ data }) => {
                       style={commentIconStyle}
                       src={comment}
                       onClick={() =>
+
                         navigate("/comment")+   //댓글화면이동
+
+
                         alert(
                           "포스트 ID" +
                             data.postInfo._id +
