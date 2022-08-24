@@ -3,12 +3,12 @@ import styled from "styled-components";
 import Grid from "../../Atoms/Grid";
 import Button from "../../Atoms/Button";
 
-const ProfileShort = () => {
+const ProfileShort = ({ username }) => {
   return (
     <div style={style}>
       <div>
-        <p className="profileName">Bohyeon Kim</p>
-        <p className="profileId">@Bohyeon_kim</p>
+        <p className="profileName">{username}</p>
+        <p className="profileId">@{username}</p>
       </div>
     </div>
   );

@@ -29,7 +29,6 @@ h2 {
 .profileId {
   font-size: 13px;
   color: #888;
-  margin-left: 20px;
 }
 
 .grayHover {
@@ -37,4 +36,13 @@ h2 {
 }
 .grayHover:hover {
   background-color: #eee;
+}
+
+.navMenu {
+  margin: 10px;
+}
+
+.navMenu.active {
+  margin: 10px;
+  font-weight: bold;
 }

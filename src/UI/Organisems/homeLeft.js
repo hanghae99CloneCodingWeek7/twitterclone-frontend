@@ -21,42 +21,44 @@ const HomeLeft = () => {
   return (
     <StOutline>
       <StNav>
-        <FaTwitter color="#0095ED" size="40" />
+        <StDiv>
+          <FaTwitter color="#0095ED" size="40" />
+        </StDiv>
       </StNav>
 
       <StNav>
         <StDiv>
-          <RiHome7Fill color="black" size="30" margin="0 10px 0" />
-          Home
+          <RiHome7Fill color="black" size="30" margin="15px" />
+          <span className="navMenu active">Home</span>
         </StDiv>
 
         <StDiv>
           <SiSharp color="black" size="30" />
-          Explore
+          <span className="navMenu">Explore</span>
         </StDiv>
         <StDiv>
           <GrNotification color="black" size="30" />
-          Notifications
+          <span className="navMenu">Notifications</span>
         </StDiv>
         <StDiv>
           <BiEnvelope color="black" size="30" />
-          Messages
+          <span className="navMenu">Messages</span>
         </StDiv>
         <StDiv>
           <FiBookmark color="black" size="30" />
-          Bookmarks
+          <span className="navMenu">Bookmarks</span>
         </StDiv>
         <StDiv>
           <RiFileList2Line color="black" size="30" />
-          Lists
+          <span className="navMenu">Lists</span>
         </StDiv>
         <StDiv>
           <CgProfile color="black" size="30" />
-          Profile
+          <span className="navMenu">Profile</span>
         </StDiv>
         <StDiv>
           <CgMoreO color="black" size="30" />
-          More
+          <span className="navMenu">More</span>
         </StDiv>
         <ButtonHeaders
           is_tweeterHover
@@ -64,6 +66,7 @@ const HomeLeft = () => {
           height="52px"
           font_color="#fff"
           bold="900"
+          margin="10px auto"
         >
           Tweet
         </ButtonHeaders>
@@ -85,37 +88,31 @@ const StA = styled.a`
 `;
 
 const StNav = styled.nav`
-  /* background-color: yellow; */
   width: 100%;
-  /* -webkit-box-direction: normal;
-  -webkit-box-orient: vertical;
-  flex-direction: column;
-  outline-style: none; */
   cursor: pointer;
-  /* border: 1px solid black; */
-  border-radius: 20px;
-  /* transition-property: background-color, box-shadow;
-  transition-duration: 2s; */
   -webkit-box-direction: normal;
   -webkit-box-orient: vertical;
-  flex-direction: column;
+  flex-flow: column nowrap;
+  justify-content: center;
 `;
 
 const StDiv = styled.div`
   /* border: 1px solid black; */
-  border-radius: 20px;
   -webkit-box-align: center;
+  border-radius: 30px;
   align-items: center;
   /* text-align: center; */
-  justify-content: space-between;
-  font-size: 25px;
-  margin: 20px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: left;
+  font-size: 20px;
+  margin: 20px auto;
+  padding: 15px;
   width: 200px;
   height: 40px;
-  /* letter-spacing: 0.006em; //자간 */
   word-spacing: -5px;
   &:hover {
-    background-color: #e4f2fb;
+    background-color: #eee;
     transition: 0.2s;
   }
   &:not(:hover) {

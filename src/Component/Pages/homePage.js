@@ -29,7 +29,7 @@ const Home = () => {
   const token = useSelector((state) => state.loginSlice);
   console.log(token);
   const { data } = useSelector((store) => store.GetFeed);
-  console.log(data);
+  console.log(data.image);
   // const state = useSelector((state) => state.Post.data.posts);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -72,7 +72,7 @@ const Home = () => {
 
   return (
     <Total>
-      <LeftWrap />
+      <LeftWrap data={data} />
       <CenterWrap>
         <CenterHome>Home</CenterHome>
         <TotalFeed>
@@ -127,7 +127,12 @@ const Home = () => {
               <MapFeedWrap key={value.postInfo._id}>
                 <>
                   <ImgContentWrap>
-                    <TweetProfileImg src="https://lh3.googleusercontent.com/a/AItbvmkSJ_xTohZASxEYTNzTumaAkOEK36BQqs38Q60V=s96-c" />
+                    <TweetProfileImg
+                      src={
+                        value.writerInfo.PROFILE_PIC ||
+                        "https://lh3.googleusercontent.com/a/AItbvmkSJ_xTohZASxEYTNzTumaAkOEK36BQqs38Q60V=s96-c"
+                      }
+                    />
 
                     <InnerImgContentWrap>
                       <Contentbox>
@@ -207,6 +212,8 @@ const RightWrap = styled.div`
   border-left: 2px solid gray;
   padding: 16px;
   flex-basis: 18%;
+  top: 0px;
+  position: sticky;
 `;
 
 const CenterWrap = styled.div`
@@ -278,10 +285,6 @@ const Btn = styled.button`
 const AllFeed = styled.div`
   display: flex;
   flex-direction: column;
-  /* background-color: black; */
-  /* padding: 30px; */
-  /* padding-left: 16px;
-  padding-right: 16px; */
 `;
 
 const CommentBtnWrap = styled.div`

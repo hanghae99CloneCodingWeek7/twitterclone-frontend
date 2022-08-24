@@ -16,7 +16,7 @@ const WhoToFollow = ({ element }) => {
     display: "flex",
     flexFlow: "row nowrap",
     justifyContent: "space-between",
-    // backgroundColor: isHover ? "#eee" : "transparent",
+    padding: "10px 20px",
     alignItems: "center",
     alignContent: "center",
     pointerEvents: "auto",
@@ -30,13 +30,7 @@ const WhoToFollow = ({ element }) => {
   };
 
   return (
-    <div
-      style={style}
-      className="grayHover"
-      // onMouseEnter={handleMouseEnter}
-      // onMouseLeave={handleMouseLeave}
-      onClick={goModal}
-    >
+    <div style={style} className="grayHover" onClick={goModal}>
       <ProfileImg IMG={element.PROFILE_PIC} />
       <div>
         <span className="profileId">{element.DISPLAY_NAME} </span>
@@ -65,7 +59,7 @@ export default WhoToFollow;
 
 const FollowButton = styled.button`
   display: flex;
-  height: 3vh;
+  height: 2rem;
   background-color: black;
   color: white;
   border-radius: 1rem;
