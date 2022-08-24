@@ -11,21 +11,26 @@ import comment1 from "./comment1.png";
 import comment2 from "./comment2.png";
 import comment3 from "./comment3.png";
 import comment4 from "./comment4.png";
-import { postFeedThunk } from "../../Redux/Modules/homePageSlice";
-// import { GetFeedThunk } from "../../Redux/Modules/gethomePageSlice";
-// import ProfileImg from "../../UI/Organisems/myProfileBox/ProfileImg";
 import gif from "./gif.png";
 import smile from "./smile.png";
 import upload from "./upload.png";
 import new1 from "./new1.png";
+import { postFeedThunk } from "../../Redux/Modules/homePageSlice";
+// import { GetFeedThunk } from "../../Redux/Modules/gethomePageSlice";
+// import ProfileImg from "../../UI/Organisems/myProfileBox/ProfileImg";
+
 //로그인한 유저정보를 가져오기위한 import
 import { getToken } from "../../Redux/Modules/loginSlice"
 import { removeCookie, getCookie } from "../../Api/cookie";
 import ProfileImg from "../../UI/Organisems/myProfileBox/ProfileImg";
+
 import ProfileModal from "../Modals/ProfileModal";
-import WhoToFollow from "../../UI/Organisems/followBox/WhoToFollow";
 import WhoToFollowModal from "../Modals/WhoToFollowModal";
+import Hashtags from "../Template/Hashtags";
+
+// 목업 데이터
 import sampleToFollow from "../../mockData/sampleToFollow.json";
+import hashtags from "../../mockData/hashtags.json";
 
 const Home = () => {
   const userstate = useSelector((state) => state.loginSlice);
@@ -187,12 +192,10 @@ const Home = () => {
           </SearchWrap>
           <BoxWrap>
             <h2>Trends for you</h2>
-            <Box className="grayHover">예시1</Box>
-            <Box className="grayHover">예시1</Box>
-            <Box className="grayHover">예시1</Box>
-            <Box className="grayHover">예시1</Box>
-            <Box className="grayHover">예시1</Box>
-            <Box className="grayHover">예시1</Box>
+            {hashtags.slice(0, 10).map((e) => {
+              return <Hashtags className="grayHover" data={e} />;
+            })}
+            <h2>show more</h2>
           </BoxWrap>
           <FollowBox count={4} data={sampleToFollow} />
         </div>
@@ -391,22 +394,7 @@ const BoxWrap = styled.div`
   height: 60vh;
   margin-bottom: 12px;
 `;
-const Box = styled.div`
-  cursor: pointer;
-  transition-property: background-color, box-shadow;
-  pointer-events: auto;
-  padding: 12px;
-  padding-left: 16px;
-  padding-right: 16px;
-  /* display: flex;
-width: 12.5vw;
-padding: 16px;
-padding-top :12px;
-padding-bottom: 12px;
-border:2px solid gray;
-border-radius: 0.5rem;
-background-color: #dee2e6; */
-`;
+
 const SearchWrap = styled.div`
   display: flex;
   background-color: rgb(247, 249, 249);
