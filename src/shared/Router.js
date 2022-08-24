@@ -4,6 +4,7 @@ import Main from "../Component/Pages/mainPage";
 import React from "react";
 import GlobalStyles from "./GlobalStyles";
 import Comment from "../Component/Pages/commentPage";
+import TestPage from "../Component/Pages/testPage";
 
 function Router() {
   return (
@@ -13,6 +14,7 @@ function Router() {
         <Route path="/" element={<Main></Main>}></Route>
         <Route path="/home" element={<Home></Home>}></Route>
         <Route path="/comment" element={<Comment></Comment>}></Route>
+        <Route path="/test" element={<TestPage></TestPage>}></Route>
       </Routes>
     </BrowserRouter>
   );
