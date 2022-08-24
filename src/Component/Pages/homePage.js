@@ -11,7 +11,7 @@ import comment1 from "./comment1.png";
 import comment2 from "./comment2.png";
 import comment3 from "./comment3.png";
 import comment4 from "./comment4.png";
-import { postFeedThunk } from "../../Redux/Modules/homePageSlice";
+import { deletePost, postFeedThunk } from "../../Redux/Modules/homePageSlice";
 // import { GetFeedThunk } from "../../Redux/Modules/gethomePageSlice";
 // import ProfileImg from "../../UI/Organisems/myProfileBox/ProfileImg";
 import gif from "./gif.png";
@@ -40,7 +40,7 @@ const Home = () => {
     if (getCookie("is_login")) {
       dispatch(getToken());
     }
-  }, []);
+  }, [deletePost]);
 
   const navigate = useNavigate();
 
@@ -57,8 +57,6 @@ const Home = () => {
     });
   };
 
-
-  
   const onSubmit = (event) => {
     event.preventDefault();
     if (feed.CONTENT.trim().length === 0) {
@@ -78,6 +76,11 @@ const Home = () => {
       // navigate("/");
     }
   };
+
+const Ondelete = () => {
+  dispatch(deletePost({}))
+  alert("삭제")
+};
 
   const onProfile = () => {
     navigate("/profile");
@@ -145,7 +148,7 @@ const Home = () => {
                       <Contentbox>
                         <EditDeleteWrap>
                           <button>수정</button>
-                          <button>삭제</button>
+                          <button onClick={Ondelete}>삭제</button>
                         </EditDeleteWrap>
 
                         <div>{value?.postInfo.CONTENT}</div>
