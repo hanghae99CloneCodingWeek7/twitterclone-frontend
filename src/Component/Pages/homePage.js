@@ -14,6 +14,11 @@ import comment4 from "./comment4.png";
 // import ProfileImg from "UI/Organisems/myProfileBox/ProfileImg";
 import { postFeedThunk } from "../../Redux/Modules/homePageSlice";
 import { GetFeedThunk } from "../../Redux/Modules/gethomePageSlice";
+import ProfileImg from "../../UI/Organisems/myProfileBox/ProfileImg";
+import ProfileModal from "../Modals/ProfileModal";
+import WhoToFollow from "../../UI/Organisems/followBox/WhoToFollow";
+import WhoToFollowModal from "../Modals/WhoToFollowModal";
+import sampleToFollow from "../../mockData/sampleToFollow.json";
 
 const Home = () => {
   //비동기 처리이니까 로딩
@@ -24,7 +29,7 @@ const Home = () => {
   const token = useSelector((state) => state.loginSlice);
   console.log(token);
   const { data } = useSelector((store) => store.GetFeed);
-  console.log(data);
+  console.log(data.image);
   // const state = useSelector((state) => state.Post.data.posts);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -67,7 +72,7 @@ const Home = () => {
 
   return (
     <Total>
-      <LeftWrap />
+      <LeftWrap data={data} />
       <CenterWrap>
         <CenterHome>Home</CenterHome>
         <TotalFeed>
@@ -108,98 +113,95 @@ const Home = () => {
               />
             </svg>
           </UploadImg>
-
           <form onSubmit={onSubmit}>
             <Btn type="submit" onSubmit={onSubmit}>
               Tweet
             </Btn>
           </form>
+        </TotalFeed>
+        <AllFeed>
+          <CommentFeed>{feed.CONTENT}</CommentFeed>
 
-          {/* <Btn form onSubmit={onSubmit}> 
-                       Tweet
-                    </Btn> */}
+          <TotalFeed>
+            {data.postDetail?.map((value) => (
+              <MapFeedWrap key={value.postInfo._id}>
+                <>
+                  <ImgContentWrap>
+                    <TweetProfileImg
+                      src={
+                        value.writerInfo.PROFILE_PIC ||
+                        "https://lh3.googleusercontent.com/a/AItbvmkSJ_xTohZASxEYTNzTumaAkOEK36BQqs38Q60V=s96-c"
+                      }
+                    />
 
-                </TotalFeed>
-                <AllFeed>
-                    <CommentFeed>{feed.CONTENT}</CommentFeed>
+                    <InnerImgContentWrap>
+                      <Contentbox>
+                        <EditDeleteWrap>
+                          <button>수정</button>
+                          <button>삭제</button>
+                        </EditDeleteWrap>
 
-                    <TotalFeed>
-                        {data.postDetail?.map(value =>
-                            <MapFeedWrap key={value.postInfo._id}>
-                                <>
-                                <ImgContentWrap>
-                                <TweetProfileImg src="https://lh3.googleusercontent.com/a/AItbvmkSJ_xTohZASxEYTNzTumaAkOEK36BQqs38Q60V=s96-c" />
+                        <div>{value.postInfo.CONTENT}</div>
+                        <div>{value.postInfo.TIMESTAMPS}</div>
+                        <div>{value.postInfo.POST_PHOTO}</div>
+                      </Contentbox>
 
-                                    <InnerImgContentWrap>
-                                    <Contentbox>
-                                        <EditDeleteWrap>
-                                        <button>수정</button>
-                                        <button>삭제</button>
-                                        </EditDeleteWrap>
-
-                                        <div>{value.postInfo.CONTENT}</div>
-                                        <div>{value.postInfo.TIMESTAMPS}</div>
-                                        <div>{value.postInfo.POST_PHOTO}</div>
-                                    </Contentbox>
-                                
-                                    <CommentImg>
-                                        <img src={comment} alt="comment" width="20"></img>
-                                        <img src={comment1} alt="comment" width="20"></img>
-                                        <img src={comment2} alt="comment" width="20"></img>
-                                        <img src={comment3} alt="comment" width="20"></img>
-                                        <img src={comment4} alt="comment" width="20"></img>
-                                    </CommentImg>
-                                    </InnerImgContentWrap>
-
-                                </ImgContentWrap>
-                                </>
-                            </MapFeedWrap>
-                        )
-                           
-                        }
-
-
-                    </TotalFeed>
-                    {/* <div className="bye" backgroundcolor="red">111{state.array}</div> */}
-                </AllFeed>
-            </CenterWrap >
-            <RightWrap>
-                <SearchWrap>
-                    <SearchImg>
-                        <svg
-                            width="16"
-                            height="16"
-                            viewBox="0 0 16 16"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                d="M15.4613 14.6221L12.5638 11.7246C13.6127 10.4817 14.25 8.87775 14.25 7.125C14.25 3.19042 11.0596 0 7.125 0C3.19042 0 0 3.19042 0 7.125C0 11.0596 3.19042 14.25 7.125 14.25C8.87854 14.25 10.4817 13.6135 11.723 12.5638L14.6205 15.4613C14.7369 15.5768 14.8897 15.6354 15.0401 15.6354C15.1905 15.6354 15.3449 15.5776 15.4597 15.4613C15.6932 15.2293 15.6932 14.854 15.4613 14.6221V14.6221ZM1.1875 7.125C1.1875 3.85146 3.85146 1.1875 7.125 1.1875C10.3985 1.1875 13.0625 3.85146 13.0625 7.125C13.0625 10.3985 10.3985 13.0625 7.125 13.0625C3.85146 13.0625 1.1875 10.3985 1.1875 7.125Z"
-                                fill="#5B7083"
-                            />
-                        </svg>
-                    </SearchImg>
-                    <Search
-                        value={feed.CONTENT}
-                        name="SEARCH"
-                        placeholder="Search Twitter"
-                        onChange={onchangeHandler}
-                    ></Search>
-                </SearchWrap>
-                <BoxWrap>
-                    <h2>Trends for you</h2>
-                    <Box className="grayHover">예시1</Box>
-                    <Box className="grayHover">예시1</Box>
-                    <Box className="grayHover">예시1</Box>
-                    <Box className="grayHover">예시1</Box>
-                    <Box className="grayHover">예시1</Box>
-                    <Box className="grayHover">예시1</Box>
-                    <Box className="grayHover">예시1</Box>
-                </BoxWrap>
-                <FollowBox count={2} />
-            </RightWrap>
-        </Total >
-    );
+                      <CommentImg>
+                        <img src={comment} alt="comment" width="20"></img>
+                        <img src={comment1} alt="comment" width="20"></img>
+                        <img src={comment2} alt="comment" width="20"></img>
+                        <img src={comment3} alt="comment" width="20"></img>
+                        <img src={comment4} alt="comment" width="20"></img>
+                      </CommentImg>
+                    </InnerImgContentWrap>
+                  </ImgContentWrap>
+                </>
+              </MapFeedWrap>
+            ))}
+          </TotalFeed>
+          {/* <div className="bye" backgroundcolor="red">111{state.array}</div> */}
+        </AllFeed>
+      </CenterWrap>
+      <RightWrap>
+        <div className="fixed">
+          <SearchWrap>
+            <SearchImg>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M15.4613 14.6221L12.5638 11.7246C13.6127 10.4817 14.25 8.87775 14.25 7.125C14.25 3.19042 11.0596 0 7.125 0C3.19042 0 0 3.19042 0 7.125C0 11.0596 3.19042 14.25 7.125 14.25C8.87854 14.25 10.4817 13.6135 11.723 12.5638L14.6205 15.4613C14.7369 15.5768 14.8897 15.6354 15.0401 15.6354C15.1905 15.6354 15.3449 15.5776 15.4597 15.4613C15.6932 15.2293 15.6932 14.854 15.4613 14.6221V14.6221ZM1.1875 7.125C1.1875 3.85146 3.85146 1.1875 7.125 1.1875C10.3985 1.1875 13.0625 3.85146 13.0625 7.125C13.0625 10.3985 10.3985 13.0625 7.125 13.0625C3.85146 13.0625 1.1875 10.3985 1.1875 7.125Z"
+                  fill="#5B7083"
+                />
+              </svg>
+            </SearchImg>
+            <Search
+              value={feed.CONTENT}
+              name="SEARCH"
+              placeholder="Search Twitter"
+              onChange={onchangeHandler}
+            ></Search>
+          </SearchWrap>
+          <BoxWrap>
+            <h2>Trends for you</h2>
+            <Box className="grayHover">예시1</Box>
+            <Box className="grayHover">예시1</Box>
+            <Box className="grayHover">예시1</Box>
+            <Box className="grayHover">예시1</Box>
+            <Box className="grayHover">예시1</Box>
+            <Box className="grayHover">예시1</Box>
+          </BoxWrap>
+          <FollowBox count={4} data={sampleToFollow} />
+        </div>
+      </RightWrap>
+      <ProfileModal willOpen={false} />
+      <WhoToFollowModal willOpen={true} />
+    </Total>
+  );
 };
 
 export default withCookies(Home);
@@ -207,16 +209,12 @@ const Total = styled.div`
   display: flex;
   justify-content: center;
 `;
-// const Black = styled.div`
-// width: 12.5vw;
-// `;
-
 const RightWrap = styled.div`
-  flex-direction: column;
-  /* border-left: 2px solid gray; */
-  padding: 12px;
-  padding-left: 35px;
-  padding-bottom: 64px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  padding: 16px 20px;
+  flex-basis: 18%;
 `;
 
 const CenterWrap = styled.div`
@@ -224,6 +222,7 @@ const CenterWrap = styled.div`
   display: flex;
   flex-direction: column;
   background-color: rgb(239, 243, 244);
+  flex-basis: 40%;
 `;
 
 const CenterHome = styled.div`
@@ -287,10 +286,6 @@ const Btn = styled.button`
 const AllFeed = styled.div`
   display: flex;
   flex-direction: column;
-  /* background-color: black; */
-  /* padding: 30px; */
-  /* padding-left: 16px;
-  padding-right: 16px; */
 `;
 
 const CommentBtnWrap = styled.div`
@@ -328,18 +323,17 @@ const InnerImgContentWrap = styled.div`
   flex-direction: column;
 `;
 const Contentbox = styled.div`
-
-flex-shrink: 1;
-display: flex;
-width: 40vw;
+  flex-shrink: 1;
+  display: flex;
+  width: 40vw;
   flex-direction: column;
   background-color: white;
-  border:1px solid gray;
+  border: 1px solid gray;
 `;
 
 const EditDeleteWrap = styled.div`
-display: flex;
-flex-direction: row-reverse;
+  display: flex;
+  flex-direction: row-reverse;
 `;
 const CommentImg = styled.button`
   display: flex;
@@ -363,9 +357,8 @@ const BoxWrap = styled.div`
   font-size: 20px;
   background-color: rgb(247, 249, 249);
   border-radius: 1rem;
-  padding: 16px;
-  padding-top: 5px;
-  height: 60vh;
+  padding: 20px 0px;
+  padding-top: 20px;
   margin-bottom: 12px;
 `;
 
@@ -373,17 +366,8 @@ const Box = styled.div`
   cursor: pointer;
   transition-property: background-color, box-shadow;
   pointer-events: auto;
-  padding: 12px;
-  padding-left: 16px;
-  padding-right: 16px;
-  /* display: flex;
-width: 12.5vw;
-padding: 16px;
-padding-top :12px;
-padding-bottom: 12px;
-border:2px solid gray;
-border-radius: 0.5rem;
-background-color: #dee2e6; */
+  padding: 12px 20px;
+  margin: 0px;
 `;
 
 const SearchWrap = styled.div`
