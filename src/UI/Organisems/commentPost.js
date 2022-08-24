@@ -9,12 +9,13 @@ import CommentList from "./commentList";
 import InputComment from "../Atoms/inputComment";
 
 const CommentPost = (props) => {
+  //모달창 pros 상위 컴포넌트에서 보내준것들...
   const { open, close, header } = props;
 
   //
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
-  const cList = useSelector((state) => state);
+  const cList = useSelector((state) => state.commentSlice);
   console.log(cList);
 
   const onCreate = (e) => {
@@ -35,25 +36,26 @@ const CommentPost = (props) => {
 
   //////////////////////////////
   return (
-    <div className={open ? "openModal modal" : "modal"}>
-      {" "}
-      //!확인할것
-      {open ? (
-        <section>
-          <header>
-            {header}
-            <button className="close" onClick={close}>
-              &times;
-            </button>
-          </header>
-          <main>{props.children}</main>
-          <footer>
-            <button className="close" onClick={close}>
-              close
-            </button>
-          </footer>
-        </section>
-      ) : null}
+    <div>
+      <form onSubmit={onCreate}>
+        <input
+          type="text"
+          onChange={(e) => setInputValue(e.target.value)}
+          value={inputValue}
+        />
+        <button type="submit">추가</button>
+        <div>
+          {/* //!map 오류시 && 추가할것. */}
+          {cList &&
+            cList.map((x) => (
+              <CommentList
+                key={x.id}
+                xId={x.id}
+                content={x.content}
+              ></CommentList>
+            ))}
+        </div>
+      </form>
     </div>
   );
 };
@@ -77,3 +79,25 @@ const StSection = styled.section`
 `;
 
 //백업
+{
+  /* <div className={open ? "openModal modal" : "modal"}>
+      {" "}
+      //!확인할것
+      {open ? (
+        <section>
+          <header>
+            {header}
+            <button className="close" onClick={close}>
+              &times;
+            </button>
+          </header>
+          <main>{props.children}</main>
+          <footer>
+            <button className="close" onClick={close}>
+              close
+            </button>
+          </footer>
+        </section>
+      ) : null}
+    </div> */
+}

@@ -11,8 +11,8 @@ import { server_url } from "../index";
 // https://www.myspaceti.me/api/posts
 
 //!코멘트 get
-export const getCommentList = createAsyncThunk("GET_COMMENT", async () => {
-  const response = await axios.get("http://localhost:8000/list");
+export const gettestList = createAsyncThunk("GET_COMMENT", async () => {
+  const response = await axios.get("https://myspaceti.me/api/submitTest");
   console.log(response);
   return response.data;
 });
@@ -31,15 +31,16 @@ export const getCommentList = createAsyncThunk("GET_COMMENT", async () => {
 // );
 
 //!코멘트 post
-export const addCommentList = createAsyncThunk(
-  "ADD_COMMENT",
-  async (newComment) => {
-    const response = await axios.post("http://localhost:8000/list", newComment);
-    return response.data;
-  }
-);
+export const addtestList = createAsyncThunk("ADD_COMMENT", async (newTest) => {
+  const response = await axios.post(
+    "https://www.myspaceti.me/api/submitTest",
+    newTest
+  );
+  return response.data;
+});
+
 //!코멘트 delete
-export const deleteCommentList = createAsyncThunk(
+export const deletetestList = createAsyncThunk(
   "DELETE_COMMENT",
   async (xId) => {
     const response = await axios.delete(`http://localhost:8000/list/${xId}`);
@@ -47,7 +48,7 @@ export const deleteCommentList = createAsyncThunk(
   }
 );
 //!코멘트 update
-export const updateCommentList = createAsyncThunk(
+export const updatetestList = createAsyncThunk(
   "UPDATE_LIST",
   async ({ xId, content }) => {
     const response = await axios.put(`http://localhost:8000/list/${xId}`, {
@@ -132,16 +133,16 @@ export const updateCommentList = createAsyncThunk(
 // export default CommentSlice.reducer;
 
 //백업 23일 18시
-const commentSlice = createSlice({
-  name: "commentList",
+const testSlice = createSlice({
+  name: "testList",
   initialState: [],
   reducers: {},
   extraReducers: {
-    [getCommentList.fulfilled]: (state, { payload }) => [...payload],
-    [addCommentList.fulfilled]: (state, { payload }) => [...state, payload],
-    [deleteCommentList.fulfilled]: (state, { payload }) =>
+    [gettestList.fulfilled]: (state, { payload }) => [...payload],
+    [addtestList.fulfilled]: (state, { payload }) => [...state, payload],
+    [deletetestList.fulfilled]: (state, { payload }) =>
       state.filter((x) => x.id !== payload),
-    [updateCommentList.fulfilled]: (state, { payload }) => {
+    [updatetestList.fulfilled]: (state, { payload }) => {
       return state.map((x) => {
         if (x.id === payload.listId) {
           return { ...x, content: payload.content };
@@ -152,5 +153,5 @@ const commentSlice = createSlice({
     },
   },
 });
-export { commentSlice };
-export const commentReducer = commentSlice.reducer;
+export { testSlice };
+export const testReducer = testSlice.reducer;
