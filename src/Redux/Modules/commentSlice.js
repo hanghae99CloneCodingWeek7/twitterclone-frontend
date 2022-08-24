@@ -12,7 +12,9 @@ import { server_url } from "../index";
 
 //!코멘트 get
 export const getCommentList = createAsyncThunk("GET_COMMENT", async () => {
-  const response = await axios.get("http://localhost:8000/list");
+  const response = await axios.get(
+    "https://www.myspaceti.me/api/comments/:postId"
+  );
   console.log(response);
   return response.data;
 });
@@ -34,7 +36,12 @@ export const getCommentList = createAsyncThunk("GET_COMMENT", async () => {
 export const addCommentList = createAsyncThunk(
   "ADD_COMMENT",
   async (newComment) => {
-    const response = await axios.post("http://localhost:8000/list", newComment);
+    console.log(newComment);
+    const response = await axios.post(
+      "https://www.myspaceti.me/api/comments/:postId",
+      newComment
+    );
+    console.log(response);
     return response.data;
   }
 );
