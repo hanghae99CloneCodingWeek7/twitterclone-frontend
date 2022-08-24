@@ -5,10 +5,10 @@ import { useDispatch } from "react-redux";
 import WhoToFollow from "../../UI/Organisems/followBox/WhoToFollow";
 import sampleToFollow from "../../mockData/sampleToFollow.json";
 
-const WhoToFollowModal = ({ willOpen }) => {
+const WhoToFollowModal = ({ willOpen, data }) => {
   //모달창을 위한 props 전달받은 변수
   let [isOpened, setIsOpened] = useState(willOpen);
-  const [whomToFollow, setWhomToFollow] = useState(sampleToFollow);
+  const [whomToFollow, setWhomToFollow] = useState(data);
   const [howManyShow, setHowManyShow] = useState(10);
 
   const navigate = useNavigate(); //로그인 성공시 의 다음 경로 를  리다이렉트 하기위해서 사용
@@ -38,13 +38,15 @@ const WhoToFollowModal = ({ willOpen }) => {
         <main>WhoToFollow</main>
         <body>
           <div style={modalBodyStyle}>
-            {whomToFollow.slice(0, howManyShow).map(function (e) {
-              return (
-                <>
-                  <WhoToFollow element={e} />
-                </>
-              );
-            })}
+            {whomToFollow.data.resultData
+              .slice(0, howManyShow)
+              .map(function (e) {
+                return (
+                  <>
+                    <WhoToFollow element={e} />
+                  </>
+                );
+              })}
             <h2>Show more</h2>
           </div>
         </body>

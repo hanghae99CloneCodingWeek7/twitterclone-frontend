@@ -3,9 +3,8 @@ import ProfileImg from "../myProfileBox/ProfileImg";
 import styled from "styled-components";
 
 const WhoToFollow = ({ element }) => {
-  const [isHover, setIsHover] = useState(false);
-  const followBtnClick = (_id) => {
-    alert("follow " + _id);
+  const followBtnClick = () => {
+    alert("follow " + element._id);
   };
 
   const goModal = () => {
@@ -31,7 +30,7 @@ const WhoToFollow = ({ element }) => {
 
   return (
     <div style={style} className="grayHover" onClick={goModal}>
-      <ProfileImg IMG={element.PROFILE_PIC} />
+      <ProfileImg IMG={element.PROFILE_PIC} size={30} />
       <div>
         <span className="profileId">{element.DISPLAY_NAME} </span>
         <svg
@@ -61,7 +60,6 @@ const FollowButton = styled.button`
   display: flex;
   height: 2rem;
   background-color: black;
-  color: white;
   border-radius: 1rem;
   align-items: center;
   cursor: pointer;

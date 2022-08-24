@@ -34,7 +34,7 @@ const MyProfileBox = ({ username, profileImg }) => {
       onMouseLeave={handleMouseLeave}
       onClick={goModal}
     >
-      <ProfileImg IMG={profileImg} />
+      <ProfileImg IMG={profileImg} size={40} />
       <ProfileShort username={username} />
     </div>
   );

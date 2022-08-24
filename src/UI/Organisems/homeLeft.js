@@ -11,12 +11,20 @@ import { FiBookmark } from "react-icons/fi";
 import { RiFileList2Line } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
 import { CgMoreO } from "react-icons/cg";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ButtonHeaders from "../Atoms/ButtonHeaders";
 import Button from "../Atoms/Button";
+import { removeCookie } from "../../Api/cookie";
 
 const HomeLeft = () => {
   const param = useParams();
+  const navigate = useNavigate();
+
+  //로그아웃 테스트용
+  const onLogout = () => {
+    removeCookie("is_login");
+    navigate("/");
+  };
 
   return (
     <StOutline>
@@ -62,7 +70,7 @@ const HomeLeft = () => {
         </StDiv>
         <ButtonHeaders
           is_tweeterHover
-          width="226px"
+          width="85%"
           height="52px"
           font_color="#fff"
           bold="900"
@@ -70,6 +78,9 @@ const HomeLeft = () => {
         >
           Tweet
         </ButtonHeaders>
+        <LogoutButton className="grayHover" onClick={onLogout}>
+          로그아웃
+        </LogoutButton>
       </StNav>
     </StOutline>
   );
@@ -90,8 +101,7 @@ const StA = styled.a`
 const StNav = styled.nav`
   width: 100%;
   cursor: pointer;
-  -webkit-box-direction: normal;
-  -webkit-box-orient: vertical;
+
   flex-flow: column nowrap;
   justify-content: center;
 `;
@@ -127,49 +137,13 @@ const StTweet = styled(StDiv)`
   padding: auto;
 `;
 
-const StText = styled.div``;
-
-{
-  /* <ButtonHeaders >
-          <RiHome7Fill color="black" size="30" margin="0 10px 0 " />
-          Home
-        </ButtonHeaders>
-
-        <ButtonHeaders >
-          <SiSharp color="black" size="30" />
-          Explore
-        </ButtonHeaders>
-        <ButtonHeaders >
-          <GrNotification color="black" size="30" />
-          Notifications
-        </ButtonHeaders>
-        <ButtonHeaders >
-          <BiEnvelope color="black" size="30" />
-          Messages
-        </ButtonHeaders>
-        <ButtonHeaders >
-          <FiBookmark color="black" size="30" />
-          Bookmarks
-        </ButtonHeaders>
-        <ButtonHeaders >
-          <RiFileList2Line color="black" size="30" />
-          Lists
-        </ButtonHeaders>
-        <ButtonHeaders >
-          <CgProfile color="black" size="30" />
-          Profile
-        </ButtonHeaders>
-        <ButtonHeaders >
-          <CgMoreO color="black" size="30" />
-          More
-        </ButtonHeaders>
-        <ButtonHeaders
-          is_tweeterHover
-          width="226px"
-          height="52px"
-          font_color="#fff"
-          bold="900"
-        >
-          Tweet
-        </ButtonHeaders> */
-}
+const LogoutButton = styled.button`
+  border: none;
+  height: 45px;
+  margin: 20px 20px;
+  border-radius: 9999px;
+  width: 40%;
+  font-weight: 400;
+  font-size: 15px;
+  justify-content: center;
+`;

@@ -5,10 +5,11 @@ import WhoToFollow from "../../UI/Organisems/followBox/WhoToFollow";
 const FollowBox = ({ count, data }) => {
   const [whomToFollow, setWhomToFollow] = useState(data);
 
+  console.log("whomToFollow", whomToFollow);
   return (
     <div style={followBoxStyle}>
       <h2> Who to follow </h2>
-      {whomToFollow.slice(0, count).map(function (e) {
+      {whomToFollow.data.resultData.slice(0, count).map(function (e) {
         return (
           <>
             <WhoToFollow element={e} />
