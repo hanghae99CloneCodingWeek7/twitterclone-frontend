@@ -13,7 +13,7 @@ const reducer = combineReducers({
   joinSlice: joinSlice.reducer,
   // commentSlice: commentSlice.reducer,
   // commentReducer: commentReducer.reducer, //!호진 추가 (commentReducer)
-  GetFeed: GetFeed.reducer,
+  // GetFeed: GetFeed.reducer,
   loginSlice: loginSlice.reducer,
   PostFeed: PostFeed.reducer,
 });
