@@ -4,12 +4,11 @@ import {getCookie,setCookie} from "../../Api/cookie";
 import jwt_decode from "jwt-decode";
 
 const initialState = {
-    loading : false,
-    loginDB: [],
-    token: "",
-    error: "",
-}
-
+  loading: false,
+  loginDB: [],
+  token: "",
+  error: "",
+};
 
 // 로그인 이메일 , 비밀번호 db에 전송
 
@@ -33,9 +32,10 @@ export  const loginDb = createAsyncThunk (
         }catch(error){
             alert("로그인실패")
             return error.code;
-         }
-    }
+        }
+  }
 );
+
 
 
 

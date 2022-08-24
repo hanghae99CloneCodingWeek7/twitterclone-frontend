@@ -7,9 +7,7 @@ const goModal = () => {
   alert("모달로 이동");
 };
 
-const MyProfileBox = ({ user }) => {
-  user.PROFILE_PIC =
-    "https://lh3.googleusercontent.com/a/AItbvmkSJ_xTohZASxEYTNzTumaAkOEK36BQqs38Q60V=s96-c";
+const MyProfileBox = ({ username, profileImg }) => {
   const [isHover, setIsHover] = useState(false);
 
   const handleMouseEnter = () => {
@@ -36,8 +34,8 @@ const MyProfileBox = ({ user }) => {
       onMouseLeave={handleMouseLeave}
       onClick={goModal}
     >
-      <ProfileImg IMG={user.PROFILE_PIC} />
-      <ProfileShort />
+      <ProfileImg IMG={profileImg} />
+      <ProfileShort username={username} />
     </div>
   );
 };

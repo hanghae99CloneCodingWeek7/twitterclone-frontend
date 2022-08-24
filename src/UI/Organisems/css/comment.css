@@ -8,7 +8,7 @@
   z-index: 99;
   background-color: rgba(0, 0, 0, 0.6);
 }
-.modal button {
+.modal button:not(.follow) {
   outline: transparent;
   cursor: pointer;
   border: 0;
@@ -17,7 +17,6 @@
   margin-left: auto;
   margin-right: auto;
 }
-
 /* 바디 */
 .modal > section {
   width: 60vw;
@@ -45,7 +44,7 @@
   font-weight: 200;
   text-align: center;
   color: #000;
-  background-color: transparent;
+  /* background-color: red; */
 }
 .modal > section > main {
   text-align: center;
@@ -56,7 +55,7 @@
   padding: 12px 16px;
   text-align: right;
 }
-.modal > section > body button {
+.modal > section > body button:not(.follow) {
   padding: 6px 12px;
   color: #fff;
   background-color: #6c757d;
@@ -102,6 +101,14 @@
   /* 팝업이 열릴때 스르륵 열리는 효과 */
   animation: modal-bg-show 0.3s;
 }
+
+.modal.openModal {
+  display: flex;
+  align-items: center;
+  /* 팝업이 열릴때 스르륵 열리는 효과 */
+  animation: modal-bg-show 0.3s;
+}
+
 @keyframes modal-show {
   from {
     opacity: 0;
