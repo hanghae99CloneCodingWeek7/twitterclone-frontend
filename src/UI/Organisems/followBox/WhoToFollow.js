@@ -16,7 +16,7 @@ const WhoToFollow = ({ element }) => {
     display: "flex",
     flexFlow: "row nowrap",
     justifyContent: "space-between",
-    padding: "10px 20px",
+    padding: "10px 15px",
     alignItems: "center",
     alignContent: "center",
     pointerEvents: "auto",

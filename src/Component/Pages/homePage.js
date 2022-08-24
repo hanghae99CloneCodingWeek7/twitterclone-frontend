@@ -163,38 +163,40 @@ const Home = () => {
         </AllFeed>
       </CenterWrap>
       <RightWrap>
-        <SearchWrap>
-          <SearchImg>
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15.4613 14.6221L12.5638 11.7246C13.6127 10.4817 14.25 8.87775 14.25 7.125C14.25 3.19042 11.0596 0 7.125 0C3.19042 0 0 3.19042 0 7.125C0 11.0596 3.19042 14.25 7.125 14.25C8.87854 14.25 10.4817 13.6135 11.723 12.5638L14.6205 15.4613C14.7369 15.5768 14.8897 15.6354 15.0401 15.6354C15.1905 15.6354 15.3449 15.5776 15.4597 15.4613C15.6932 15.2293 15.6932 14.854 15.4613 14.6221V14.6221ZM1.1875 7.125C1.1875 3.85146 3.85146 1.1875 7.125 1.1875C10.3985 1.1875 13.0625 3.85146 13.0625 7.125C13.0625 10.3985 10.3985 13.0625 7.125 13.0625C3.85146 13.0625 1.1875 10.3985 1.1875 7.125Z"
-                fill="#5B7083"
-              />
-            </svg>
-          </SearchImg>
-          <Search
-            value={feed.CONTENT}
-            name="SEARCH"
-            placeholder="Search Twitter"
-            onChange={onchangeHandler}
-          ></Search>
-        </SearchWrap>
-        <BoxWrap>
-          <h2>Trends for you</h2>
-          <Box className="grayHover">예시1</Box>
-          <Box className="grayHover">예시1</Box>
-          <Box className="grayHover">예시1</Box>
-          <Box className="grayHover">예시1</Box>
-          <Box className="grayHover">예시1</Box>
-          <Box className="grayHover">예시1</Box>
-        </BoxWrap>
-        <FollowBox count={4} data={sampleToFollow} />
+        <div className="fixed">
+          <SearchWrap>
+            <SearchImg>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M15.4613 14.6221L12.5638 11.7246C13.6127 10.4817 14.25 8.87775 14.25 7.125C14.25 3.19042 11.0596 0 7.125 0C3.19042 0 0 3.19042 0 7.125C0 11.0596 3.19042 14.25 7.125 14.25C8.87854 14.25 10.4817 13.6135 11.723 12.5638L14.6205 15.4613C14.7369 15.5768 14.8897 15.6354 15.0401 15.6354C15.1905 15.6354 15.3449 15.5776 15.4597 15.4613C15.6932 15.2293 15.6932 14.854 15.4613 14.6221V14.6221ZM1.1875 7.125C1.1875 3.85146 3.85146 1.1875 7.125 1.1875C10.3985 1.1875 13.0625 3.85146 13.0625 7.125C13.0625 10.3985 10.3985 13.0625 7.125 13.0625C3.85146 13.0625 1.1875 10.3985 1.1875 7.125Z"
+                  fill="#5B7083"
+                />
+              </svg>
+            </SearchImg>
+            <Search
+              value={feed.CONTENT}
+              name="SEARCH"
+              placeholder="Search Twitter"
+              onChange={onchangeHandler}
+            ></Search>
+          </SearchWrap>
+          <BoxWrap>
+            <h2>Trends for you</h2>
+            <Box className="grayHover">예시1</Box>
+            <Box className="grayHover">예시1</Box>
+            <Box className="grayHover">예시1</Box>
+            <Box className="grayHover">예시1</Box>
+            <Box className="grayHover">예시1</Box>
+            <Box className="grayHover">예시1</Box>
+          </BoxWrap>
+          <FollowBox count={4} data={sampleToFollow} />
+        </div>
       </RightWrap>
       <ProfileModal willOpen={false} />
       <WhoToFollowModal willOpen={true} />
@@ -208,12 +210,11 @@ const Total = styled.div`
   justify-content: center;
 `;
 const RightWrap = styled.div`
-  flex-direction: column;
-  border-left: 2px solid gray;
-  padding: 16px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  padding: 16px 20px;
   flex-basis: 18%;
-  top: 0px;
-  position: sticky;
 `;
 
 const CenterWrap = styled.div`
@@ -356,9 +357,8 @@ const BoxWrap = styled.div`
   font-size: 20px;
   background-color: rgb(247, 249, 249);
   border-radius: 1rem;
-  padding: 16px 0px;
-  padding-top: 5px;
-  height: 60vh;
+  padding: 20px 0px;
+  padding-top: 20px;
   margin-bottom: 12px;
 `;
 
