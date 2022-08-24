@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import {getCookie,setCookie} from "../../Api/cookie";
 import jwt_decode from "jwt-decode";
 
 const initialState = {
@@ -18,54 +19,55 @@ export  const loginDb = createAsyncThunk (
     "post/loginDb",
     async ({navigate,login}) =>{
       
-        try {
-            console.log(login);
-     
-            const response = await axios.post('https://www.myspaceti.me/api/login',login)
-            // {EMAIL:"GMAIL@GMAIL.COM",PASSWORD:"123123123"});
-            alert("로그인전달 완료")
-             navigate("/home")
-            console.log(response.data.token);
-            const token = response.data.token;
-            sessionStorage.setItem(token,login);
-            const decode = jwt_decode(token);
-            console.log(decode);
-            return response.config.data.token;
+        try {    
+            const response = await axios({
+                            method:"post",
+                            url: `https://www.myspaceti.me/api/login`,
+                            data:login
+                        });
+            const accessToken = response.data.token;
+            console.log(accessToken);
+            setCookie("is_login", `${accessToken}`);     
+            alert("환영합니다");
+            navigate("/home");
+            return response.data.token;
         }catch(error){
             alert("로그인실패")
-            return error.code; }
+            return error.code;
+         }
     }
 );
 
 
 
 
-// export const getToken = createAsyncThunk("get/getToken", async()=>{
-//     try{
-//         const response = await
-//         axios({
-//             method:"get",
-//             url: `https://www.myspaceti.me/api/posts`,
-//             headers:{
-//                 Authorization : `Bearer ${accessToken}`,
-//                 // Bearea 는 토큰 포멧의 일종 
-//             },
-//         });
-//         const accessToken = response.data.token;
-//         const decoded = jwt_decode(accessToken);
+export const getToken = createAsyncThunk("get/getToken", async()=>{
+    try{
+        const response = await
+        axios({
+            method:"get",
+            url: `https://www.myspaceti.me/api/posts`,
+            headers:{
+                Authorization : `Bearer ${getCookie("is_login")}`,
+                // Bearea 는 토큰 포멧의 일종 
+            },
+        });
 
-//         console.log(response);
-//         return response;
+        console.log(response.data.token);
+        const loginToken = getCookie("is_login");
+        const decoded = jwt_decode(loginToken);
+        console.log(decoded.EMAIL);
+        return decoded;
         
-//     }catch(error){
-//         console.log(error.code, error.status);
-//         return error.status;
-//     }
-// }); 
+    }catch(error){
+        console.log(error.code, error.status);
+        return error.status;
+    }
+}); 
 
 
 
-const loginSlice = createSlice({
+export const loginSlice = createSlice({
     name: "loginData",
     initialState:initialState,
     reducers:{},
@@ -76,11 +78,11 @@ const loginSlice = createSlice({
             state.loginDB = action.payload;
             state.error ="";
         });
-        // builder.addCase(getToken.fulfilled, (state, action)=>{
-        //     state.loading = false;
-        //     state.token = action.payload;
-        //     state.error = "";
-        // });
+        builder.addCase(getToken.fulfilled, (state, action)=>{
+            state.loading = false;
+            state.token = action.payload;
+            state.error = "";
+        });
         // builder.addCase(googleLogin.fulfilled, (state, action)=>{
         //     state.loading = false;
         //     state.token = action.payload;
@@ -91,5 +93,5 @@ const loginSlice = createSlice({
 })
 
 
-export {loginSlice};
+// export {loginSlice};
 export const loginReducer = loginSlice.reducer;
