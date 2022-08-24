@@ -10,21 +10,22 @@ const initialState = {
 
 // post 회원정보 전송
 export const addJoin = createAsyncThunk(
-  "join",
-  async ({ joinData, joinClose }) => {
-    console.log(joinData);
-    try {
-      const response = await axios.post(
-        "https://www.myspaceti.me/api/signup",
-        joinData
-      );
-      alert("가입해주셔서 감사합니다.");
-      joinClose(); //회원가입성공후 모달창 닫기위함
-      return response.data;
-    } catch (error) {
-      console.log(error.code);
-      alert("다시 입력해주세요.");
-      return error.code;
+    "join",
+    async ({ joinData, joinClose }) => {
+        console.log(joinData);
+        try {
+            const response = await axios.post(
+                "https://www.myspaceti.me/api/signup",
+                joinData
+            );
+            alert("가입해주셔서 감사합니다.");
+            joinClose(); //회원가입성공후 모달창 닫기위함
+            return response.data;
+        } catch (error) {
+            console.log(error.code);
+            alert("다시 입력해주세요.");
+            return error.code;
+        }
     }
   }
 );

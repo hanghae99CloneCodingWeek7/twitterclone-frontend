@@ -37,6 +37,13 @@ h2 {
 .grayHover:hover {
   background-color: #eee;
 }
+.follow {
+  color: white;
+}
+.follow:hover {
+  background-color: #eee;
+  color: black;
+}
 
 .navMenu {
   margin: 10px;
@@ -47,7 +54,12 @@ h2 {
   font-weight: bold;
 }
 
-.fixed {
-  position: fixed;
-  width: 15%;
+.sticky {
+  position: sticky;
+  top: 0px;
+  z-index: 99;
+}
+
+.inline {
+  display: "inline !important";
 }

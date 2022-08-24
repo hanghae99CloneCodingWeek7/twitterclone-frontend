@@ -7,6 +7,7 @@ import logger from "redux-logger"; //!호진추가 logger
 import { PostFeed } from "../Modules/homePageSlice";
 import { GetFeed } from "../Modules/gethomePageSlice";
 import { commentSlice } from "../Modules/commentSlice"; //!호진추가
+import modalSlice from "Redux/Modules/modalSlice";
 import { testSlice } from "Redux/Modules/testSlice";
 
 // store에 등록할 Slice 들을 import  합시다
@@ -15,9 +16,10 @@ const reducer = combineReducers({
   commentSlice: commentSlice.reducer,
   testSlice: testSlice.reducer,
   // commentReducer: commentReducer.reducer, //!호진 추가 (commentReducer)
-  GetFeed: GetFeed.reducer,
+  // GetFeed: GetFeed.reducer,
   loginSlice: loginSlice.reducer,
   PostFeed: PostFeed.reducer,
+  modal:modalSlice.reducer,
 });
 
 export default configureStore({
