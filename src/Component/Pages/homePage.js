@@ -11,14 +11,18 @@ import comment1 from "./comment1.png";
 import comment2 from "./comment2.png";
 import comment3 from "./comment3.png";
 import comment4 from "./comment4.png";
+
 // import ProfileImg from "UI/Organisems/myProfileBox/ProfileImg";
 import { postFeedThunk } from "../../Redux/Modules/homePageSlice";
 import { GetFeedThunk } from "../../Redux/Modules/gethomePageSlice";
-import ProfileImg from "../../UI/Organisems/myProfileBox/ProfileImg";
+
 import ProfileModal from "../Modals/ProfileModal";
-import WhoToFollow from "../../UI/Organisems/followBox/WhoToFollow";
 import WhoToFollowModal from "../Modals/WhoToFollowModal";
+import Hashtags from "../Template/Hashtags";
+
+// 목업 데이터
 import sampleToFollow from "../../mockData/sampleToFollow.json";
+import hashtags from "../../mockData/hashtags.json";
 
 const Home = () => {
   //비동기 처리이니까 로딩
@@ -188,12 +192,10 @@ const Home = () => {
           </SearchWrap>
           <BoxWrap>
             <h2>Trends for you</h2>
-            <Box className="grayHover">예시1</Box>
-            <Box className="grayHover">예시1</Box>
-            <Box className="grayHover">예시1</Box>
-            <Box className="grayHover">예시1</Box>
-            <Box className="grayHover">예시1</Box>
-            <Box className="grayHover">예시1</Box>
+            {hashtags.slice(0, 10).map((e) => {
+              return <Hashtags className="grayHover" data={e} />;
+            })}
+            <h2>show more</h2>
           </BoxWrap>
           <FollowBox count={4} data={sampleToFollow} />
         </div>
@@ -360,14 +362,6 @@ const BoxWrap = styled.div`
   padding: 20px 0px;
   padding-top: 20px;
   margin-bottom: 12px;
-`;
-
-const Box = styled.div`
-  cursor: pointer;
-  transition-property: background-color, box-shadow;
-  pointer-events: auto;
-  padding: 12px 20px;
-  margin: 0px;
 `;
 
 const SearchWrap = styled.div`
