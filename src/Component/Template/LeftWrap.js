@@ -17,12 +17,12 @@ const LeftWrap = () => {
         Authorization: `Bearer ${getCookie("is_login")}`,
       },
     }).then((e) => {
-      console.log("e", e);
+      // console.log("e", e);
       setFeeds(e);
     });
   }, []);
 
-  console.log("feeds22", feeds);
+  // console.log("feeds22", feeds);
 
   return (
     <div style={leftStyle}>

@@ -10,6 +10,7 @@ const ProfileModal = ({ loginUser, userProfile }) => {
   const userstate = useSelector((store) => store.loginSlice);
   const isOpen = useSelector((store) => store.modal.isOpenProfileModal);
 
+
   const dispatch = useDispatch();
 
   const divStyle = {
@@ -37,6 +38,7 @@ const ProfileModal = ({ loginUser, userProfile }) => {
         {/* 클릭 이벤트 중첩을 방지 */}
         <header>
           {/* 모달 닫기 */}
+
           <button
             className="close btn"
             onClick={() => {
@@ -138,6 +140,7 @@ const ProfileModal = ({ loginUser, userProfile }) => {
             </div>
           </div>
         )}
+
       </section>
     </div>
   );
@@ -152,6 +155,7 @@ const ProfileModal = ({ loginUser, userProfile }) => {
 // REGISTER_FROM: "web",
 // DISPLAY_NAME: "Jack Dorsey",
 // TIMESTAMPS: "2022-08-20T03:36:15.519Z"
+
 
 const MapFeedWrap = styled.div`
   display: flex;
