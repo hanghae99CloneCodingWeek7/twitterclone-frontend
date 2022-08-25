@@ -39,13 +39,13 @@ const Home = () => {
 
   const dispatch = useDispatch();
   // 유저정보를 저장하기위함
-  
+
   //  const [islogin, setIsLogin] = useState(userEmail);
   useEffect(() => {
     if (getCookie("is_login")) {
       dispatch(getToken());
     }
-     axios({
+    axios({
       method: "get",
       url: `https://www.myspaceti.me/api/profiles/whotofollow`,
       headers: {
@@ -64,9 +64,8 @@ const Home = () => {
     }).then((e) => {
       console.log("LoginUser", e);
       setLoginUser(e);
+      setUserProfile(loginUser);
     });
-
-    setUserProfile(loginUser);
   }, []);
 
   const navigate = useNavigate();
@@ -102,13 +101,13 @@ const Home = () => {
       // navigate("/");
     }
   };
-const goComment =() =>{
-  navigate("/comments");
-}
-const Ondelete = () => {
-  dispatch(deletePost({}))
-  alert("삭제")
-};
+  const goComment = () => {
+    navigate("/comments");
+  };
+  const Ondelete = () => {
+    dispatch(deletePost({}));
+    alert("삭제");
+  };
 
   const onProfile = () => {
     navigate("/profile");
@@ -141,7 +140,7 @@ const Ondelete = () => {
 
           <UploadTweetWrap>
             <UploadImg>
-              <img src={upload} alt="upload" width="20" ></img>
+              <img src={upload} alt="upload" width="20"></img>
               <img src={gif} alt="gif" width="20"></img>
               <img src={smile} alt="smile" width="20"></img>
               <img src={new1} alt="new" width="20"></img>
@@ -192,12 +191,13 @@ const Ondelete = () => {
             })}
             <h2>show more</h2>
           </BoxWrap>
-          {usersToFollow ? <FollowBox count={4} data={usersToFollow} /> : <></>}
+          {usersToFollow ? (
+            <FollowBox count={20} data={usersToFollow} />
+          ) : (
+            <></>
+          )}
         </div>
       </RightWrap>
-
-
-
     </Total>
   );
 };
@@ -277,16 +277,15 @@ const UploadImg = styled.button`
 `;
 
 const TweetBtn = styled.div`
-
-display: flex;
-/* flex-direction: row-reverse; */
-/* background-color: red; */
-margin-left: 20vw;
+  display: flex;
+  /* flex-direction: row-reverse; */
+  /* background-color: red; */
+  margin-left: 20vw;
 `;
 
 const Btn = styled.button`
-display: flex;
-float: right;
+  display: flex;
+  float: right;
   font-size: 15px;
   /* margin-right: 3.5vw; */
   padding-top: 10px;

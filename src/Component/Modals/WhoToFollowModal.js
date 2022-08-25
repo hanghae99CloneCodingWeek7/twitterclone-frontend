@@ -7,10 +7,10 @@ import sampleToFollow from "../../mockData/sampleToFollow.json";
 import { closeFollowModal } from "Redux/Modules/modalSlice";
 
 // const WhoToFollowModal = ({ willOpen }) => {
-  const WhoToFollowModal = () => {
+const WhoToFollowModal = () => {
   //모달창을 위한 props 전달받은 변수
 
-  const isOpen = useSelector((store) => store.modal.isOpenFollowModal)
+  const isOpen = useSelector((store) => store.modal.isOpenFollowModal);
   // let [isOpened, setIsOpened] = useState(willOpen);
   const [whomToFollow, setWhomToFollow] = useState(sampleToFollow);
 
@@ -37,14 +37,19 @@ import { closeFollowModal } from "Redux/Modules/modalSlice";
         {/* 클릭 이벤트 중첩을 방지 */}
         <header>
           {/* <button className="close btn" onClick={() => setIsOpened(false)}> */}
-          <button className="close btn" onClick={() => {dispatch(closeFollowModal())}}>
+          <button
+            className="close btn"
+            onClick={() => {
+              dispatch(closeFollowModal());
+            }}
+          >
             &times;
           </button>
         </header>
         <main>WhoToFollow</main>
         <body>
           <div style={modalBodyStyle}>
-          {whomToFollow.slice(0, howManyShow).map(function (e) {
+            {whomToFollow.slice(0, howManyShow).map(function (e) {
               return (
                 <>
                   <WhoToFollow element={e} />
