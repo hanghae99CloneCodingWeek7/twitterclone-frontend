@@ -14,10 +14,7 @@ import { FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const IterationFeeds = ({ data }) => {
-
-
   const navigate = useNavigate(); //댓글페이지이동
-
 
   const [feeds, setFeeds] = useState({});
 
@@ -68,30 +65,30 @@ const IterationFeeds = ({ data }) => {
                     <p>{data.postInfo.CONTENT} 14h</p>
                   </Contentbox>
                   <ImageBox>
-                    <img
-                      style={imageBoxStyle}
-                      src={data.postInfo.POST_PHOTO}
-                    ></img>
+                    {data.postInfo.POST_PHOTO ? (
+                      <img
+                        className="crop"
+                        style={imageBoxStyle}
+                        src={data.postInfo.POST_PHOTO}
+                      ></img>
+                    ) : (
+                      <></>
+                    )}
                   </ImageBox>
                   <CommentImg>
                     <img
                       style={commentIconStyle}
                       src={comment}
                       onClick={() =>
-
-                        navigate("/comment")+   //댓글화면이동
-
-
+                        navigate("/comment") + //댓글화면이동
                         alert(
                           "포스트 ID" +
                             data.postInfo._id +
                             "에 댓글을 확인하고 게시합니다."
                         )
-                        
                       }
                       alt="코멘트 남기기"
                       width="20"
-
                     ></img>
                     <img
                       src={comment1}

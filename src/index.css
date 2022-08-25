@@ -63,3 +63,9 @@ h2 {
 .inline {
   display: "inline !important";
 }
+
+.crop {
+  width: 400px;
+  height: 300px;
+  overflow: hidden;
+}

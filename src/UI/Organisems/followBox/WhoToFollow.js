@@ -1,27 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProfileImg from "../myProfileBox/ProfileImg";
 import styled from "styled-components";
 import { openFollowModal } from "Redux/Modules/modalSlice";
 import { useDispatch } from "react-redux";
+import { removeCookie, getCookie } from "../../../Api/cookie";
+import axios from "axios";
 
 const WhoToFollow = ({ element }) => {
-
-  const [isHover, setIsHover] = useState(false);
-
   const dispatch = useDispatch();
 
-//봐야함
-  const followBtnClick = (event,_id) => {
-   event.stopPropagation()
-    alert("follow " + _id);
-
+  //봐야함
+  const followBtnClick = (event, _id) => {
+    event.stopPropagation();
+    console.log(`${getCookie("is_login")}`);
+    axios({
+      method: "put",
+      url: `https://www.myspaceti.me/api/profiles/follow/${_id}`,
+      headers: {
+        Authorization: `Bearer ${getCookie("is_login")}`,
+      },
+    }).then((e) => {
+      console.log(e);
+      alert("follow 했습니다." + _id);
+    });
   };
+
+  useEffect(() => {});
 
   const goModal = (event) => {
     // event.preventDefault();
     // event.stopPropagation()
 
-    dispatch(openFollowModal())
+    dispatch(openFollowModal());
   };
 
   const style = {
@@ -58,11 +68,10 @@ const WhoToFollow = ({ element }) => {
         </svg>
       </div>{" "}
       <FollowButton
-      
         className="follow"
-        onClick={(event) => followBtnClick(event,element._id)}
+        onClick={(event) => followBtnClick(event, element._id)}
       >
-        follow11
+        Follow
       </FollowButton>
     </div>
   );

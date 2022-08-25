@@ -10,8 +10,8 @@ const FollowBox = ({ count, data }) => {
   const [whomToFollow, setWhomToFollow] = useState(data);
 
   const goModal = () => {
-    dispatch(openFollowModal())
-  }
+    dispatch(openFollowModal());
+  };
 
   return (
     <div style={followBoxStyle}>
