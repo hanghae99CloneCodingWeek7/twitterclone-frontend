@@ -25,7 +25,6 @@ import WhoToFollowModal from "../Modals/WhoToFollowModal";
 import Hashtags from "../Template/Hashtags";
 
 // 목업 데이터
-import sampleToFollow from "../../mockData/sampleToFollow.json";
 import hashtags from "../../mockData/hashtags.json";
 import IterationFeeds from "Component/Template/IterationFeeds";
 import axios from "axios";
@@ -35,6 +34,8 @@ const Home = () => {
   const userstate = useSelector((store) => store.loginSlice);
   const leftstate = useSelector((store) => store.loginSlice.post);
   const [usersToFollow, setUsersToFollow] = useState(undefined);
+  const [loginUser, setLoginUser] = useState({});
+  const [userProfile, setUserProfile] = useState({});
 
   const dispatch = useDispatch();
   // 유저정보를 저장하기위함
@@ -53,7 +54,20 @@ const Home = () => {
     }).then((e) => {
       setUsersToFollow(e);
     });
-  }, [deletePost]);
+
+    axios({
+      method: "get",
+      url: `https://www.myspaceti.me/api/profiles`,
+      headers: {
+        Authorization: `Bearer ${getCookie("is_login")}`,
+      },
+    }).then((e) => {
+      console.log("LoginUser", e);
+      setLoginUser(e);
+    });
+
+    setUserProfile(loginUser);
+  }, [loginUser]);
 
   const navigate = useNavigate();
 
@@ -88,14 +102,6 @@ const Home = () => {
       // navigate("/");
     }
   };
-  const goComment = () => {
-    navigate("/comments");
-  };
-  const Ondelete = () => {
-    dispatch(deletePost({}));
-    alert("삭제");
-  };
-
   const onProfile = () => {
     navigate("/profile");
   };
@@ -103,12 +109,12 @@ const Home = () => {
   return (
     <Total>
       <LeftWrap data={leftstate} />
-      <ProfileModal willOpen={true} />
-      {usersToFollow ? (
-        <WhoToFollowModal willOpen={true} data={usersToFollow} />
+      {loginUser.data && userProfile.data ? (
+        <ProfileModal loginUser={loginUser} userProfile={userProfile} />
       ) : (
         <></>
       )}
+      {usersToFollow ? <WhoToFollowModal data={usersToFollow} /> : <></>}
       <CenterWrap>
         <CenterHome>Home</CenterHome>
         <TotalFeed>

@@ -22,6 +22,10 @@ h2 {
   color: #555;
 }
 
+span {
+  font-weight: bold !important;
+}
+
 .profileName {
   font-size: 15px;
 }

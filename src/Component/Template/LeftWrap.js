@@ -48,16 +48,15 @@ const leftStyle = {
 export default LeftWrap;
 
 const LogoutButton = styled.button`
-border-style: solid;
-border-color: white;
-height: 45px;
-margin-bottom: 25vh;
-border-radius: 9999px;
-width: 226px;
-margin-left: 27.5px;
-font-weight: 600;
-padding: 12px;
-font-size: 19px;
-justify-content: center;
+  border-style: solid;
+  border-color: white;
+  height: 45px;
+  margin-bottom: 25vh;
+  border-radius: 9999px;
+  width: 226px;
+  margin-left: 27.5px;
+  font-weight: 600;
+  padding: 12px;
+  font-size: 19px;
+  justify-content: center;
 `;
-
