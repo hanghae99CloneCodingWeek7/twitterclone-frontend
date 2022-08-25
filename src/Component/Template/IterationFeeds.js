@@ -11,11 +11,12 @@ import comment3 from "./img/comment3.png";
 import comment4 from "./img/comment4.png";
 import ProfileImg from "UI/Organisems/myProfileBox/ProfileImg";
 import { FaTrash } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 
 const IterationFeeds = ({ data }) => {
 
-
+const params = useParams();
+console.log(params);
   const navigate = useNavigate(); //댓글페이지이동
 
 
@@ -79,9 +80,7 @@ const IterationFeeds = ({ data }) => {
                       src={comment}
                       onClick={() =>
 
-                        navigate("/comment")+   //댓글화면이동
-
-
+                        navigate(`/comment/${params.postinfo}`)+   //댓글화면이동
                         alert(
                           "포스트 ID" +
                             data.postInfo._id +

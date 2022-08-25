@@ -13,7 +13,7 @@ import { server_url } from "../index";
 //!코멘트 get
 export const getCommentList = createAsyncThunk("GET_COMMENT", async () => {
   const response = await axios.get(
-    "https://www.myspaceti.me/api/comments/:postId"
+    `https://www.myspaceti.me/api/comments/:postId`
   );
   console.log(response);
   return response.data;

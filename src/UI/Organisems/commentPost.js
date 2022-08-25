@@ -30,10 +30,10 @@ const CommentPost = (props) => {
   //form submit , 들어온값을 payload로 담아서 dispatch로 보낸다(리듀서에서 작성된 모듈을 사용해서)
   const onCreate = (e) => {
     e.preventDefault();
-    console.log(e);
     if (inputValue) {
       const newComment = { value: inputValue }; //!comment 이름 변경 될 수있으니 확인할것
       dispatch(addCommentList(newComment));
+      
       setInputValue("");
     } else {
       console.log("값을 입력해야합니다");

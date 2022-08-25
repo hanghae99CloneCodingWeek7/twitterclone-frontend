@@ -4,6 +4,8 @@ import CommentPost from "./commentPost";
 
 function CommentFront() {
   //modal
+
+  
   const [modalOpen, setModalOpen] = useState(false);
   const openModal = () => {
     setModalOpen(true);
