@@ -17,10 +17,10 @@ import { useDispatch } from "react-redux";
 import { BiWindows } from "react-icons/bi";
 
 const IterationFeeds = ({ data }) => {
-
-
   const navigate = useNavigate(); //댓글페이지이동
+
   const dispatch = useDispatch();
+
 
   const [feeds, setFeeds] = useState({});
 
@@ -72,20 +72,21 @@ const IterationFeeds = ({ data }) => {
                     <p>{data.postInfo.CONTENT} 14h</p>
                   </Contentbox>
                   <ImageBox>
-                    <img
-                      style={imageBoxStyle}
-                      src={data.postInfo.POST_PHOTO}
-                    ></img>
+                    {data.postInfo.POST_PHOTO ? (
+                      <img
+                        className="crop"
+                        style={imageBoxStyle}
+                        src={data.postInfo.POST_PHOTO}
+                      ></img>
+                    ) : (
+                      <></>
+                    )}
                   </ImageBox>
                   <CommentImg>
                     <img
                       style={commentIconStyle}
                       src={comment}
                       onClick={() =>
-
-                        navigate("/comment") +   //댓글화면이동
-
-
                         alert(
                           "포스트 ID" +
                           data.postInfo._id +
@@ -95,7 +96,6 @@ const IterationFeeds = ({ data }) => {
                       }
                       alt="코멘트 남기기"
                       width="20"
-
                     ></img>
                     <img
                       src={comment1}
