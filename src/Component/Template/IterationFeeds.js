@@ -11,8 +11,14 @@ import comment3 from "./img/comment3.png";
 import comment4 from "./img/comment4.png";
 import ProfileImg from "UI/Organisems/myProfileBox/ProfileImg";
 import { FaTrash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const IterationFeeds = ({ data }) => {
+
+
+  const navigate = useNavigate(); //댓글페이지이동
+
+
   const [feeds, setFeeds] = useState({});
 
   useEffect(() => {
@@ -72,14 +78,20 @@ const IterationFeeds = ({ data }) => {
                       style={commentIconStyle}
                       src={comment}
                       onClick={() =>
+
+                        navigate("/comment")+   //댓글화면이동
+
+
                         alert(
                           "포스트 ID" +
                             data.postInfo._id +
                             "에 댓글을 확인하고 게시합니다."
                         )
+                        
                       }
                       alt="코멘트 남기기"
                       width="20"
+
                     ></img>
                     <img
                       src={comment1}

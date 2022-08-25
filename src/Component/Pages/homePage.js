@@ -19,7 +19,7 @@ import { postFeedThunk } from "../../Redux/Modules/homePageSlice";
 import { getToken } from "../../Redux/Modules/loginSlice";
 import { removeCookie, getCookie } from "../../Api/cookie";
 import ProfileImg from "../../UI/Organisems/myProfileBox/ProfileImg";
-
+import { deletePost } from "../../Redux/Modules/homePageSlice";
 import ProfileModal from "../Modals/ProfileModal";
 import WhoToFollowModal from "../Modals/WhoToFollowModal";
 import Hashtags from "../Template/Hashtags";
@@ -29,12 +29,13 @@ import sampleToFollow from "../../mockData/sampleToFollow.json";
 import hashtags from "../../mockData/hashtags.json";
 import IterationFeeds from "Component/Template/IterationFeeds";
 import axios from "axios";
+import CommentPage from "./commentPage";
 
 const Home = () => {
   const userstate = useSelector((store) => store.loginSlice);
   const leftstate = useSelector((store) => store.loginSlice.post);
   const [usersToFollow, setUsersToFollow] = useState(undefined);
-  const userstate = useSelector((state) => state.loginSlice);
+
   const dispatch = useDispatch();
   // 유저정보를 저장하기위함
   
@@ -71,7 +72,7 @@ const Home = () => {
   };
 
   const onSubmit = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     if (feed.CONTENT.trim().length === 0) {
       return alert("내용을 입력하세요!");
     } else {
@@ -88,7 +89,9 @@ const Home = () => {
       // navigate("/");
     }
   };
-
+const goComment =() =>{
+  navigate("/comments");
+}
 const Ondelete = () => {
   dispatch(deletePost({}))
   alert("삭제")
@@ -124,7 +127,7 @@ const Ondelete = () => {
 
           <UploadTweetWrap>
             <UploadImg>
-              <img src={upload} alt="upload" width="20"></img>
+              <img src={upload} alt="upload" width="20" ></img>
               <img src={gif} alt="gif" width="20"></img>
               <img src={smile} alt="smile" width="20"></img>
               <img src={new1} alt="new" width="20"></img>
