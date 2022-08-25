@@ -11,7 +11,7 @@ const ProfileModal = ({ loginUser, userProfile }) => {
   const isOpen = useSelector((store) => store.modal.isOpenProfileModal);
 
   //모달창을 위한 props 전달받은 변수
-  const isOpen = useSelector((store) => store.modal.isOpenProfileModal)
+  // const isOpen = useSelector((store) => store.modal.isOpenProfileModal)
   // let [isOpened, setIsOpened] = useState(willOpen);
   const navigate = useNavigate(); //로그인 성공시 의 다음 경로 를  리다이렉트 하기위해서 사용
   const dispatch = useDispatch();

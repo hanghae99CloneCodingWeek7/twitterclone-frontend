@@ -67,7 +67,7 @@ const Home = () => {
     });
 
     setUserProfile(loginUser);
-  }, [loginUser]);
+  }, []);
 
   const navigate = useNavigate();
 
