@@ -3,6 +3,7 @@ import styled from "styled-components";
 import WhoToFollow from "../../UI/Organisems/followBox/WhoToFollow";
 import { getCookie, setCookie } from "../../Api/cookie";
 import axios from "axios";
+import Modal from "./commentModal";
 
 import comment from "./img/comment.png";
 import comment1 from "./img/comment1.png";
@@ -15,6 +16,16 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 const IterationFeeds = ({ data }) => {
+  //모달창 State
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   const navigate = useNavigate();
   const param = useParams();
   const [feeds, setFeeds] = useState({});
@@ -27,7 +38,6 @@ const IterationFeeds = ({ data }) => {
         Authorization: `Bearer ${getCookie("is_login")}`,
       },
     }).then((e) => {
-      console.log("e", e);
       setFeeds(e);
     });
   }, []);
@@ -75,13 +85,14 @@ const IterationFeeds = ({ data }) => {
                     <img
                       style={commentIconStyle}
                       src={comment}
-                      onClick={() =>
-                        navigate(`/comment/${data.postInfo._id}`) +
-                        alert(
-                          "포스트 ID" +
-                            data.postInfo._id +
-                            "에 댓글을 확인하고 게시합니다."
-                        )
+                      onClick={
+                        // navigate(`/comment/${data.postInfo._id}`) +
+                        // alert(
+                        //   "포스트 ID" +
+                        //     data.postInfo._id +
+                        //     "에 댓글을 확인하고 게시합니다."
+                        // )
+                        openModal
                       }
                       alt="코멘트 남기기"
                       width="20"
@@ -113,6 +124,11 @@ const IterationFeeds = ({ data }) => {
                   </CommentImg>
                 </InnerImgContentWrap>
               </ImgContentWrap>
+              <Modal
+                open={modalOpen}
+                close={closeModal}
+                header="Modal heading"
+              />
             </MapFeedWrap>
           </div>
         );

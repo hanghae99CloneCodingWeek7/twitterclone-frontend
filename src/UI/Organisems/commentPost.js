@@ -17,9 +17,9 @@ const CommentPost = (props) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   // param
   const params = useParams();
-  console.log(params);
+  // console.log(params);
   const search = params.id;
-  console.log(search);
+  // console.log(search);
   //dispatch
   const dispatch = useDispatch();
 
@@ -62,7 +62,7 @@ const CommentPost = (props) => {
       <div>
         {/* //!map 오류시 && 추가할것. */}
         {cList?.map((x) => (
-          <CommentList key={x.id} data={x}></CommentList>
+          <CommentList key={x.id} xId={x.id} data={x}></CommentList>
         ))}
       </div>
     </form>

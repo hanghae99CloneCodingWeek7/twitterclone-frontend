@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { deleteCommentList } from "../../Redux/Modules/commentSlice";
+import {
+  addCommentList,
+  deleteCommentList,
+} from "../../Redux/Modules/commentSlice";
 import { updateCommentList } from "../../Redux/Modules/commentSlice";
 import { getCommentList } from "../../Redux/Modules/commentSlice";
 
@@ -29,14 +32,17 @@ const CommentList = ({ xId, data }) => {
     // window.location.reload();
   };
 
-  //   useEffect(() => {
-  //     setInputValue("");
-  //   }, []);
+  // useEffect(() => {
+  //   setInputValue("");
+  // }, [getCommentList()]);
 
   return (
     <div>
       {data.CONTENT}
       {data.TIMESTAMPS}
+      <button type="button" onClick={onDelete}>
+        delete
+      </button>
     </div>
   );
 };
