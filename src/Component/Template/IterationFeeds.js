@@ -12,9 +12,11 @@ import comment4 from "./img/comment4.png";
 import ProfileImg from "UI/Organisems/myProfileBox/ProfileImg";
 import { FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const IterationFeeds = ({ data }) => {
   const navigate = useNavigate();
+  const param = useParams();
   const [feeds, setFeeds] = useState({});
 
   useEffect(() => {
@@ -74,7 +76,7 @@ const IterationFeeds = ({ data }) => {
                       style={commentIconStyle}
                       src={comment}
                       onClick={() =>
-                        navigate("/comment") +
+                        navigate(`/comment/${data.postInfo._id}`) +
                         alert(
                           "포스트 ID" +
                             data.postInfo._id +

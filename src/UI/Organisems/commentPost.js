@@ -16,7 +16,10 @@ const CommentPost = (props) => {
   const [modal, setModal] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   // param
-  const param = useParams();
+  const params = useParams();
+  console.log(params);
+  const search = params.id;
+  console.log(search);
   //dispatch
   const dispatch = useDispatch();
 
@@ -26,14 +29,16 @@ const CommentPost = (props) => {
   //store에서 받아오는 데이터(댓글get)
   const cList = useSelector((state) => state.commentSlice);
   console.log(cList);
-
   //form submit , 들어온값을 payload로 담아서 dispatch로 보낸다(리듀서에서 작성된 모듈을 사용해서)
   const onCreate = (e) => {
     e.preventDefault();
     console.log(e);
     if (inputValue) {
-      const newComment = { value: inputValue }; //!comment 이름 변경 될 수있으니 확인할것
+      const newComment = { CONTENT: inputValue, post_id: search };
+      const newPostId = { post_id: search };
+      console.log(newComment); //!comment 이름 변경 될 수있으니 확인할것
       dispatch(addCommentList(newComment));
+      dispatch(getCommentList(newPostId));
       setInputValue("");
     } else {
       console.log("값을 입력해야합니다");
@@ -47,37 +52,20 @@ const CommentPost = (props) => {
 
   //////////////////////////////
   return (
-    <div>
-      <form onSubmit={onCreate}>
-        <input
-          type="text"
-          onChange={(e) => setInputValue(e.target.value)}
-          value={inputValue}
-        />
-        <button type="submit">추가</button>
-      </form>
+    <form onSubmit={onCreate}>
+      <input
+        type="text"
+        onChange={(e) => setInputValue(e.target.value)}
+        value={inputValue}
+      />
+      <button type="submit">추가</button>
       <div>
         {/* //!map 오류시 && 추가할것. */}
-        {cList &&
-          cList.map((x, y) => {
-            if (parseInt(x.post_id) === parseInt(param.id)) {
-              return (
-                <div key={x.COMMENT_ID}>
-                  <CommentList
-                    key={x.id}
-                    xId={x.id}
-                    x={x}
-                    y={y}
-                    content={x.content}
-                    setModal={setModal}
-                    setSelectedIndex={setSelectedIndex}
-                  ></CommentList>
-                </div>
-              );
-            }
-          })}
+        {cList?.map((x) => (
+          <CommentList key={x.id} data={x}></CommentList>
+        ))}
       </div>
-    </div>
+    </form>
   );
 };
 
@@ -143,3 +131,36 @@ const StSection = styled.section`
 //             ))}
 //         </div>
 //       </form>
+
+// 백업2
+// <div>
+//       <form onSubmit={onCreate}>
+//         <input
+//           type="text"
+//           onChange={(e) => setInputValue(e.target.value)}
+//           value={inputValue}
+//         />
+//         <button type="submit">추가</button>
+//       </form>
+//       <div>
+//         {/* //!map 오류시 && 추가할것. */}
+//         {cList &&
+//           cList.map((x, y) => {
+//             if (parseInt(x.post_id) === parseInt(params)) {
+//               return (
+//                 <div key={x.COMMENT_ID}>
+//                   <CommentList
+//                     key={x.post_id}
+//                     xId={x.post_id}
+//                     x={x}
+//                     y={y}
+//                     content={x.content}
+//                     setModal={setModal}
+//                     setSelectedIndex={setSelectedIndex}
+//                   ></CommentList>
+//                 </div>
+//               );
+//             }
+//           })}
+//       </div>
+//     </div>

@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { server_url } from "../index";
+import { getCookie } from "Api/cookie";
 
 // const initialState = {
 //   loading: false,
@@ -11,13 +12,22 @@ import { server_url } from "../index";
 // https://www.myspaceti.me/api/posts
 
 //!코멘트 get
-export const getCommentList = createAsyncThunk("GET_COMMENT", async () => {
-  const response = await axios.get(
-    "https://www.myspaceti.me/api/comments/:postId"
-  );
-  console.log(response);
-  return response.data;
-});
+export const getCommentList = createAsyncThunk(
+  "GET_COMMENT",
+  async (newPostId) => {
+    console.log(newPostId.post_id);
+    const response = await axios.get(
+      `https://www.myspaceti.me/api/comments/${newPostId.post_id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${getCookie("is_login")}`,
+        },
+      }
+    );
+    console.log(response);
+    return response.data;
+  }
+);
 
 // export const getCommentList = createAsyncThunk(
 //   "GET_COMMENT",
@@ -37,10 +47,14 @@ export const addCommentList = createAsyncThunk(
   "ADD_COMMENT",
   async (newComment) => {
     console.log(newComment);
-    const response = await axios.post(
-      "https://www.myspaceti.me/api/comments/:postId",
-      newComment
-    );
+    const response = await axios({
+      method: "post",
+      url: `https://www.myspaceti.me/api/comments/${newComment.post_id}/create/`,
+      headers: {
+        Authorization: `Bearer ${getCookie("is_login")}`,
+      },
+      data: newComment,
+    });
     console.log(response);
     return response.data;
   }
