@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import ProfileImg from "../myProfileBox/ProfileImg";
 import styled from "styled-components";
-import { openFollowModal } from "Redux/Modules/modalSlice";
-import { useDispatch } from "react-redux";
+import { openFollowModal, openProfileModal } from "Redux/Modules/modalSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const WhoToFollow = ({ element }) => {
-
+  
+  const isOpen = useSelector((store) =>store.modal.isOpenProfileModal);
   const [isHover, setIsHover] = useState(false);
 
   const dispatch = useDispatch();
@@ -21,7 +22,9 @@ const WhoToFollow = ({ element }) => {
     // event.preventDefault();
     // event.stopPropagation()
 
-    dispatch(openFollowModal())
+    dispatch(openProfileModal())
+    // dispatch(openFollowModal())
+
   };
 
   const style = {
