@@ -3,6 +3,7 @@ import axios from "axios";
 import { getCookie, setCookie } from "../../Api/cookie";
 import jwt_decode from "jwt-decode";
 import { server_url } from "Redux";
+import { server_url1 } from "Redux";
 const initialState = {
     post: [],
     loading: false,
@@ -21,7 +22,7 @@ export const loginDb = createAsyncThunk(
         try {
             const response = await axios({
                 method: "post",
-                url: server_url +`/api/login`,
+                url: server_url1 +`/login`,
                 data: login
             });
             const accessToken = response.data.token;
