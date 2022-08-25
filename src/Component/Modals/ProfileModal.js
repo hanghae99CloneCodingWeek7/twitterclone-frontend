@@ -10,6 +10,10 @@ const ProfileModal = ({ loginUser, userProfile }) => {
   const userstate = useSelector((store) => store.loginSlice);
   const isOpen = useSelector((store) => store.modal.isOpenProfileModal);
 
+  //모달창을 위한 props 전달받은 변수
+  const isOpen = useSelector((store) => store.modal.isOpenProfileModal)
+  // let [isOpened, setIsOpened] = useState(willOpen);
+  const navigate = useNavigate(); //로그인 성공시 의 다음 경로 를  리다이렉트 하기위해서 사용
   const dispatch = useDispatch();
 
   const divStyle = {
@@ -31,7 +35,7 @@ const ProfileModal = ({ loginUser, userProfile }) => {
   return (
     <div
       className={isOpen ? "openloginModal modal" : "modal"}
-      // onClick={}
+    // onClick={}
     >
       <section onClick={(e) => e.stopPropagation()}>
         {/* 클릭 이벤트 중첩을 방지 */}
@@ -46,6 +50,15 @@ const ProfileModal = ({ loginUser, userProfile }) => {
             &times;
           </button>
         </header>
+        <main>Profile</main>
+        <body>test</body>
+            {userstate.post?.map((value) => (
+              <MapFeedWrap key={value?.postInfo._id}>
+                <>
+                {value.writerInfo.DISPLAY_NAME}
+                </>
+              </MapFeedWrap>
+            ))}
 
         {loginUser?.data.myProfile._id === userProfile?.data.myProfile._id ? (
           <div style={divStyle}>
@@ -154,8 +167,8 @@ const ProfileModal = ({ loginUser, userProfile }) => {
 // TIMESTAMPS: "2022-08-20T03:36:15.519Z"
 
 const MapFeedWrap = styled.div`
-  display: flex;
-  /* flex-direction: column; */
-  background-color: white;
-`;
+            display: flex;
+            /* flex-direction: column; */
+            background-color: white;
+            `;
 export default ProfileModal;
