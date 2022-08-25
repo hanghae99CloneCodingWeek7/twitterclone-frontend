@@ -5,13 +5,12 @@ import { useDispatch } from "react-redux";
 import WhoToFollow from "../../UI/Organisems/followBox/WhoToFollow";
 
 const FollowBox = ({ count, data }) => {
-  const dispatch = useDispatch();
-
   const [whomToFollow, setWhomToFollow] = useState(data);
 
+  const dispatch = useDispatch();
   const goModal = () => {
-    dispatch(openFollowModal())
-  }
+    dispatch(openFollowModal());
+  };
 
   return (
     <div style={followBoxStyle}>
@@ -40,11 +39,3 @@ const followBoxStyle = {
 };
 
 export default FollowBox;
-
-// const BoxWrap2 = styled.div`
-//   background-color: #dee2e6;
-//   border-radius: 1rem;
-//   padding: 16px;
-//   padding-top: 5px;
-//   height: 30vh;
-// `;

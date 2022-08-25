@@ -13,21 +13,16 @@ import comment4 from "./img/comment4.png";
 import ProfileImg from "UI/Organisems/myProfileBox/ProfileImg";
 import { FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { deletePost } from "Redux/Modules/homePageSlice";
+import { useDispatch } from "react-redux";
+import { BiWindows } from "react-icons/bi";
 
 const IterationFeeds = ({ data }) => {
-  //모달창 State
-  const [modalOpen, setModalOpen] = useState(false);
+  const navigate = useNavigate(); //댓글페이지이동
 
-  const openModal = () => {
-    setModalOpen(true);
-  };
-  const closeModal = () => {
-    setModalOpen(false);
-  };
+  const dispatch = useDispatch();
 
-  const navigate = useNavigate();
-  const param = useParams();
+
   const [feeds, setFeeds] = useState({});
 
   useEffect(() => {
@@ -40,7 +35,7 @@ const IterationFeeds = ({ data }) => {
     }).then((e) => {
       setFeeds(e);
     });
-  }, []);
+  }, [deletePost]);
 
   return (
     <>
@@ -50,17 +45,18 @@ const IterationFeeds = ({ data }) => {
             <MapFeedWrap key={data.postInfo._id}>
               <EditDeleteWrap>
                 {/* <button>수정</button> */}
-                <FaTrash
+                <FaTrash 
                   color="#ccc"
                   size="20"
                   margin="5px"
                   onClick={() => {
-                    alert(
-                      "이것은 사실" +
-                        data.postInfo._id +
-                        " 요것을 샥! 지워버리는 기능입니다."
-                    );
-                  }}
+                    dispatch(deletePost(data.postInfo._id))
+                    alert("삭제가 완료되었습니다.")
+                    
+                  }
+                }
+                
+
                 />
               </EditDeleteWrap>
               <ImgContentWrap>
@@ -76,15 +72,21 @@ const IterationFeeds = ({ data }) => {
                     <p>{data.postInfo.CONTENT} 14h</p>
                   </Contentbox>
                   <ImageBox>
-                    <img
-                      style={imageBoxStyle}
-                      src={data.postInfo.POST_PHOTO}
-                    ></img>
+                    {data.postInfo.POST_PHOTO ? (
+                      <img
+                        className="crop"
+                        style={imageBoxStyle}
+                        src={data.postInfo.POST_PHOTO}
+                      ></img>
+                    ) : (
+                      <></>
+                    )}
                   </ImageBox>
                   <CommentImg>
                     <img
                       style={commentIconStyle}
                       src={comment}
+
                       onClick={
                         // navigate(`/comment/${data.postInfo._id}`) +
                         // alert(
@@ -93,6 +95,8 @@ const IterationFeeds = ({ data }) => {
                         //     "에 댓글을 확인하고 게시합니다."
                         // )
                         openModal
+                        
+                        
                       }
                       alt="코멘트 남기기"
                       width="20"

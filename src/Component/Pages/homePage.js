@@ -25,25 +25,27 @@ import WhoToFollowModal from "../Modals/WhoToFollowModal";
 import Hashtags from "../Template/Hashtags";
 
 // 목업 데이터
-import sampleToFollow from "../../mockData/sampleToFollow.json";
 import hashtags from "../../mockData/hashtags.json";
 import IterationFeeds from "Component/Template/IterationFeeds";
 import axios from "axios";
+import CommentPage from "./commentPage";
 
 const Home = () => {
   const userstate = useSelector((store) => store.loginSlice);
   const leftstate = useSelector((store) => store.loginSlice.post);
   const [usersToFollow, setUsersToFollow] = useState(undefined);
+  const [loginUser, setLoginUser] = useState({});
+  const [userProfile, setUserProfile] = useState({});
 
   const dispatch = useDispatch();
   // 유저정보를 저장하기위함
-  
+
   //  const [islogin, setIsLogin] = useState(userEmail);
   useEffect(() => {
     if (getCookie("is_login")) {
       dispatch(getToken());
     }
-     axios({
+    axios({
       method: "get",
       url: `https://www.myspaceti.me/api/profiles/whotofollow`,
       headers: {
@@ -53,7 +55,19 @@ const Home = () => {
       setUsersToFollow(e);
     });
 
-  }, [deletePost]);
+    axios({
+      method: "get",
+      url: `https://www.myspaceti.me/api/profiles`,
+      headers: {
+        Authorization: `Bearer ${getCookie("is_login")}`,
+      },
+    }).then((e) => {
+      console.log("LoginUser", e);
+      setLoginUser(e);
+    });
+
+    setUserProfile(loginUser);
+  }, [loginUser]);
 
   const navigate = useNavigate();
 
@@ -88,24 +102,19 @@ const Home = () => {
       // navigate("/");
     }
   };
-
-const Ondelete = () => {
-  dispatch(deletePost({}))
-  alert("삭제")
-};
-
   const onProfile = () => {
     navigate("/profile");
   };
 
   return (
     <Total>
-
       <LeftWrap data={leftstate} />
-      <ProfileModal willOpen={true} />
-      {usersToFollow ? (
-        <WhoToFollowModal willOpen={true} data={usersToFollow} />
-      ) : ( <></> )}
+      {loginUser.data && userProfile.data ? (
+        <ProfileModal loginUser={loginUser} userProfile={userProfile} />
+      ) : (
+        <></>
+      )}
+      {usersToFollow ? <WhoToFollowModal data={usersToFollow} /> : <></>}
       <CenterWrap>
         <CenterHome>Home</CenterHome>
         <TotalFeed>
@@ -178,9 +187,6 @@ const Ondelete = () => {
           {usersToFollow ? <FollowBox count={4} data={usersToFollow} /> : <></>}
         </div>
       </RightWrap>
-
-
-
     </Total>
   );
 };
@@ -260,16 +266,15 @@ const UploadImg = styled.button`
 `;
 
 const TweetBtn = styled.div`
-
-display: flex;
-/* flex-direction: row-reverse; */
-/* background-color: red; */
-margin-left: 20vw;
+  display: flex;
+  /* flex-direction: row-reverse; */
+  /* background-color: red; */
+  margin-left: 20vw;
 `;
 
 const Btn = styled.button`
-display: flex;
-float: right;
+  display: flex;
+  float: right;
   font-size: 15px;
   /* margin-right: 3.5vw; */
   padding-top: 10px;
