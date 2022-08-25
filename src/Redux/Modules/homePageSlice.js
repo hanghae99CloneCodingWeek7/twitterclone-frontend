@@ -22,7 +22,7 @@ export const deletePost = createAsyncThunk(
     console.log(value);
     try {
       console.log(2322222)
-      const res = await axios.delete(`https://www.myspaceti.me/api/posts/${value}`,
+      const res = await axios.delete(server_url + `/api/posts/${value}`,
       {
         headers: {
           Authorization: `Bearer ${getCookie("is_login")}`,
@@ -59,7 +59,7 @@ export const postFeedThunk = createAsyncThunk(
       const response = await
         axios({
           method: "post",
-          url: `https://www.myspaceti.me/api/posts/create`,
+          url: server_url + `/api/posts/create`,
           headers: {
             Authorization: `Bearer ${getCookie("is_login")}`,
             // Bearea 는 토큰 포멧의 일종 

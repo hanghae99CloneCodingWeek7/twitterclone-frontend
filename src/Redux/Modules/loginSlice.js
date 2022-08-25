@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { getCookie, setCookie } from "../../Api/cookie";
 import jwt_decode from "jwt-decode";
-
+import { server_url } from "Redux";
 const initialState = {
     post: [],
     loading: false,
@@ -21,7 +21,7 @@ export const loginDb = createAsyncThunk(
         try {
             const response = await axios({
                 method: "post",
-                url: `https://www.myspaceti.me/api/login`,
+                url: server_url +`/api/login`,
                 data: login
             });
             const accessToken = response.data.token;
@@ -46,7 +46,7 @@ export const getToken = createAsyncThunk("get/getToken", async () => {
         const response = await
             axios({
                 method: "get",
-                url: `https://www.myspaceti.me/api/posts`,
+                url: server_url + `/api/posts`,
                 headers: {
                     Authorization: `Bearer ${getCookie("is_login")}`,
                     // Bearea 는 토큰 포멧의 일종 
@@ -70,7 +70,7 @@ export const exsearch = createAsyncThunk("get/getToken", async () => {
         const response = await
             axios({
                 method: "get",
-                url: `https://www.myspaceti.me/api/posts/search`,
+                url: server_url +`/api/posts/search`,
                 headers: {
                     Authorization: `Bearer ${getCookie("is_login")}`,
                     // Bearea 는 토큰 포멧의 일종 

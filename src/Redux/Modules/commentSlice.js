@@ -13,7 +13,7 @@ import { server_url } from "../index";
 //!코멘트 get
 export const getCommentList = createAsyncThunk("GET_COMMENT", async () => {
   const response = await axios.get(
-    "https://www.myspaceti.me/api/comments/:postId"
+    server_url + `/api/posts/api/comments/:postId`
   );
   console.log(response);
   return response.data;
@@ -38,7 +38,7 @@ export const addCommentList = createAsyncThunk(
   async (newComment) => {
     console.log(newComment);
     const response = await axios.post(
-      "https://www.myspaceti.me/api/comments/:postId",
+      server_url + `/api/posts/api/comments/:postId`,
       newComment
     );
     console.log(response);
@@ -49,7 +49,7 @@ export const addCommentList = createAsyncThunk(
 export const deleteCommentList = createAsyncThunk(
   "DELETE_COMMENT",
   async (xId) => {
-    const response = await axios.delete(`http://localhost:8000/list/${xId}`);
+    // const response = await axios.delete(`http://localhost:8000/list/${xId}`);
     return xId;
   }
 );
@@ -57,7 +57,7 @@ export const deleteCommentList = createAsyncThunk(
 export const updateCommentList = createAsyncThunk(
   "UPDATE_LIST",
   async ({ xId, content }) => {
-    const response = await axios.put(`http://localhost:8000/list/${xId}`, {
+    const response = await axios.put(`server_url + /api/posts/list/${xId}`, {
       content: content,
     });
     return { xId, content };
